@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+source      'https://github.com/CocoaPods/Specs.git'
+ platform :ios, '9.0'
+
+target 'AVTVObject' do
+  pod 'Moya'
+  pod 'Alamofire'
+  pod 'SwiftyJSON'
+  pod 'HandyJSON'
+  pod 'SnapKit'
+  pod 'Hue'
+  pod 'Kingfisher'
+  
+  pod 'FDFullscreenPopGesture'
+  pod 'DZNEmptyDataSet'
+  pod 'KVOController'
+  pod 'VTMagic'
+  pod 'FMDB'
+  pod 'MBProgressHUD',:git => 'https://github.com/tianya2416/MBProgress.git'
+  pod 'MJRefresh', :git => 'https://github.com/CoderLT/MJRefresh.git'
+  pod 'SDWebImage'
+
+
+end
+

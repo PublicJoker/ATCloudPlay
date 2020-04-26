@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="" id="U6b-Vx-4bR" customClass="AVHomeReusableView" customModule="AVTVObject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="241" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jsm-gU-mWX">
+                    <rect key="frame" x="10" y="41" width="240" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLD-T5-svg">
+                    <rect key="frame" x="260" y="39" width="50" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="0S7-Gq-X8H"/>
+                        <constraint firstAttribute="height" constant="25" id="xBO-Ek-6fH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="更多"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="zLD-T5-svg" firstAttribute="centerY" secondItem="Jsm-gU-mWX" secondAttribute="centerY" id="PUQ-Vu-eMo"/>
+                <constraint firstItem="Jsm-gU-mWX" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="PnG-1M-0tR"/>
+                <constraint firstItem="zLD-T5-svg" firstAttribute="leading" secondItem="Jsm-gU-mWX" secondAttribute="trailing" constant="10" id="dgw-GZ-nyF"/>
+                <constraint firstItem="Jsm-gU-mWX" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="m3v-HK-gtx"/>
+                <constraint firstAttribute="trailing" secondItem="zLD-T5-svg" secondAttribute="trailing" constant="10" id="qyd-as-DAP"/>
+            </constraints>
+            <connections>
+                <outlet property="moreBtn" destination="zLD-T5-svg" id="Bbh-ao-kXq"/>
+                <outlet property="titleLab" destination="Jsm-gU-mWX" id="yPK-OB-0pa"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="148.32589285714286"/>
+        </collectionReusableView>
+    </objects>
+</document>
