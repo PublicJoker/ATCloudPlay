@@ -1,24 +1,24 @@
 //
-//  GKSearchDataQueue.m
+//  AVSearchDataQueueOC.m
 //  GKiOSNovel
 //
 //  Created by wangws1990 on 2019/6/14.
 //  Copyright © 2019 wangws1990. All rights reserved.
 //
 
-#import "GKSearchDataQueue.h"
+#import "AVSearchDataQueueOC.h"
 
 
 static NSString *SearchTable = @"SearchTable";
 
-@interface GKSearchDataQueue()
+@interface AVSearchDataQueueOC()
 
 
 @end
 
 
 
-@implementation GKSearchDataQueue
+@implementation AVSearchDataQueueOC
 + (void)tableExists:(FMDatabase *)dataBase{
     if (![dataBase tableExists:SearchTable]) {
         if ([dataBase open]) {
@@ -36,9 +36,9 @@ static NSString *SearchTable = @"SearchTable";
 + (void)insertDataToDataBase:(NSString *)hotWord
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        FMDatabaseQueue *dataQueue = [GKSearchDataQueue shareInstance].dataQueue;
+        FMDatabaseQueue *dataQueue = [AVSearchDataQueueOC shareInstance].dataQueue;
         [dataQueue inDatabase:^(FMDatabase * db) {
-            [GKSearchDataQueue tableExists:db];
+            [AVSearchDataQueueOC tableExists:db];
             if ([db open]) {
                 NSString *sql = [NSString stringWithFormat:@"select count(*) from %@ where name='%@'",SearchTable,hotWord];
                 FMResultSet *s = [db executeQuery:sql];
@@ -72,9 +72,9 @@ static NSString *SearchTable = @"SearchTable";
                   completion:(void(^)(BOOL success))completion{
     //根据hotWord 更新时间
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        FMDatabaseQueue *dataQueue = [GKSearchDataQueue shareInstance].dataQueue;
+        FMDatabaseQueue *dataQueue = [AVSearchDataQueueOC shareInstance].dataQueue;
         [dataQueue inDatabase:^(FMDatabase * db) {
-            [GKSearchDataQueue tableExists:db];
+            [AVSearchDataQueueOC tableExists:db];
             if ([db open]) {
                 NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
                 NSString * v5TableSql = [NSString stringWithFormat:@"update %@ set updateTime = '%ld'  where name = '%@'",SearchTable ?:@"",(long)time,hotWord];
@@ -96,9 +96,9 @@ static NSString *SearchTable = @"SearchTable";
 + (void)deleteDataToDataBase:(NSString *)hotWord
                   completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        FMDatabaseQueue *dataQueue = [GKSearchDataQueue shareInstance].dataQueue;
+        FMDatabaseQueue *dataQueue = [AVSearchDataQueueOC shareInstance].dataQueue;
         [dataQueue inDatabase:^(FMDatabase * db) {
-            [GKSearchDataQueue tableExists:db];
+            [AVSearchDataQueueOC tableExists:db];
             if ([db open]) {
                 NSString * v5TableSql = [NSString stringWithFormat:@"delete from '%@' where name = '%@'",SearchTable ?:@"",hotWord?: @""];
                 BOOL res = [db executeUpdate:v5TableSql];
@@ -116,10 +116,10 @@ static NSString *SearchTable = @"SearchTable";
 + (void)deleteDatasToDataBase:(NSArray *)listData
                    completion:(void(^)(BOOL success))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        GKSearchDataQueue *dataBase = [GKSearchDataQueue shareInstance];
+        AVSearchDataQueueOC *dataBase = [AVSearchDataQueueOC shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         [dataQueue inDatabase:^(FMDatabase * db) {
-            [GKSearchDataQueue tableExists:db];
+            [AVSearchDataQueueOC tableExists:db];
             if ([db open]) {
                 [db beginTransaction];
                 for (NSString * hotWord in listData) {
@@ -145,10 +145,10 @@ static NSString *SearchTable = @"SearchTable";
                     pageSize:(NSInteger)pageSize
                   completion:(void(^)(NSArray <NSString *>*listData))completion{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        GKSearchDataQueue *dataBase = [GKSearchDataQueue shareInstance];
+        AVSearchDataQueueOC *dataBase = [AVSearchDataQueueOC shareInstance];
         FMDatabaseQueue *dataQueue = dataBase.dataQueue;
         [dataQueue inDatabase:^(FMDatabase *db) {
-            [GKSearchDataQueue tableExists:db];
+            [AVSearchDataQueueOC tableExists:db];
             if ([db open]) {
                 NSString * sql = [NSString stringWithFormat:
                                   @"select * from '%@' order by updateTime desc limit %@,%@",SearchTable,@((page-1)*pageSize),@(pageSize)];
@@ -169,6 +169,6 @@ static NSString *SearchTable = @"SearchTable";
     });
 }
 + (void)dropTableDataBase:(void (^)(BOOL))completion{
-    [GKSearchDataQueue dropTableDataBase:SearchTable completion:completion];
+    [AVSearchDataQueueOC dropTableDataBase:SearchTable completion:completion];
 }
 @end

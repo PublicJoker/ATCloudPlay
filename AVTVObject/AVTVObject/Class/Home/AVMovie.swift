@@ -10,9 +10,9 @@ import UIKit
 import HandyJSON
 
 class AVMovie: HandyJSON {
+    var movieId  : String  = "";
     var name     : String  = "";
     var pic      : String  = "";
-    var movieId  : String  = "";
     var cion     : String  = "";
     var hits     : String  = "";
     var pf       : String  = "";
@@ -20,6 +20,7 @@ class AVMovie: HandyJSON {
     var type     : String  = "";
     var info     : String  = "";
     var vip      : Int     = 0;
+    var updateTime :TimeInterval = 0;
     func mapping(mapper: HelpingMapper) {
          mapper <<<
              self.movieId <-- ["movieId","id"]

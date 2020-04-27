@@ -16,6 +16,23 @@ class AVSearchView: UIView,UITextFieldDelegate {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var textField: UITextField!
     weak var delegate : searchDelegate? = nil;
+    public var keyWord : String?{
+        didSet{
+            let text = keyWord ?? ""
+            self.textField.text = text ;
+            self.textFieldAction(sender:self.textField)
+        }
+    }
+    public var _searchEnable: Bool?
+    public var searchEnable : Bool?{
+        set{
+            _searchEnable = newValue ?? false;
+            self.searchBtn.isUserInteractionEnabled = _searchEnable!;
+            self.searchBtn.backgroundColor = _searchEnable! ? AppColor : UIColor.init(hex: "ededed");
+        }get{
+            return _searchEnable;
+        }
+    }
     override func awakeFromNib() {
         self.backgroundColor = Appxffffff;
         self.searchBtn.layer.masksToBounds = true;
@@ -27,15 +44,10 @@ class AVSearchView: UIView,UITextFieldDelegate {
         self.searchBtn.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
         self.textFieldAction(sender: self.textField)
     }
-    func setKeyWord(keyWord : String?){
-        
-        self.textField.text = keyWord ?? "";
-        self.textFieldAction(sender:self.textField)
-    }
     @objc func textFieldAction(sender:UITextField){
         var text : String = sender.text ?? "";
         text = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.setEnable(enable: text.count > 0)
+        self.searchEnable = text.count > 0
         if text.count == 0 {
             if let delegate = self.delegate{
                 delegate.searchView?(searchView: self, keyWord:"");
@@ -49,10 +61,6 @@ class AVSearchView: UIView,UITextFieldDelegate {
         if let delegate = self.delegate{
             delegate.searchView?(searchView: self, keyWord:self.textField.text!);
         }
-    }
-    func setEnable(enable:Bool){
-        self.searchBtn.isUserInteractionEnabled = enable;
-        self.searchBtn.backgroundColor = enable ? AppColor : Appx999999;
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.text?.count == 0 {

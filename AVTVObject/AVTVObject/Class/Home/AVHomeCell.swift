@@ -18,7 +18,6 @@ class AVHomeCell: UICollectionViewCell {
             let item = model;
             self.titleLab.text = item.name;
             self.imageV.kf.setImage(with: URL.init(string: item.pic),placeholder: placeholder);
-            
         }
     }
     override func awakeFromNib() {

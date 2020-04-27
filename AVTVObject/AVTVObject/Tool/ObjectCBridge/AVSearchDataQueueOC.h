@@ -1,5 +1,5 @@
 //
-//  GKSearchDataQueue.h
+//  AVSearchDataQueueOC.h
 //  GKiOSNovel
 //
 //  Created by wangws1990 on 2019/6/14.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GKSearchDataQueue : BaseDataQueue
+@interface AVSearchDataQueueOC : BaseDataQueue
 /**
  *  @brief 插入数据
  */

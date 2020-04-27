@@ -11,12 +11,11 @@ import UIKit
 class AVPlayController: BaseViewController,playerDelegate,playVideoDelegate {
 
     var info : AVMovieInfo? = nil;
-    class func vcWithMoveId(movieId : String) -> Self{
+    class func vcWithMovieId(movieId : String) -> Self{
         let vc = AVPlayController.init();
-        vc.movieId = movieId;
+        vc.movieId = movieId ;
         return vc as! Self
     }
-    var movieId : String? = nil;
     lazy var player : GKVideoPlayer = {
         let player = GKVideoPlayer();
         player.delegate = self;
@@ -39,10 +38,12 @@ class AVPlayController: BaseViewController,playerDelegate,playVideoDelegate {
         btn.addTarget(self, action: #selector(goBackAction), for: .touchUpInside);
         return btn;
     }()
+    var movieId : String? = nil;
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
         loadData()
+        loadDataQueue()
     }
     func loadUI(){
         self.fd_prefersNavigationBarHidden = true;
@@ -113,11 +114,27 @@ class AVPlayController: BaseViewController,playerDelegate,playVideoDelegate {
             }
         }
     }
+    func loadDataQueue(){
+        AVFavDataQueue.getFavData(movieId: self.movieId!) { (movie) in
+            let res = movie.movieId.count > 0 ? true : false;
+            self.playView.fav = res;
+        }
+    }
     @objc func goBackAction() {
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     @objc func favAction(sender: UIButton){
-        
+        if sender.isSelected {
+            AVFavDataQueue.cancleFavData(movieId: self.movieId!) { (success) in
+                self.playView.fav = false
+            }
+        }else{
+            if let info = AVMovie.deserialize(from: self.info?.toJSONString()) {
+                AVFavDataQueue.favData(model:info) { (success) in
+                    self.playView.fav = true;
+                }
+            }
+        }
     }
     func orientations(screen:Bool){
         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate;
@@ -128,6 +145,7 @@ class AVPlayController: BaseViewController,playerDelegate,playVideoDelegate {
         self.playerView.snp.remakeConstraints { (make) in
             make.edges.equalToSuperview();
         }
+        self.playView.screenBtn.isSelected = true;
     }
     func halfScreen(){
 
@@ -136,6 +154,7 @@ class AVPlayController: BaseViewController,playerDelegate,playVideoDelegate {
             make.top.equalToSuperview().offset(!iPhone_X ? 0 :STATUS_BAR_HIGHT);
             make.height.equalTo(SCREEN_WIDTH/16*9.0);
         }
+        self.playView.screenBtn.isSelected = false;
     }
     func show(){
         if SVProgressHUD.isVisible() {

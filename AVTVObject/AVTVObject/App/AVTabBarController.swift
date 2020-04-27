@@ -17,8 +17,8 @@ class AVTabBarController: UITabBarController {
         self.tabBar.isTranslucent = false;
         let vc = AVHomeController.init();
         self.createCtrl(vc: vc, title:"首页", normal:"icon_tabbar_home_n", select:"icon_tabbar_home_h");
-        let fav = BaseViewController.init();
-        self.createCtrl(vc: fav, title:"书架", normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
+        let fav = AVFavController.init();
+        self.createCtrl(vc: fav, title:"收藏", normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
         let my = BaseViewController.init();
         self.createCtrl(vc: my, title:"我的", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
         

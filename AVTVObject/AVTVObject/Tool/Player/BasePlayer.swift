@@ -30,9 +30,6 @@ import UIKit
 }
 @objc class BasePlayer: NSObject {
     weak var delegate : playerDelegate? = nil;
-    var _current : TimeInterval = 0;
-    var _duration: TimeInterval = 0;
-    var _playing : Bool = false;
     lazy var contentView: UIView = {
         return UIView.init();
     }()

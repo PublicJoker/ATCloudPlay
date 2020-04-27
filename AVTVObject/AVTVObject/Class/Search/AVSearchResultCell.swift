@@ -22,9 +22,25 @@ class AVSearchResultCell: UITableViewCell {
             self.subTitleLab.text = item.type + "/" + item.state + "/" + item.info;
             self.vip.isHidden = item.vip == 0;
             self.hitLab.text = "点击量" + item.hits;
-            
         }
     }
+//    var _model : AVMovie?
+//    var model :AVMovie?{
+//        set{
+//            _model = newValue;
+//            if _model != nil {
+//                let item : AVMovie = _model! ;
+//                self.titleLab.text = item.name;
+//                self.imageV.kf.setImage(with: URL.init(string: item.pic),placeholder: placeholder);
+//                self.subTitleLab.text = item.type + "/" + item.state + "/" + item.info;
+//                self.vip.isHidden = item.vip == 0;
+//                self.hitLab.text = "点击量" + item.hits;
+//            }
+//        }
+//        get{
+//            return _model;
+//        }
+//    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -35,6 +35,14 @@ class GKPlayView: UIView {
     @IBOutlet weak var screenBtn: UIButton!
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var favBtn: UIButton!
+    
+    public var fav : Bool{
+        set{
+            self.favBtn.isSelected = newValue;
+        }get{
+            return self.favBtn.isSelected;
+        }
+    }
     lazy var cacheSlider: UISlider = {
         let slider = UISlider.init();
         slider.thumbTintColor = UIColor.clear;

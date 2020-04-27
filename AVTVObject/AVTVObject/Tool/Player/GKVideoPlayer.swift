@@ -137,8 +137,6 @@ class GKVideoPlayer: BasePlayer {
             var timeInterval = startSeconds + durationSeconds;
             timeInterval = timeInterval.isNaN ? 0 : timeInterval
             let duration = CMTimeGetSeconds(playerItem!.duration);
-            print("progressCache ===" + String(timeInterval));
-            print("progressCache ===" + String(duration));
             if let delegate  = self.delegate{
                 if duration > 0 {
                     delegate.player?(player: self, cache: (timeInterval));
@@ -244,10 +242,8 @@ class GKVideoPlayer: BasePlayer {
             })
         }
     }
-    var playing: Bool{
-        set{
-            _playing = newValue;
-        }get{
+    public var playing: Bool{
+        get{
             if self.player != nil {
                 let res = self.player?.timeControlStatus == .playing
                 return res;
@@ -255,10 +251,8 @@ class GKVideoPlayer: BasePlayer {
             return false;
         }
     }
-    var duration: TimeInterval{
-        set{
-            _duration = newValue;
-        }get{
+    public var duration: TimeInterval{
+        get{
             if self.playerItem != nil {
                 let time = CMTimeGetSeconds(self.playerItem!.duration);
                 return time.isNaN ? 0 : time;
@@ -266,10 +260,8 @@ class GKVideoPlayer: BasePlayer {
             return 0
         }
     }
-    var current: TimeInterval{
-        set{
-            _current = newValue;
-        }get{
+    public var current: TimeInterval{
+        get{
             if self.playerItem != nil {
                 let time = CMTimeGetSeconds((self.playerItem?.currentTime())!);
                 return time.isNaN ? 0 : time;

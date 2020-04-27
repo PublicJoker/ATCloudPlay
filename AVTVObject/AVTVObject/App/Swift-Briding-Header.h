@@ -17,6 +17,6 @@
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "MBProgressHUD+ATAdd.h"
 #import "BaseDataQueue.h"
-#import "GKSearchDataQueue.h"
+#import "AVSearchDataQueueOC.h"
 #import "SVProgressHUD.h"
 #endif /* Swift_Briding_Header_h */
