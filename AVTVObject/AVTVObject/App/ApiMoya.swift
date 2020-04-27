@@ -10,8 +10,6 @@ import UIKit
 import Moya
 import SwiftyJSON
 
-let moya = MoyaProvider<ApiMoya>();
-
 public enum ApiMoya{
     case apiHome(vsize: String)
     case apiMovie(movieId: String, vsize:String)
@@ -76,6 +74,7 @@ extension ApiMoya : TargetType{
         ]
     }
     static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
+        let moya = MoyaProvider<ApiMoya>();
         moya.request(target) { (result) in
             switch result{
             case let .success(respond):
@@ -93,6 +92,7 @@ extension ApiMoya : TargetType{
         }
     }
     static func testDemo(){
+        let moya = MoyaProvider<ApiMoya>();
         moya.request(ApiMoya.apiHome(vsize: "15")) { (result) in
             switch result{
             case let .success(respond):

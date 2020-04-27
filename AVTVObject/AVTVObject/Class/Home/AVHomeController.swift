@@ -12,6 +12,7 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
         let btn : UIButton = UIButton.init();
         btn.frame = CGRect.init(x: 0, y: 0, width: 44, height: 44);
         btn.setImage(UIImage.init(named: "icon_search"), for: .normal);
+        btn.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
         return btn;
     }()
     lazy var titleDatas: [String] = {
@@ -60,6 +61,9 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
             make.edges.equalToSuperview();
         }
         self.magicCtrl.magicView.reloadData();
+    }
+    @objc func searchAction(){
+        AppJump.jumpToSearchControl();
     }
     func menuTitles(for magicView: VTMagicView) -> [String] {
         return self.titleDatas;

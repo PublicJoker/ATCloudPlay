@@ -23,7 +23,7 @@ class AVHomeReusableView: UICollectionReusableView {
         self.moreBtn.setTitleColor(AppColor, for: .normal);
         self.moreBtn.layer.masksToBounds = true;
         self.moreBtn.layer.cornerRadius = 2.5;
-        self.moreBtn.layer.borderWidth = 0.5;
+        self.moreBtn.layer.borderWidth = 1.0;
         self.moreBtn.layer.borderColor = AppColor.cgColor;
         self.titleLab.textColor = Appx000000;
         self.titleLab.font = UIFont.boldSystemFont(ofSize: 18)

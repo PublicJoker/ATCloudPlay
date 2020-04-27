@@ -34,6 +34,20 @@
 		0F1B202024557D6B00D65D4B /* AVHomeHotContrller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B201F24557D6B00D65D4B /* AVHomeHotContrller.swift */; };
 		0F1B202224557E0200D65D4B /* AVHomeIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B202124557E0200D65D4B /* AVHomeIndexController.swift */; };
 		0F1B202424557E1700D65D4B /* AVHomeTvController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B202324557E1700D65D4B /* AVHomeTvController.swift */; };
+		0F1B20272455936700D65D4B /* AVFavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B20262455936700D65D4B /* AVFavController.swift */; };
+		0F1B202A2455947600D65D4B /* AVSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B20292455947600D65D4B /* AVSearchController.swift */; };
+		0F1B202E2455979F00D65D4B /* AVSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B202D2455979F00D65D4B /* AVSearchView.swift */; };
+		0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B202F245597A700D65D4B /* AVSearchView.xib */; };
+		0F46FBED24566AB3003D28AF /* GKSearchDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEB24566AB2003D28AF /* GKSearchDataQueue.m */; };
+		0F46FBF024566AEB003D28AF /* GKBookSearchDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEF24566AEB003D28AF /* GKBookSearchDataQueue.swift */; };
+		0F46FBF324566D35003D28AF /* AVSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBF124566D35003D28AF /* AVSearchResultCell.swift */; };
+		0F46FBF424566D35003D28AF /* AVSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F46FBF224566D35003D28AF /* AVSearchResultCell.xib */; };
+		0F46FBF624568521003D28AF /* AVPlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBF524568521003D28AF /* AVPlayController.swift */; };
+		0F46FBFB24568E41003D28AF /* BasePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBF924568E40003D28AF /* BasePlayer.swift */; };
+		0F46FBFD24568F11003D28AF /* GKVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBFC24568F11003D28AF /* GKVideoPlayer.swift */; };
+		0F503ED22456AEBF006115F7 /* GKPlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F503ED02456AEBE006115F7 /* GKPlayView.xib */; };
+		0F503ED32456AEBF006115F7 /* GKPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F503ED12456AEBF006115F7 /* GKPlayView.swift */; };
+		0F503ED62456B3AA006115F7 /* ATAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F503ED52456B3AA006115F7 /* ATAlertView.swift */; };
 		F324E015AE3BA0E4ABDB51FF /* libPods-AVTVObject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5DE54C8F3E9F9A711CA03D /* libPods-AVTVObject.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +84,21 @@
 		0F1B201F24557D6B00D65D4B /* AVHomeHotContrller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHomeHotContrller.swift; sourceTree = "<group>"; };
 		0F1B202124557E0200D65D4B /* AVHomeIndexController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHomeIndexController.swift; sourceTree = "<group>"; };
 		0F1B202324557E1700D65D4B /* AVHomeTvController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHomeTvController.swift; sourceTree = "<group>"; };
+		0F1B20262455936700D65D4B /* AVFavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFavController.swift; sourceTree = "<group>"; };
+		0F1B20292455947600D65D4B /* AVSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchController.swift; sourceTree = "<group>"; };
+		0F1B202D2455979F00D65D4B /* AVSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchView.swift; sourceTree = "<group>"; };
+		0F1B202F245597A700D65D4B /* AVSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVSearchView.xib; sourceTree = "<group>"; };
+		0F46FBEB24566AB2003D28AF /* GKSearchDataQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKSearchDataQueue.m; sourceTree = "<group>"; };
+		0F46FBEC24566AB2003D28AF /* GKSearchDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKSearchDataQueue.h; sourceTree = "<group>"; };
+		0F46FBEF24566AEB003D28AF /* GKBookSearchDataQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKBookSearchDataQueue.swift; sourceTree = "<group>"; };
+		0F46FBF124566D35003D28AF /* AVSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchResultCell.swift; sourceTree = "<group>"; };
+		0F46FBF224566D35003D28AF /* AVSearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVSearchResultCell.xib; sourceTree = "<group>"; };
+		0F46FBF524568521003D28AF /* AVPlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayController.swift; sourceTree = "<group>"; };
+		0F46FBF924568E40003D28AF /* BasePlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePlayer.swift; sourceTree = "<group>"; };
+		0F46FBFC24568F11003D28AF /* GKVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKVideoPlayer.swift; sourceTree = "<group>"; };
+		0F503ED02456AEBE006115F7 /* GKPlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GKPlayView.xib; sourceTree = "<group>"; };
+		0F503ED12456AEBF006115F7 /* GKPlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GKPlayView.swift; sourceTree = "<group>"; };
+		0F503ED52456B3AA006115F7 /* ATAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATAlertView.swift; sourceTree = "<group>"; };
 		1A0EA02E076494C441F0FDB8 /* Pods-AVTVObject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVTVObject.debug.xcconfig"; path = "Target Support Files/Pods-AVTVObject/Pods-AVTVObject.debug.xcconfig"; sourceTree = "<group>"; };
 		505EA86B76D4CAAD20DF073D /* Pods-AVTVObject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVTVObject.release.xcconfig"; path = "Target Support Files/Pods-AVTVObject/Pods-AVTVObject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +142,7 @@
 				0F1B2009245560A500D65D4B /* Class */,
 				0F1B1FC7245529BF00D65D4B /* Info.plist */,
 				0F1B1FC4245529BF00D65D4B /* LaunchScreen.storyboard */,
+				0F46FBE924566AB2003D28AF /* Tool */,
 			);
 			path = AVTVObject;
 			sourceTree = "<group>";
@@ -161,12 +191,12 @@
 		0F1B1FF224552DCB00D65D4B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				0F1B20032455361C00D65D4B /* ApiMoya.swift */,
 				0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */,
+				0F1B201D245576AD00D65D4B /* AppJump.swift */,
 				0F1B1FFF245532E600D65D4B /* ATKit.swift */,
 				0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */,
 				0F1B1FFC24552F4B00D65D4B /* Swift-Briding-Header.h */,
-				0F1B20032455361C00D65D4B /* ApiMoya.swift */,
-				0F1B201D245576AD00D65D4B /* AppJump.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -174,6 +204,8 @@
 		0F1B2009245560A500D65D4B /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0F1B20282455946000D65D4B /* Search */,
+				0F1B20252455935500D65D4B /* Fav */,
 				0F1B200A245560A500D65D4B /* Home */,
 			);
 			path = Class;
@@ -195,6 +227,74 @@
 				0F1B200B245560A500D65D4B /* AVMovie.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		0F1B20252455935500D65D4B /* Fav */ = {
+			isa = PBXGroup;
+			children = (
+				0F1B20262455936700D65D4B /* AVFavController.swift */,
+			);
+			path = Fav;
+			sourceTree = "<group>";
+		};
+		0F1B20282455946000D65D4B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0F1B20292455947600D65D4B /* AVSearchController.swift */,
+				0F1B202D2455979F00D65D4B /* AVSearchView.swift */,
+				0F1B202F245597A700D65D4B /* AVSearchView.xib */,
+				0F46FBF124566D35003D28AF /* AVSearchResultCell.swift */,
+				0F46FBF224566D35003D28AF /* AVSearchResultCell.xib */,
+				0F46FBF524568521003D28AF /* AVPlayController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0F46FBE924566AB2003D28AF /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				0F503ED42456B3A4006115F7 /* ATAlertView */,
+				0F46FBF724568E40003D28AF /* Player */,
+				0F46FBEE24566AE0003D28AF /* DataQueue */,
+				0F46FBEA24566AB2003D28AF /* ObjectCBridge */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		0F46FBEA24566AB2003D28AF /* ObjectCBridge */ = {
+			isa = PBXGroup;
+			children = (
+				0F46FBEC24566AB2003D28AF /* GKSearchDataQueue.h */,
+				0F46FBEB24566AB2003D28AF /* GKSearchDataQueue.m */,
+			);
+			path = ObjectCBridge;
+			sourceTree = "<group>";
+		};
+		0F46FBEE24566AE0003D28AF /* DataQueue */ = {
+			isa = PBXGroup;
+			children = (
+				0F46FBEF24566AEB003D28AF /* GKBookSearchDataQueue.swift */,
+			);
+			path = DataQueue;
+			sourceTree = "<group>";
+		};
+		0F46FBF724568E40003D28AF /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				0F46FBF924568E40003D28AF /* BasePlayer.swift */,
+				0F503ED12456AEBF006115F7 /* GKPlayView.swift */,
+				0F503ED02456AEBE006115F7 /* GKPlayView.xib */,
+				0F46FBFC24568F11003D28AF /* GKVideoPlayer.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		0F503ED42456B3A4006115F7 /* ATAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				0F503ED52456B3AA006115F7 /* ATAlertView.swift */,
+			);
+			path = ATAlertView;
 			sourceTree = "<group>";
 		};
 		1BEADE3E7DFC72C8D163C44E /* Frameworks */ = {
@@ -276,6 +376,9 @@
 			files = (
 				0F1B2016245560DA00D65D4B /* AVHomeCell.xib in Resources */,
 				0F1B201A245566B900D65D4B /* AVHomeReusableView.xib in Resources */,
+				0F503ED22456AEBF006115F7 /* GKPlayView.xib in Resources */,
+				0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */,
+				0F46FBF424566D35003D28AF /* AVSearchResultCell.xib in Resources */,
 				0F1B1FC6245529BF00D65D4B /* LaunchScreen.storyboard in Resources */,
 				0F1B1FC3245529BF00D65D4B /* Assets.xcassets in Resources */,
 			);
@@ -330,8 +433,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1B20272455936700D65D4B /* AVFavController.swift in Sources */,
+				0F1B202A2455947600D65D4B /* AVSearchController.swift in Sources */,
 				0F1B2015245560DA00D65D4B /* AVHomeCell.swift in Sources */,
 				0F1B201E245576AD00D65D4B /* AppJump.swift in Sources */,
+				0F46FBFD24568F11003D28AF /* GKVideoPlayer.swift in Sources */,
 				0F1B2019245566B900D65D4B /* AVHomeReusableView.swift in Sources */,
 				0F1B1FE724552C8A00D65D4B /* BaseTableViewController.swift in Sources */,
 				0F1B200F245560A500D65D4B /* AVHomeController.swift in Sources */,
@@ -344,13 +450,21 @@
 				0F1B202224557E0200D65D4B /* AVHomeIndexController.swift in Sources */,
 				0F1B2010245560A500D65D4B /* AVHomeInfo.swift in Sources */,
 				0F1B20042455361C00D65D4B /* ApiMoya.swift in Sources */,
+				0F46FBF024566AEB003D28AF /* GKBookSearchDataQueue.swift in Sources */,
 				0F1B1FED24552C8A00D65D4B /* BaseNetManager.swift in Sources */,
+				0F503ED32456AEBF006115F7 /* GKPlayView.swift in Sources */,
+				0F46FBFB24568E41003D28AF /* BasePlayer.swift in Sources */,
 				0F1B1FE924552C8A00D65D4B /* BaseRefreshController.swift in Sources */,
+				0F46FBF624568521003D28AF /* AVPlayController.swift in Sources */,
 				0F1B2000245532E600D65D4B /* ATKit.swift in Sources */,
+				0F46FBF324566D35003D28AF /* AVSearchResultCell.swift in Sources */,
 				0F1B1FEA24552C8A00D65D4B /* BaseNavigationController.swift in Sources */,
+				0F1B202E2455979F00D65D4B /* AVSearchView.swift in Sources */,
 				0F1B202024557D6B00D65D4B /* AVHomeHotContrller.swift in Sources */,
+				0F503ED62456B3AA006115F7 /* ATAlertView.swift in Sources */,
 				0F1B201C245574C100D65D4B /* AVHomeMoreController.swift in Sources */,
 				0F1B1FE424552C8A00D65D4B /* BaseDataQueue.m in Sources */,
+				0F46FBED24566AB3003D28AF /* GKSearchDataQueue.m in Sources */,
 				0F1B1FF524552DCB00D65D4B /* AppDelegate.swift in Sources */,
 				0F1B1FE524552C8A00D65D4B /* BaseMacro.swift in Sources */,
 			);

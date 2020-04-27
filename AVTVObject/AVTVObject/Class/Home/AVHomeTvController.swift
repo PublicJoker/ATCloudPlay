@@ -66,11 +66,9 @@ class AVHomeTvController: BaseConnectionController {
         return cell;
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        ApiMoya.apiMoyaRequest(target: .apiShow(movieId: "25829"), sucesss: { (json) in
-            print(json);
-        }) { (error) in
-            
-        }
+        let info : AVHomeInfo = self.listData[indexPath.section];
+        let model = info.vod[indexPath.row]
+        AppJump.jumpToDetailControl(movieId: model.movieId)
     }
 
 }

@@ -21,7 +21,6 @@ class AVHomeHotContrller: BaseConnectionController {
     }
     override func refreshData(page: Int) {
         ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "2", vsize: "15"), sucesss: { (json) in
-            print(json);
             if let data = [AVHomeInfo].deserialize(from: json.rawString()){
                 self.listData = data as! [AVHomeInfo];
                 self.collectionView.reloadData();
@@ -68,7 +67,9 @@ class AVHomeHotContrller: BaseConnectionController {
         return cell;
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        let info : AVHomeInfo = self.listData[indexPath.section];
+        let model = info.vod[indexPath.row]
+        AppJump.jumpToDetailControl(movieId: model.movieId)
     }
 
 }

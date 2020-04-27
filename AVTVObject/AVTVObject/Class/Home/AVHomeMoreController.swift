@@ -34,7 +34,6 @@ class AVHomeMoreController: BaseConnectionController {
     override func refreshData(page: Int) {
         if self.movieId.count > 0 {
             ApiMoya.apiMoyaRequest(target:.apiMovieMore(page: page, size: RefreshPageSize, movieId:self.movieId), sucesss: { (json) in
-                print(json);
                 if let data = [AVMovie].deserialize(from: json.rawString()){
                     let list = data as! [AVMovie];
                     self.listData.append(contentsOf: list);

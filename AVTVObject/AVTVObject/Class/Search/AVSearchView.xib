@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="AVSearchView" customModule="云播放" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="349" height="173"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DN6-cw-RJe">
+                    <rect key="frame" x="7" y="129" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Gjv-Ee-7Cg"/>
+                        <constraint firstAttribute="width" constant="44" id="OPH-me-5fr"/>
+                    </constraints>
+                    <state key="normal" image="icon_nav_back"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TZd-HA-gCk">
+                    <rect key="frame" x="279" y="136" width="55" height="30"/>
+                    <color key="backgroundColor" red="0.64313725489999995" green="0.64313725489999995" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="Aoz-WP-3Cr"/>
+                        <constraint firstAttribute="height" constant="30" id="uOd-YA-VUH"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="搜索"/>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98S-mt-fG4">
+                    <rect key="frame" x="41" y="136" width="223" height="30"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="lYf-xY-7bE">
+                            <rect key="frame" x="10" y="7.5" width="15" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="15" id="DDh-mH-ksY"/>
+                                <constraint firstAttribute="height" constant="15" id="K3X-mQ-Teq"/>
+                            </constraints>
+                        </imageView>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入剧集名称" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O2t-nt-o6F">
+                            <rect key="frame" x="30" y="0.0" width="188" height="30"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="O2t-nt-o6F" firstAttribute="centerY" secondItem="lYf-xY-7bE" secondAttribute="centerY" id="33I-53-eRp"/>
+                        <constraint firstAttribute="bottom" secondItem="O2t-nt-o6F" secondAttribute="bottom" id="DbI-EG-kPQ"/>
+                        <constraint firstAttribute="height" constant="30" id="QVT-TU-zc5"/>
+                        <constraint firstItem="lYf-xY-7bE" firstAttribute="centerY" secondItem="98S-mt-fG4" secondAttribute="centerY" id="UDc-Et-8xf"/>
+                        <constraint firstAttribute="trailing" secondItem="O2t-nt-o6F" secondAttribute="trailing" constant="5" id="cS4-X8-ytc"/>
+                        <constraint firstItem="O2t-nt-o6F" firstAttribute="top" secondItem="98S-mt-fG4" secondAttribute="top" id="h5B-Sn-i8r"/>
+                        <constraint firstItem="O2t-nt-o6F" firstAttribute="leading" secondItem="lYf-xY-7bE" secondAttribute="trailing" constant="5" id="kFD-d4-ph0"/>
+                        <constraint firstItem="lYf-xY-7bE" firstAttribute="leading" secondItem="98S-mt-fG4" secondAttribute="leading" constant="10" id="y1H-wY-KlO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="DN6-cw-RJe" secondAttribute="bottom" id="Khy-As-Ack"/>
+                <constraint firstItem="TZd-HA-gCk" firstAttribute="leading" secondItem="98S-mt-fG4" secondAttribute="trailing" constant="15" id="OnF-1H-Vdh"/>
+                <constraint firstItem="98S-mt-fG4" firstAttribute="centerY" secondItem="DN6-cw-RJe" secondAttribute="centerY" id="T9Q-PY-rag"/>
+                <constraint firstItem="TZd-HA-gCk" firstAttribute="centerY" secondItem="DN6-cw-RJe" secondAttribute="centerY" id="geV-gF-9kW"/>
+                <constraint firstItem="DN6-cw-RJe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="vE9-h9-ctk"/>
+                <constraint firstItem="98S-mt-fG4" firstAttribute="leading" secondItem="DN6-cw-RJe" secondAttribute="trailing" constant="-10" id="yEw-b7-wiM"/>
+                <constraint firstAttribute="trailing" secondItem="TZd-HA-gCk" secondAttribute="trailing" constant="15" id="yNY-cM-U4e"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backBtn" destination="DN6-cw-RJe" id="ZC1-39-xZz"/>
+                <outlet property="mainView" destination="98S-mt-fG4" id="b4d-f6-mjH"/>
+                <outlet property="searchBtn" destination="TZd-HA-gCk" id="JLL-ga-JwY"/>
+                <outlet property="textField" destination="O2t-nt-o6F" id="q9d-Wb-dAy"/>
+            </connections>
+            <point key="canvasLocation" x="89.130434782608702" y="419.53125"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_nav_back" width="33" height="44"/>
+        <image name="icon_search" width="15" height="14"/>
+    </resources>
+</document>

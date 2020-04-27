@@ -16,6 +16,7 @@ target 'AVTVObject' do
   pod 'KVOController'
   pod 'VTMagic'
   pod 'FMDB'
+  pod 'SVProgressHUD'
   pod 'MBProgressHUD',:git => 'https://github.com/tianya2416/MBProgress.git'
   pod 'MJRefresh', :git => 'https://github.com/CoderLT/MJRefresh.git'
   pod 'SDWebImage'

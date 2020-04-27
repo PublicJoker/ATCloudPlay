@@ -10,7 +10,7 @@ import UIKit
 import Hue
 import SnapKit
 import SwiftyJSON
-
+let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
 let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
 
@@ -45,6 +45,10 @@ class BaseMacro: NSObject {
               return false;
            };
        }
+    class func screen()->Bool{
+        let res : Bool = (kAppdelegate?.blockRotation == .landscapeRight || kAppdelegate?.blockRotation == .landscapeLeft);
+        return res;
+    }
 }
 public extension UIImage{
      class func imageWithColor(color:UIColor) -> UIImage{
