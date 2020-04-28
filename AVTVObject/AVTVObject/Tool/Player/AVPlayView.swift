@@ -332,11 +332,11 @@ class AVPlayView: UIView {
                 let point  = touch.location(in: self)
                 let progress = self.moveProgress(point: point);
                 self.progressDelegate(progress: TimeInterval(progress))
-                self.toastView.isHidden = true;
                 break
             default:
                 break
             }
+            self.toastView.isHidden = true;
         }
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -348,11 +348,11 @@ class AVPlayView: UIView {
                 let point  = touch.location(in: self)
                 let progress = self.moveProgress(point: point);
                 self.progressDelegate(progress: TimeInterval(progress))
-                self.toastView.isHidden = true;
                 break
             default:
                 break
             }
+            self.toastView.isHidden = true;
         }
         
     }
