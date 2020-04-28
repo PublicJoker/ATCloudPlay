@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     lazy var layout: UICollectionViewFlowLayout = {
@@ -35,6 +36,7 @@ class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,U
             make.edges.equalToSuperview();
         }
     }
+    //MARK:UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0;
     }
@@ -44,6 +46,7 @@ class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,U
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0);
     }
+    //MARK:UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1;
     }
@@ -57,6 +60,7 @@ class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,U
         let cell : UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: NSStringFromClass(UICollectionViewCell.classForCoder()), for: indexPath);
         return cell;
     }
+    //MARK:UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }

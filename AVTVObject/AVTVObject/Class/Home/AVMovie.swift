@@ -37,23 +37,39 @@ class AVMovieInfo : AVMovie{
     var yuyan        : String  = "";
     var text         : String  = "";
     var area         : String  = "";
-    var zu           : [AVItemInfo] = [];
+    
+    var routes       : [AVRoute] = [];
+    var playUrl      : String  = "";
     override func mapping(mapper: HelpingMapper) {
-        mapper <<<
+         mapper <<<
              self.movieId <-- ["movieId","id"]
          mapper <<<
-             self.area <-- ["area","diqu"]
+             self.area    <-- ["area","diqu"]
+        mapper <<<
+             self.routes  <-- ["zu","routes"]
      }
 }
-
-class AVItem : HandyJSON{
-    var itemId  : String = "";
-    var playUrl : String = "";//播放地址
+class AVRoute : HandyJSON{
+    var count   : Int =  0;
+    var name    : String = "";
+    var ly      : String = "";
+    var items   : [AVItem] = [];
+    func mapping(mapper: HelpingMapper) {
+         mapper <<<
+             self.items <-- ["ji","items"]
+     }
+    required init() {
+        
+    }
+}
+class AVItem : HandyJSON{//每一集
+    var itemId  : String = "";//
+    var playUrl : String = "";//播放地址 就怕地址会变化
     var ext     : String = "";
     var name    : String = "";
     func mapping(mapper: HelpingMapper) {
          mapper <<<
-             self.itemId <-- ["itemId","id"]
+             self.itemId  <-- ["itemId","id"]
         mapper <<<
              self.playUrl <-- ["playUrl","purl"]
      }
@@ -61,12 +77,6 @@ class AVItem : HandyJSON{
         
     }
 }
-class AVItemInfo : HandyJSON{
-    var count   : Int =  0;
-    var name    : String = "";
-    var ly      : String = "";
-    var ji      : [AVItem] = [];
-    required init() {
-        
-    }
+class AVItemInfo : AVItem{
+    var currentTime : TimeInterval = 0;
 }

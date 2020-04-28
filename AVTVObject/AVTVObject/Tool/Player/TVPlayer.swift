@@ -16,7 +16,7 @@ enum PathVideo : String {
     case playbackBufferEmpty = "playbackBufferEmpty";
     case playbackLikelyToKeepUp = "playbackLikelyToKeepUp";
 }
-class GKVideoPlayer: BasePlayer {
+class TVPlayer: BasePlayer {
     
     var state : PlayerState?{
         didSet{

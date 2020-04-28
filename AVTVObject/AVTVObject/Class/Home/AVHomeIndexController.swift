@@ -71,7 +71,7 @@ class AVHomeIndexController: BaseConnectionController {
         override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let info : AVHomeInfo = self.listData[indexPath.section];
             let model = info.vod[indexPath.row]
-            AppJump.jumpToDetailControl(movieId: model.movieId)
+            AppJump.jumpToPlayControl(movieId: model.movieId)
         }
 
 }

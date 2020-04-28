@@ -80,6 +80,7 @@ class AVSearchCell : UITableViewCell {
             make.left.right.bottom.equalToSuperview();
             make.height.equalTo(0.5);
         }
+
     }
     
     required init?(coder: NSCoder) {

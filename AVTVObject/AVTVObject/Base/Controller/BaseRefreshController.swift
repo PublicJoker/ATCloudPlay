@@ -235,9 +235,11 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     func reachable()->Bool{
         return NetworkReachabilityManager.init()!.isReachable;
     }
+    
     func loadImage()->UIImage{
         return UIImage.animatedImage(with: self.images, duration: 0.35)!;
     }
+    //MARK:DZNEmptyDataSetSource
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var text :String = self.isRefreshing ? FDMSG_Home_DataRefresh : self.emptyTitle;
         let dic :NSMutableDictionary = NSMutableDictionary.init();

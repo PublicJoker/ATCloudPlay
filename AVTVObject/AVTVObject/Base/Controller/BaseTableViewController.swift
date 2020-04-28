@@ -32,7 +32,7 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
             make.edges.equalToSuperview()
         }
     }
-    //park mark UITableViewDelegate
+    //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
@@ -57,7 +57,7 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView.init();
     }
-    //park mark UITableViewDelegate
+    //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
     }

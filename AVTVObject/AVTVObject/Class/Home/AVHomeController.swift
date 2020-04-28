@@ -78,7 +78,6 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
         }
         return button;
     }
-    
     func magicView(_ magicView: VTMagicView, viewControllerAtPage pageIndex: UInt) -> UIViewController {
         return self.controllerDatas[Int(pageIndex)];
     }

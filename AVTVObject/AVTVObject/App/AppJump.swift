@@ -24,7 +24,7 @@ class AppJump: NSObject {
         vc.hidesBottomBarWhenPushed = true;
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
     }
-    class func jumpToDetailControl(movieId : String){
+    class func jumpToPlayControl(movieId : String){
         let vc = AVPlayController.vcWithMovieId(movieId: movieId)
         vc.hidesBottomBarWhenPushed = true;
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)

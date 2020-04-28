@@ -123,7 +123,28 @@ class AVSearchController: BaseTableViewController,searchDelegate {
 
         }else if object is AVMovie{
             let model : AVMovie = object as! AVMovie;
-            AppJump.jumpToDetailControl(movieId: model.movieId);
+            AppJump.jumpToPlayControl(movieId: model.movieId);
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let object = self.listData[indexPath.row];
+        return (object is String) ? true : false
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete;
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row = UITableViewRowAction.init(style: .default, title: "删除") { (row, inde) in
+            let object = self.listData[indexPath.row];
+            if object is String{
+                self.deleteAction(title: object as! String);
+            }
+        };
+        return [row];
+    }
+    func deleteAction(title : String){
+        AVSearchDataQueue.deleteKeyWord(keyWord: title) { (success) in
+            self.refreshData(page: RefreshPageStart);
         }
     }
 }

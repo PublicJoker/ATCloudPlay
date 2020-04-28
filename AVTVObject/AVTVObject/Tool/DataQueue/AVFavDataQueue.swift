@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+
 class AVFavDataQueue: NSObject {
     class func favData(model : AVMovie,completion :@escaping ((_ success : Bool) ->Void)){
         model.updateTime = ATTime.timeStamp();
@@ -33,6 +34,7 @@ class AVFavDataQueue: NSObject {
             if let data = [AVMovie].deserialize(from: json.rawString()){
                 arrayData = data as! [AVMovie]
             }
+            arrayData = self.sortDatas(listDatas: arrayData, ascending: false)
             completion(arrayData);
         }
     }
@@ -43,8 +45,17 @@ class AVFavDataQueue: NSObject {
             if let data = [AVMovie].deserialize(from: json.rawString()){
                 arrayData = data as! [AVMovie]
             }
+            arrayData = self.sortDatas(listDatas: arrayData, ascending: false)
             completion(arrayData);
         }
+    }
+    //yes 升序
+    class func sortDatas(listDatas:[AVMovie],ascending : Bool) ->[AVMovie]{
+        var datas  = listDatas;
+        datas.sort { (model1, model2) -> Bool in
+            return Double(model1.updateTime) < Double(model2.updateTime)  ? ascending : !ascending;
+        }
+        return datas;
     }
     class func table() -> String{
         return "FavTable"

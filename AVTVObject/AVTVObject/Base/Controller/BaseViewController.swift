@@ -8,9 +8,11 @@
 
 import UIKit
 import SwiftyJSON
+import SnapKit
+
 class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
     deinit {
-        print(self.classForCoder);
+        print(self.classForCoder, "is deinit");
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,7 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
         self.fd_prefersNavigationBarHidden = false;
         self.fd_interactivePopDisabled = false;
     }
+    //MARK:UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true;
     }
