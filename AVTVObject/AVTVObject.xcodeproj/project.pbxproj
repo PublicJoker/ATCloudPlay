@@ -39,7 +39,6 @@
 		0F1B202A2455947600D65D4B /* AVSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B20292455947600D65D4B /* AVSearchController.swift */; };
 		0F1B202E2455979F00D65D4B /* AVSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B202D2455979F00D65D4B /* AVSearchView.swift */; };
 		0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B202F245597A700D65D4B /* AVSearchView.xib */; };
-		0F43B903245821A2006B4F0C /* AVPlayDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F43B902245821A2006B4F0C /* AVPlayDataQueue.swift */; };
 		0F46FBED24566AB3003D28AF /* AVSearchDataQueueOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEB24566AB2003D28AF /* AVSearchDataQueueOC.m */; };
 		0F46FBF024566AEB003D28AF /* AVSearchDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEF24566AEB003D28AF /* AVSearchDataQueue.swift */; };
 		0F46FBF324566D35003D28AF /* AVSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBF124566D35003D28AF /* AVSearchResultCell.swift */; };
@@ -52,6 +51,9 @@
 		0F503EDB2456BBA7006115F7 /* AVFavDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F503EDA2456BBA7006115F7 /* AVFavDataQueue.swift */; };
 		0F503EDD2456BBBA006115F7 /* AVBrowseDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F503EDC2456BBBA006115F7 /* AVBrowseDataQueue.swift */; };
 		0F503EDF2456BD3F006115F7 /* ATTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F503EDE2456BD3F006115F7 /* ATTime.swift */; };
+		0FB5EC0824594FAA003C827F /* AVBrowseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB5EC0624594FAA003C827F /* AVBrowseCell.swift */; };
+		0FB5EC0924594FAA003C827F /* AVBrowseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FB5EC0724594FAA003C827F /* AVBrowseCell.xib */; };
+		0FB5EC0B24595250003C827F /* AVBrowseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB5EC0A24595250003C827F /* AVBrowseController.swift */; };
 		0FB9F0102457FB7400EB48A7 /* AVPlayToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9F00F2457FB7400EB48A7 /* AVPlayToastView.swift */; };
 		0FB9F0122458122A00EB48A7 /* TVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9F0112458122A00EB48A7 /* TVPlayer.swift */; };
 		F324E015AE3BA0E4ABDB51FF /* libPods-AVTVObject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5DE54C8F3E9F9A711CA03D /* libPods-AVTVObject.a */; };
@@ -94,7 +96,6 @@
 		0F1B20292455947600D65D4B /* AVSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchController.swift; sourceTree = "<group>"; };
 		0F1B202D2455979F00D65D4B /* AVSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchView.swift; sourceTree = "<group>"; };
 		0F1B202F245597A700D65D4B /* AVSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVSearchView.xib; sourceTree = "<group>"; };
-		0F43B902245821A2006B4F0C /* AVPlayDataQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayDataQueue.swift; sourceTree = "<group>"; };
 		0F46FBEB24566AB2003D28AF /* AVSearchDataQueueOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSearchDataQueueOC.m; sourceTree = "<group>"; };
 		0F46FBEC24566AB2003D28AF /* AVSearchDataQueueOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSearchDataQueueOC.h; sourceTree = "<group>"; };
 		0F46FBEF24566AEB003D28AF /* AVSearchDataQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchDataQueue.swift; sourceTree = "<group>"; };
@@ -109,6 +110,9 @@
 		0F503EDA2456BBA7006115F7 /* AVFavDataQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVFavDataQueue.swift; sourceTree = "<group>"; };
 		0F503EDC2456BBBA006115F7 /* AVBrowseDataQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVBrowseDataQueue.swift; sourceTree = "<group>"; };
 		0F503EDE2456BD3F006115F7 /* ATTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATTime.swift; sourceTree = "<group>"; };
+		0FB5EC0624594FAA003C827F /* AVBrowseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVBrowseCell.swift; sourceTree = "<group>"; };
+		0FB5EC0724594FAA003C827F /* AVBrowseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVBrowseCell.xib; sourceTree = "<group>"; };
+		0FB5EC0A24595250003C827F /* AVBrowseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVBrowseController.swift; sourceTree = "<group>"; };
 		0FB9F00F2457FB7400EB48A7 /* AVPlayToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayToastView.swift; sourceTree = "<group>"; };
 		0FB9F0112458122A00EB48A7 /* TVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVPlayer.swift; sourceTree = "<group>"; };
 		1A0EA02E076494C441F0FDB8 /* Pods-AVTVObject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVTVObject.debug.xcconfig"; path = "Target Support Files/Pods-AVTVObject/Pods-AVTVObject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +250,9 @@
 			isa = PBXGroup;
 			children = (
 				0F1B20262455936700D65D4B /* AVFavController.swift */,
+				0FB5EC0624594FAA003C827F /* AVBrowseCell.swift */,
+				0FB5EC0724594FAA003C827F /* AVBrowseCell.xib */,
+				0FB5EC0A24595250003C827F /* AVBrowseController.swift */,
 			);
 			path = Fav;
 			sourceTree = "<group>";
@@ -290,7 +297,6 @@
 				0F503EDC2456BBBA006115F7 /* AVBrowseDataQueue.swift */,
 				0F503EDA2456BBA7006115F7 /* AVFavDataQueue.swift */,
 				0F46FBEF24566AEB003D28AF /* AVSearchDataQueue.swift */,
-				0F43B902245821A2006B4F0C /* AVPlayDataQueue.swift */,
 			);
 			path = DataQueue;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 			files = (
 				0F1B2016245560DA00D65D4B /* AVHomeCell.xib in Resources */,
 				0F1B201A245566B900D65D4B /* AVHomeReusableView.xib in Resources */,
+				0FB5EC0924594FAA003C827F /* AVBrowseCell.xib in Resources */,
 				0F503ED22456AEBF006115F7 /* AVPlayView.xib in Resources */,
 				0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */,
 				0F46FBF424566D35003D28AF /* AVSearchResultCell.xib in Resources */,
@@ -457,8 +464,10 @@
 				0F1B2015245560DA00D65D4B /* AVHomeCell.swift in Sources */,
 				0F0A4A202457C6F9009E947C /* AVPlayCell.swift in Sources */,
 				0F0A4A1E2457C6E6009E947C /* AVPlayController.swift in Sources */,
+				0FB5EC0824594FAA003C827F /* AVBrowseCell.swift in Sources */,
 				0F1B201E245576AD00D65D4B /* AppJump.swift in Sources */,
 				0FB9F0102457FB7400EB48A7 /* AVPlayToastView.swift in Sources */,
+				0FB5EC0B24595250003C827F /* AVBrowseController.swift in Sources */,
 				0F1B2019245566B900D65D4B /* AVHomeReusableView.swift in Sources */,
 				0F1B1FE724552C8A00D65D4B /* BaseTableViewController.swift in Sources */,
 				0F1B200F245560A500D65D4B /* AVHomeController.swift in Sources */,
@@ -471,7 +480,6 @@
 				0F1B200E245560A500D65D4B /* AVMovie.swift in Sources */,
 				0F1B202224557E0200D65D4B /* AVHomeIndexController.swift in Sources */,
 				0F1B2010245560A500D65D4B /* AVHomeInfo.swift in Sources */,
-				0F43B903245821A2006B4F0C /* AVPlayDataQueue.swift in Sources */,
 				0F1B20042455361C00D65D4B /* ApiMoya.swift in Sources */,
 				0F46FBF024566AEB003D28AF /* AVSearchDataQueue.swift in Sources */,
 				0F1B1FED24552C8A00D65D4B /* BaseNetManager.swift in Sources */,

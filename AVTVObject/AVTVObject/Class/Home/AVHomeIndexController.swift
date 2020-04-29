@@ -37,7 +37,7 @@ class AVHomeIndexController: BaseConnectionController {
         }
         override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             let info : AVHomeInfo = self.listData[section];
-            return info.vod.count;
+            return info.listData.count;
         }
         override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
             return top;
@@ -46,7 +46,7 @@ class AVHomeIndexController: BaseConnectionController {
             return top;
         }
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-            return CGSize.init(width: SCREEN_WIDTH, height: 50)
+            return CGSize.init(width: SCREEN_WIDTH, height: 40)
         }
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             let reusableView : AVHomeReusableView = AVHomeReusableView.viewForCollectionView(collectionView: collectionView, elementKind: kind, indexPath: indexPath);
@@ -59,18 +59,18 @@ class AVHomeIndexController: BaseConnectionController {
             return UIEdgeInsets(top:0, left: top, bottom: 0, right: top);
         }
         override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = (SCREEN_WIDTH - 3*top - 1)/2.0;
-            return CGSize.init(width: width, height: width*1.35 + 35)
+            let width = CGFloat((SCREEN_WIDTH - 3*top - 1)/2);
+            return CGSize.init(width: width, height: width*1.25)
         }
         override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
             let info : AVHomeInfo = self.listData[indexPath.section];
-            cell.model = info.vod[indexPath.row]
+            cell.model = info.listData[indexPath.row]
             return cell;
         }
         override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let info : AVHomeInfo = self.listData[indexPath.section];
-            let model = info.vod[indexPath.row]
+            let model = info.listData[indexPath.row]
             AppJump.jumpToPlayControl(movieId: model.movieId)
         }
 

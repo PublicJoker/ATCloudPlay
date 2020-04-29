@@ -175,27 +175,38 @@ class TVPlayer: BasePlayer {
         }
     }
     override func playUrl(url: String) {
-        assert(url.count != 0);
-        self.releasePlayer();
-        let string : NSString = url as NSString;
-        let loc = string.range(of: "/").location;
-        
-        let urlPath : URL = (loc == 0) ? URL.init(fileURLWithPath: url) : URL.init(string: url)!;
-       // let urlAsset  = AVURLAsset.init(url: urlPath);
-        self.playerItem = AVPlayerItem.init(url: urlPath)
-        if self.player == nil {
-            self.player = AVPlayer.init(playerItem: self.playerItem);
-        }else{
-            self.player?.replaceCurrentItem(with: self.playerItem);
+        self.playUrl(url: url, time:0)
+    }
+    func playUrl(url: String,time : TimeInterval) {
+         assert(url.count != 0);
+         self.releasePlayer();
+         let string : NSString = url as NSString;
+         let loc = string.range(of: "/").location;
+         
+         let urlPath : URL = (loc == 0) ? URL.init(fileURLWithPath: url) : URL.init(string: url)!;
+        // let urlAsset  = AVURLAsset.init(url: urlPath);
+         self.playerItem = AVPlayerItem.init(url: urlPath)
+        if time > 0 {
+            weak var weakSelf = self;
+            self.playerItem?.seek(to:CMTimeMake(value: Int64(time), timescale: 1), completionHandler: { (success) in
+                if success{
+                    weakSelf?.play();
+                }
+            })
         }
-        self.player?.automaticallyWaitsToMinimizeStalling = false;
-        self.playerLayer = AVPlayerLayer.init(player: self.player);
-        self.playerLayer?.videoGravity = .resizeAspect;
-        self.contentView.layer.insertSublayer(self.playerLayer!, at: 0);
-        self.playerLayer?.frame = self.contentView.frame;
-        self.readyPlay();
-        self.addNotification();
-        self.play();
+         if self.player == nil {
+             self.player = AVPlayer.init(playerItem: self.playerItem);
+         }else{
+             self.player?.replaceCurrentItem(with: self.playerItem);
+         }
+         self.player?.automaticallyWaitsToMinimizeStalling = false;
+         self.playerLayer = AVPlayerLayer.init(player: self.player);
+         self.playerLayer?.videoGravity = .resizeAspect;
+         self.contentView.layer.insertSublayer(self.playerLayer!, at: 0);
+         self.playerLayer?.frame = self.contentView.frame;
+         self.readyPlay();
+         self.addNotification();
+         self.play();
     }
     override func play() {
         if self.userPause == false {

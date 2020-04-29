@@ -38,14 +38,12 @@ extension ApiMoya : TargetType{
     }
     
     public var method: Moya.Method {
-        
         return .get;
     }
     
     public var sampleData: Data {//单元测试
         return Data(base64Encoded: "just for test")!
     }
-    
     public var task: Task {
         switch self {
         case let .apiHome(vsize: vsize):

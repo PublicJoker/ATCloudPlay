@@ -39,14 +39,15 @@ class AVMovieInfo : AVMovie{
     var area         : String  = "";
     
     var routes       : [AVRoute] = [];
-    var playUrl      : String  = "";
+    var playItem     : AVItemInfo = AVItemInfo.init();
+    
     override func mapping(mapper: HelpingMapper) {
          mapper <<<
              self.movieId <-- ["movieId","id"]
          mapper <<<
              self.area    <-- ["area","diqu"]
         mapper <<<
-             self.routes  <-- ["zu","routes"]
+             self.routes  <-- ["routes","zu"]
      }
 }
 class AVRoute : HandyJSON{
@@ -56,15 +57,15 @@ class AVRoute : HandyJSON{
     var items   : [AVItem] = [];
     func mapping(mapper: HelpingMapper) {
          mapper <<<
-             self.items <-- ["ji","items"]
+             self.items <-- ["items","ji"]
      }
     required init() {
         
     }
 }
 class AVItem : HandyJSON{//每一集
-    var itemId  : String = "";//
-    var playUrl : String = "";//播放地址 就怕地址会变化
+    var itemId  : String = "";//每一部的id 都是 0 1 2 3 无法作为主键
+    var playUrl : String = "";//播放地址做主键 就怕地址会变化
     var ext     : String = "";
     var name    : String = "";
     func mapping(mapper: HelpingMapper) {
@@ -72,11 +73,19 @@ class AVItem : HandyJSON{//每一集
              self.itemId  <-- ["itemId","id"]
         mapper <<<
              self.playUrl <-- ["playUrl","purl"]
-     }
+    }
     required init() {
         
     }
 }
 class AVItemInfo : AVItem{
     var currentTime : TimeInterval = 0;
+    var totalTime   : TimeInterval = 1;
+    var needSeek    : Bool?{
+        get{
+            let time : TimeInterval = self.totalTime > 60*60 ? 120 : 30
+            let seek = self.currentTime > 5 && self.currentTime < (self.totalTime - time) ? true : false;
+            return seek;
+        }
+    }
 }

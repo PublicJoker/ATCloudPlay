@@ -17,11 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible();
         self.window?.backgroundColor = UIColor.white;
         self.window?.rootViewController = AVTabBarController.init();
-        closeBag();
         return true
-    }
-    let closeBag = {
-        
     }
     open func supportedInterfaceOrientations(for window: UIWindow?) -> UIInterfaceOrientationMask{
         return .allButUpsideDown

@@ -18,6 +18,10 @@ class AVFavController: BaseConnectionController {
         self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .Default)
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        self.refreshData(page:RefreshPageStart)
+    }
     override func refreshData(page: Int) {
         let size : Int = RefreshPageSize + 1;
         AVFavDataQueue.getFavDatas(page: page, size: size) { (listData) in
@@ -46,7 +50,7 @@ class AVFavController: BaseConnectionController {
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (SCREEN_WIDTH - 3*top - 1)/2.0;
-        return CGSize.init(width: width, height: width*1.35 + 35)
+        return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);

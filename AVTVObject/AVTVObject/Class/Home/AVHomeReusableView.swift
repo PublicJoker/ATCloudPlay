@@ -25,9 +25,9 @@ class AVHomeReusableView: UICollectionReusableView {
         self.moreBtn.layer.cornerRadius = 2.5;
         self.moreBtn.layer.borderWidth = 1.0;
         self.moreBtn.layer.borderColor = AppColor.cgColor;
-        self.titleLab.textColor = Appx000000;
-        self.titleLab.font = UIFont.boldSystemFont(ofSize: 18)
-        self.backgroundColor = Appxf8f8f8;
+        self.titleLab.textColor = Appx333333;
+        self.titleLab.font = UIFont.systemFont(ofSize: 17)
+        self.backgroundColor = Appxffffff;
         self.moreBtn.addTarget(self, action: #selector(moreAction), for: .touchUpInside)
     }
     @objc func moreAction(){

@@ -117,14 +117,14 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             let info : AVRoute = (self.info?.routes.first)!;
             if info.items.count > 0 {
                 AVBrowseDataQueue.getBrowseData(movieId: self.info!.movieId) { (model) in
-                    if model.playUrl.count > 0{
+                    if model.playItem.playUrl.count > 0{
                         let res = info.items.contains { (new) -> Bool in
-                            return model.playUrl == new.playUrl;
+                            return model.playItem.playUrl == new.playUrl && model.playItem.playUrl.count > 0;
                         }
                         var item = info.items.first;
                         if res{
                             let index = info.items.firstIndex { (new) -> Bool in
-                                return model.playUrl == new.playUrl;
+                                return model.playItem.playUrl == new.playUrl && model.playItem.playUrl.count > 0;
                             }
                             item = info.items[index ?? 0];
                             
@@ -151,14 +151,14 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         
     }
     func playVideo(item:AVItem){
-        if self.info != nil {
-            self.info!.playUrl = item.playUrl;
-            AVBrowseDataQueue.browseData(model: self.info!) { (success) in
-                
+        self.playItem = item;
+        AVBrowseDataQueue.getBrowseData(movieId:self.info!.movieId) { (info) in
+            if info.playItem.needSeek!{
+                self.player.playUrl(url: item.playUrl,time:info.playItem.currentTime);
+            }else{
+                self.player.playUrl(url: item.playUrl);
             }
         }
-        self.playItem = item;
-        self.player.playUrl(url: item.playUrl);
         self.collectionView.reloadData();
     }
     func tryAgain(title : String){
@@ -175,16 +175,20 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         }
     }
     @objc func goBackAction() {
-        if self.playItem != nil {
-            //存下播放进度
+        insertBrowData();
+        BaseMacro.screen() ? orientations(screen: false) : self.goBack()
+    }
+    func insertBrowData(){
+        if self.info != nil {
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
                 info.currentTime = self.player.current;
-                AVPlayDataQueue.insertData(info: info) { (success) in
+                info.totalTime = self.player.duration;
+                self.info?.playItem = info;
+                AVBrowseDataQueue.browseData(model: self.info!) { (success) in
                     
                 }
             }
         }
-        BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     @objc func favAction(sender: UIButton){
         if sender.isSelected {
@@ -312,7 +316,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         let cell : AVPlayCell = AVPlayCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
         let item = self.listData[indexPath.row];
         cell.item = item;
-        cell.selectCell = (item.itemId == self.playItem?.itemId);
+        cell.selectCell = (item.playUrl == self.playItem?.playUrl);
         return cell;
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

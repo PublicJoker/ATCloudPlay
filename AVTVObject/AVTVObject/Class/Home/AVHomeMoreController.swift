@@ -79,13 +79,17 @@ class AVHomeMoreController: BaseConnectionController {
         return UIEdgeInsets(top:top, left: top, bottom: 0, right: top);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (SCREEN_WIDTH - 4*top - 1)/3.0;
-        return CGSize.init(width: width, height: width*1.35 + 35)
+        let width = CGFloat((SCREEN_WIDTH - 3*top - 1)/2);
+        return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
         cell.model = self.listData[indexPath.row]
         return cell;
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let info = self.listData[indexPath.row]
+        AppJump.jumpToPlayControl(movieId: info.movieId);
     }
 
 }

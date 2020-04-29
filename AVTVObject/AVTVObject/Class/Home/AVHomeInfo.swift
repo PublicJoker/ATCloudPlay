@@ -14,7 +14,13 @@ class AVHomeInfo: HandyJSON {
     var ad      : String    = "";
     var pic     : String    = "";
     var index   : Bool      = false;
-    var vod     : [AVMovie] = []
+    var vod     : [AVMovie] = [] //所有数据
+    var listData: [AVMovie]{
+        get{
+            let count : Int = self.vod.count > 4 ? 4 : self.vod.count;
+            return [] + self.vod.prefix(count)
+        }
+    }
     func mapping(mapper: HelpingMapper) {
          mapper <<<
              self.homeId <-- ["homeId","id"]

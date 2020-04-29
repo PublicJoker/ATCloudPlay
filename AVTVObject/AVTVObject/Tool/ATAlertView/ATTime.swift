@@ -25,8 +25,8 @@ class ATTime: NSObject {
            formatter.dateFormat = "YYYY/MM/dd HH:mm"
            return formatter.string(from: date as Date);
     }
-    class func totalTimeTurnToTime(timeStamp:String) -> String{
-        let time :TimeInterval = (TimeInterval(timeStamp))!
+    class func totalTimeTurnToTime(timeStamp:TimeInterval) -> String{
+        let time :TimeInterval = timeStamp
         if time/3600 > 1 {
             let date:NSDate = NSDate.init(timeIntervalSince1970: time)
             let formatter:DateFormatter = DateFormatter.init();

@@ -29,7 +29,7 @@ let Appxf8f8f8   :UIColor = UIColor.init(hex:"f8f8f8")
 let Appxffffff   :UIColor = UIColor.init(hex:"ffffff")
 let AppRadius    :CGFloat = 3
 let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "dedede"));
-let top          : CGFloat = 10;
+let top          : CGFloat = 2;
 
 class BaseMacro: NSObject {
     class func iPhone_X() -> Bool{
