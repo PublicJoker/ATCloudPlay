@@ -15,6 +15,7 @@ class AVBrowseController: BaseConnectionController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showNavTitle(title: "观看记录");
         self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .Default);
         // Do any additional setup after loading the view.
@@ -29,8 +30,9 @@ class AVBrowseController: BaseConnectionController {
                 self.listData.removeAll();
             }
             self.listData.append(contentsOf: listData);
+    //        self.listData = AVBrowseDataQueue.sortDatas(listDatas: self.listData, ascending: false)
             self.collectionView.reloadData();
-            self.endRefresh(more:listData.count > RefreshPageSize);
+            self.endRefresh(more:listData.count >= RefreshPageSize);
         }
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -50,7 +52,7 @@ class AVBrowseController: BaseConnectionController {
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             let width = CGFloat((SCREEN_WIDTH - 3*top - 1)/2.0)
-            return CGSize.init(width: width, height:CGFloat(width/16*9.0))
+            return CGSize.init(width: width, height:CGFloat(width/5*3.0))
        }
        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell : AVBrowseCell = AVBrowseCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);

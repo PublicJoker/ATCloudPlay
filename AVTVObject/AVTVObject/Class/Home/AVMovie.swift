@@ -81,6 +81,7 @@ class AVItem : HandyJSON{//每一集
 class AVItemInfo : AVItem{
     var currentTime : TimeInterval = 0;
     var totalTime   : TimeInterval = 1;
+    var living      : Bool = false;
     var needSeek    : Bool?{
         get{
             let time : TimeInterval = self.totalTime > 60*60 ? 120 : 30

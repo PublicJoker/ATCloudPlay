@@ -19,9 +19,14 @@ class AVBrowseCell: UICollectionViewCell {
             let item =  info;
             self.imageV.kf.setImage(with: URL.init(string: item.pic));
             self.titleLab.text = item.name;
-            self.totalLab.text = ATTime.totalTimeTurnToTime(timeStamp: item.playItem.totalTime);
-            let his = String(format:"%.1f",Float(item.playItem.currentTime/item.playItem.totalTime*100))
-            self.currentLab.text = "观看了" + his + "%";
+            if item.playItem.living {
+                self.currentLab.text = "直播中";
+                self.totalLab.text = "";
+            }else{
+                self.totalLab.text = ATTime.totalTimeTurnToTime(timeStamp: item.playItem.totalTime);
+                let his = String(format:"%.1f",Float(item.playItem.currentTime/item.playItem.totalTime*100))
+                self.currentLab.text = "观看了" + his + "%";
+            }
         }
     }
     override func awakeFromNib() {

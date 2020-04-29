@@ -67,6 +67,15 @@ class AVPlayView: UIView {
             return self.screenBtn.isSelected;
         }
     }
+    public var _living : Bool = false
+    public var living  : Bool{//是否直播中
+        set{
+            _living = newValue
+            self.slider.alpha = _living ? 0  : 1;
+        }get{
+            return _living;
+        }
+    }
     lazy var cacheSlider: UISlider = {
         let slider = UISlider.init();
         slider.thumbTintColor = UIColor.clear;
@@ -132,7 +141,7 @@ class AVPlayView: UIView {
             self.progressView.maximumValue = total;
             self.slider.maximumValue = total;
             self.cacheSlider.maximumValue = total;
-            self.totalLab.text = self.totalTimeTurnToTime(timeStamp:TimeInterval(total))
+            self.totalLab.text = self.living ? "直播中" : self.totalTimeTurnToTime(timeStamp:TimeInterval(total))
         }
     }
     public func player(player : BasePlayer,cache : TimeInterval){
@@ -251,20 +260,24 @@ class AVPlayView: UIView {
         }
     }
     //MARK: touches
-    func touch(_ touches: Set<UITouch>, with event: UIEvent?){
+    func touch(_ touches: Set<UITouch>, with event: UIEvent?) -> Bool{
         if self.screen == false{
-            return;
+            return false;
         }
         if touches.count == 0 {
-            return;
+            return false;
         }
         let touch : UITouch = touches.first!
         if touches.count > 1 || touch.tapCount > 1 || (event?.allTouches!.count)! > 1 {
-            return;
+            return false;
         }
         if touch.view != self {
-            return;
+            return false;
         }
+        if  self.living {
+            return false
+        }
+        return true;
     }
     func moveProgress(point : CGPoint) -> Float{
         var tempValue = self.touchBegitValue + screenTime * Float(((point.x - self.touchBegin.x)/SCREEN_WIDTH));
@@ -286,7 +299,10 @@ class AVPlayView: UIView {
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.touch(touches, with: event)
+        let enable = self.touch(touches, with: event)
+        if !enable {
+            return;
+        }
         let touch : UITouch = touches.first!
         self.hasMove = false
         
@@ -294,7 +310,10 @@ class AVPlayView: UIView {
         self.touchBegitValue  = self.slider.value;
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.touch(touches, with: event)
+        let enable = self.touch(touches, with: event)
+        if !enable {
+            return;
+        }
         let touch : UITouch = touches.first!
         let point : CGPoint = touch.location(in: self);
         let x = fabsf(Float(point.x - self.touchBegin.x))

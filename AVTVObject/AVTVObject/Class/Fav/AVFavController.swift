@@ -23,12 +23,13 @@ class AVFavController: BaseConnectionController {
         self.refreshData(page:RefreshPageStart)
     }
     override func refreshData(page: Int) {
-        let size : Int = RefreshPageSize + 1;
+        let size : Int = RefreshPageSize;
         AVFavDataQueue.getFavDatas(page: page, size: size) { (listData) in
             if page == RefreshPageStart{
                 self.listData.removeAll()
             }
             self.listData.append(contentsOf: listData);
+//            self.listData = AVFavDataQueue.sortDatas(listDatas: self.listData, ascending: false);
             self.collectionView.reloadData();
             self.endRefresh(more: listData.count >= size)
         }

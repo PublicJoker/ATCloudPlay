@@ -8,6 +8,8 @@
 
 import UIKit
 import SnapKit
+import MGJRouter_Swift
+import SwiftyJSON
 
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
 
@@ -152,14 +154,25 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
     }
     func playVideo(item:AVItem){
         self.playItem = item;
+        let playUrl : String = item.playUrl;
+        self.openRoute(playUrl:playUrl);
         AVBrowseDataQueue.getBrowseData(movieId:self.info!.movieId) { (info) in
             if info.playItem.needSeek!{
-                self.player.playUrl(url: item.playUrl,time:info.playItem.currentTime);
+                self.player.playUrl(url: playUrl,time:info.playItem.currentTime);
             }else{
-                self.player.playUrl(url: item.playUrl);
+                self.player.playUrl(url: playUrl);
             }
         }
         self.collectionView.reloadData();
+    }
+    func openRoute(playUrl : String){
+        MGJRouter.registerWithHandler(playUrl) { (object) in
+            let json = JSON(object as Any);
+            if json["type"] == "zhibo"{
+                self.playView.living = true;
+            }
+        }
+        MGJRouter.open(playUrl);
     }
     func tryAgain(title : String){
         ATAlertView.showAlertView(title:title + "无法播放是否重试！", message: nil, normals:["取消"], hights:["重试"]) { (title, index) in
@@ -183,6 +196,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
                 info.currentTime = self.player.current;
                 info.totalTime = self.player.duration;
+                info.living = self.playView.living;
                 self.info?.playItem = info;
                 AVBrowseDataQueue.browseData(model: self.info!) { (success) in
                     

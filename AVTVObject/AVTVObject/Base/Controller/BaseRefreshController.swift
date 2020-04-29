@@ -103,10 +103,11 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
                 footer.setImages(self.images, duration: 0.35, for: .refreshing);
             }
             footer.setTitle(" —— 我是有底线的 ——  ", for: .noMoreData);
-            footer .setTitle("", for: .pulling);
+            footer.setTitle("", for: .pulling);
             footer.setTitle("", for: .refreshing);
             footer.setTitle("", for: .willRefresh);
             footer.setTitle("", for: .idle);
+            footer.stateLabel.font = UIFont.systemFont(ofSize: 14)
             value = options.rawValue & ATRefreshOption.AutoFooter.rawValue;
             if value == 8 {
                 if self.currentPage == 0 {
@@ -176,10 +177,12 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             self.scrollView?.mj_footer.isHidden = false;
             let footer:MJRefreshAutoStateFooter = self.scrollView?.mj_footer as! MJRefreshAutoStateFooter;
             footer.stateLabel.textColor = UIColor.init(hex: "666666");
+            footer.stateLabel.font = UIFont.systemFont(ofSize: 14)
         }else{
             self.scrollView?.mj_footer.state = .noMoreData;
             let footer:MJRefreshAutoStateFooter = self.scrollView?.mj_footer as! MJRefreshAutoStateFooter;
             footer.stateLabel.textColor = UIColor.init(hex: "999999");
+            footer.stateLabel.font = UIFont.systemFont(ofSize: 14)
             DispatchQueue.main.asyncAfter(deadline:.now()+0.01) {
                 let height : CGFloat = (self.scrollView?.contentSize.height)!;
                 let sizeHeight : CGFloat = (self.scrollView?.frame.size.height)!;

@@ -10,6 +10,7 @@ target 'AVTVObject' do
   pod 'SnapKit'
   pod 'Hue'
   pod 'Kingfisher'
+  pod 'MGJRouter_Swift'
   
   pod 'FDFullscreenPopGesture'
   pod 'DZNEmptyDataSet'

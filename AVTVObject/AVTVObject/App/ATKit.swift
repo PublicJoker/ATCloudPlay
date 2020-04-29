@@ -22,7 +22,7 @@ extension UIView{
     }
 }
 extension UITableViewCell{
-    static var confiTag : Int = 32241981;
+    static var confiTag : Int = 32241983;
     class func cellForTableView(tableView:UITableView,indexPath:IndexPath) ->Self{
        return self.cellForTableView(tableView: tableView, indexPath: indexPath, identifier: nil, config: nil);
     }
@@ -84,7 +84,7 @@ extension UICollectionViewCell{
     }
 }
 extension UICollectionReusableView{
-    static var configTag : Int = 32241981981;
+    static var configTag : Int = 32241982;
     class func viewForCollectionView(collectionView:UICollectionView,elementKind:String,indexPath:IndexPath) ->Self{
         return self.viewForCollectionView(collectionView: collectionView, elementKind: elementKind, indexPath: indexPath, identifier: nil, config: nil);
     }
