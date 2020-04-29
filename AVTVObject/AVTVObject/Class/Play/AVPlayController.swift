@@ -166,10 +166,11 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.collectionView.reloadData();
     }
     func openRoute(playUrl : String){
+        weak var weakSelf = self
         MGJRouter.registerWithHandler(playUrl) { (object) in
             let json = JSON(object as Any);
             if json["type"] == "zhibo"{
-                self.playView.living = true;
+                weakSelf!.playView.living = true;
             }
         }
         MGJRouter.open(playUrl);
