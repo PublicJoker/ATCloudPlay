@@ -10,7 +10,7 @@ import UIKit
 
 class AVBrowseController: BaseConnectionController {
 
-    lazy var listData : [AVMovieInfo] = {
+    private lazy var listData : [AVMovieInfo] = {
         return []
     }()
     override func viewDidLoad() {

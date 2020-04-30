@@ -21,9 +21,9 @@ class BaseNetManager: NSObject,BaseNetRequestProtocol {
     {
         baseCodeUrl(urlString: urlString, method: .post, parameters: parameters, sucesss: sucesss, failure: failure);
     }
-    class func baseCodeUrl(urlString:String,method:HTTPMethod,parameters:[String:String],sucesss:@escaping ((_ object : JSON) ->Void),failure:@escaping ((_ error : String) ->Void))
+    private class func baseCodeUrl(urlString:String,method:HTTPMethod,parameters:[String:String],sucesss:@escaping ((_ object : JSON) ->Void),failure:@escaping ((_ error : String) ->Void))
     {
-        BaseNetManager.baseUrlString(url: urlString, method:method, parameters: parameters, headers: [:], sucesss: { (object) in
+        baseUrlString(url: urlString, method:method, parameters: parameters, headers: [:], sucesss: { (object) in
             sucesss(object)
         }, failure: failure);
     }

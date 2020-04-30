@@ -12,53 +12,53 @@ import MGJRouter_Swift
 import SwiftyJSON
 
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
-
-    var info : AVMovieInfo? = nil;
-    var _playItem : AVItem?
-    var playItem : AVItem?{
+    class func vcWithMovieId(movieId : String) -> Self{
+        let vc = AVPlayController.init();
+        vc.movieId = movieId ;
+        return vc as! Self
+    }
+    private var info : AVMovieInfo? = nil;
+    private var _playItem : AVItem?
+    private var playItem : AVItem?{
         set{
             _playItem = newValue;
         }get{
             return _playItem;
         }
     }
-    lazy var listData : [AVItem] = {
+    private lazy var listData : [AVItem] = {
         return []
     }()
-    class func vcWithMovieId(movieId : String) -> Self{
-        let vc = AVPlayController.init();
-        vc.movieId = movieId ;
-        return vc as! Self
-    }
-    lazy var player : TVPlayer = {
+    private lazy var player : TVPlayer = {
         let player = TVPlayer();
         player.delegate = self;
         return player
     }()
-    lazy var playerView: UIView = {
+    private lazy var playerView: UIView = {
         let view : UIView = UIView.init();
         view.backgroundColor = UIColor.black;
         return view;
     }()
-    lazy var playView : AVPlayView = {
+    private lazy var playView : AVPlayView = {
         let playView = AVPlayView.instanceView();
         playView.favBtn.addTarget(self, action: #selector(favAction(sender:)), for: .touchUpInside)
         playView.delegate = self;
         return playView;
     }()
-    lazy var backBtn : UIButton = {
+    private lazy var backBtn : UIButton = {
         let btn : UIButton = UIButton.init();
         btn.setImage(UIImage.init(named:"icon_nav_back_w"), for: .normal);
         btn.addTarget(self, action: #selector(goBackAction), for: .touchUpInside);
         return btn;
     }()
-    var movieId : String? = nil;
+    private var movieId : String? = nil;
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
         loadDataQueue()
     }
-    func loadUI(){
+    private func loadUI(){
+
         self.fd_prefersNavigationBarHidden = true;
         self.view.backgroundColor = UIColor.white;
         self.view.addSubview(self.playerView);
@@ -89,7 +89,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         }
         self.view.sendSubviewToBack(self.playerView);
     }
-    func loadData(){
+    private func loadData(){
         self.refreshData(page:RefreshPageStart)
     }
     override func refreshData(page: Int) {
@@ -113,7 +113,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             };
         }
     }
-    func reloadData(){
+    private func reloadData(){
         self.playView.titleLab.text = self.info?.name;
         if (self.info?.routes.count)! > 0 {
             let info : AVRoute = (self.info?.routes.first)!;
@@ -152,7 +152,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         }
         
     }
-    func playVideo(item:AVItem){
+    private func playVideo(item:AVItem){
         self.playItem = item;
         let playUrl : String = item.playUrl;
         self.openRoute(playUrl:playUrl);
@@ -165,7 +165,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         }
         self.collectionView.reloadData();
     }
-    func openRoute(playUrl : String){
+    private func openRoute(playUrl : String){
         weak var weakSelf = self
         MGJRouter.registerWithHandler(playUrl) { (object) in
             let json = JSON(object as Any);
@@ -175,24 +175,24 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         }
         MGJRouter.open(playUrl);
     }
-    func tryAgain(title : String){
+    private func tryAgain(title : String){
         ATAlertView.showAlertView(title:title + "无法播放是否重试！", message: nil, normals:["取消"], hights:["重试"]) { (title, index) in
             if index > 0{
                 self.loadData();
             }
         }
     }
-    func loadDataQueue(){
+    private func loadDataQueue(){
         AVFavDataQueue.getFavData(movieId: self.movieId!) { (movie) in
             let res = movie.movieId.count > 0 ? true : false;
             self.playView.fav = res;
         }
     }
-    @objc func goBackAction() {
+    @objc private func goBackAction() {
         insertBrowData();
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
-    func insertBrowData(){
+    private func insertBrowData(){
         if self.info != nil {
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
                 info.currentTime = self.player.current;
@@ -205,7 +205,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             }
         }
     }
-    @objc func favAction(sender: UIButton){
+    @objc private func favAction(sender: UIButton){
         if sender.isSelected {
             AVFavDataQueue.cancleFavData(movieId: self.movieId!) { (success) in
                 self.playView.fav = false
@@ -218,12 +218,12 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             }
         }
     }
-    func orientations(screen:Bool){
+    private func orientations(screen:Bool){
         let delegate : AppDelegate = UIApplication.shared.delegate as! AppDelegate;
         delegate.makeOrientation = screen ? (UIInterfaceOrientation.landscapeRight) : (UIInterfaceOrientation.portrait);
         kAppdelegate?.blockRotation = screen ?.landscapeRight :.portrait;
     }
-    func fullScreen(){
+    private func fullScreen(){
         self.playerView.snp.remakeConstraints { (make) in
             make.edges.equalToSuperview();
         }
@@ -237,7 +237,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.collectionView.backgroundColor = Appx333333;
         self.collectionView.backgroundView?.backgroundColor = Appx333333
     }
-    func halfScreen(){
+    private func halfScreen(){
         self.playerView.snp.remakeConstraints { (make) in
             make.left.right.equalToSuperview();
             make.top.equalToSuperview().offset(!iPhone_X ? 0 :STATUS_BAR_HIGHT);
@@ -252,7 +252,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.collectionView.backgroundColor = Appxffffff;
         self.collectionView.backgroundView?.backgroundColor = Appxffffff;
     }
-    func show(){
+    private func show(){
         if SVProgressHUD.isVisible() {
             SVProgressHUD.popActivity();
         }
@@ -263,7 +263,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         SVProgressHUD.setContainerView(self.playView);
         SVProgressHUD.show();
     }
-    func dismiss(){
+    private func dismiss(){
         if SVProgressHUD.isVisible() {
             SVProgressHUD.popActivity();
         }

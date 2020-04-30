@@ -10,6 +10,7 @@ import UIKit
 import Hue
 import SnapKit
 import SwiftyJSON
+
 let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
 let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
@@ -29,7 +30,7 @@ let Appxf8f8f8   :UIColor = UIColor.init(hex:"f8f8f8")
 let Appxffffff   :UIColor = UIColor.init(hex:"ffffff")
 let AppRadius    :CGFloat = 3
 let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "dedede"));
-let top          : CGFloat = 2;
+let top          :CGFloat = 2;
 
 class BaseMacro: NSObject {
     class func iPhone_X() -> Bool{

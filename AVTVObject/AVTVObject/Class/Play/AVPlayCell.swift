@@ -25,7 +25,7 @@ class AVPlayCell: UICollectionViewCell {
             return _selectCell;
         }
     }
-    lazy var titleLab : UILabel = {
+    private lazy var titleLab : UILabel = {
         let titleLab = UILabel.init();
         titleLab.font = UIFont.systemFont(ofSize: 16);
         titleLab.textColor = Appx333333;
@@ -35,7 +35,7 @@ class AVPlayCell: UICollectionViewCell {
 
         return titleLab;
     }()
-    lazy var mainView : UIView = {
+    private lazy var mainView : UIView = {
         let mainView = UIView.init();
         mainView.layer.shadowOpacity = 0.3;
         mainView.layer.shadowRadius = 5;

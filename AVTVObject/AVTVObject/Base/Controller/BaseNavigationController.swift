@@ -10,7 +10,7 @@ import UIKit
 import Hue
 class BaseNavigationController: UINavigationController,UINavigationControllerDelegate {
 
-    var pushing : Bool = false;
+    private var pushing : Bool = false;
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self;
@@ -24,7 +24,7 @@ class BaseNavigationController: UINavigationController,UINavigationControllerDel
         navBar.shadowImage = UIImage.init();
         navBar.isTranslucent = false;
     }
-    func defaultNvi()-> NSDictionary{
+    private func defaultNvi()-> NSDictionary{
         let dic :NSMutableDictionary = NSMutableDictionary.init();
         let font : UIFont = UIFont.systemFont(ofSize: 18, weight: .semibold);
         let color : UIColor = UIColor.black

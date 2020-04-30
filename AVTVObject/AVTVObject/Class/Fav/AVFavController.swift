@@ -10,7 +10,7 @@ import UIKit
 
 class AVFavController: BaseConnectionController {
 
-    lazy var listData : [AVMovie] = {
+    private lazy var listData : [AVMovie] = {
         return []
     }()
     override func viewDidLoad() {

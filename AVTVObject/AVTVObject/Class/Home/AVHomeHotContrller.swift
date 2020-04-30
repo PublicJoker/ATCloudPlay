@@ -10,7 +10,7 @@ import UIKit
 
 class AVHomeHotContrller: BaseConnectionController {
     //热门
-     lazy var listData : [AVHomeInfo] = {
+     private lazy var listData : [AVHomeInfo] = {
         return []
     }()
     override func viewDidLoad() {

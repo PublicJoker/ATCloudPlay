@@ -9,7 +9,7 @@
 import UIKit
 
 class AVTabBarController: UITabBarController {
-    lazy var listData: [UIViewController] = {
+    private lazy var listData: [UIViewController] = {
         return [];
     }()
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class AVTabBarController: UITabBarController {
         
         self.viewControllers = self.listData;
     }
-    func createCtrl(vc :UIViewController,title :String,normal: String,select :String) {
+    private func createCtrl(vc :UIViewController,title :String,normal: String,select :String) {
         let nv = BaseNavigationController.init(rootViewController: vc);
         vc.showNavTitle(title: title)
         nv.tabBarItem.title = title;

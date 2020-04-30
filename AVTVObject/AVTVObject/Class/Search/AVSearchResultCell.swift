@@ -55,19 +55,22 @@ class AVSearchResultCell: UITableViewCell {
 }
 
 class AVSearchCell : UITableViewCell {
-    lazy var titleLab : UILabel = {
+    public lazy var titleLab : UILabel = {
         let label = UILabel.init();
         label.font = UIFont .systemFont(ofSize: 16);
         label.textColor = Appx333333;
         return label;
     }()
-    lazy var lineView : UIView = {
+    private lazy var lineView : UIView = {
         let line = UIView.init();
         line.backgroundColor = Appxdddddd;
         return line;
     }()
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        loadUI();
+    }
+    private func loadUI(){
         self.contentView.addSubview(self.titleLab);
         self.titleLab.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(12);
@@ -80,9 +83,7 @@ class AVSearchCell : UITableViewCell {
             make.left.right.bottom.equalToSuperview();
             make.height.equalTo(0.5);
         }
-
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

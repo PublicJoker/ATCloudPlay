@@ -71,7 +71,21 @@ extension ApiMoya : TargetType{
             "Host": "mjappaz.yefu365.com",
         ]
     }
-    static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
+    private static func testDemo(){
+        let moya = MoyaProvider<ApiMoya>();
+        moya.request(ApiMoya.apiHome(vsize: "15")) { (result) in
+            switch result{
+            case let .success(respond):
+                let json = JSON(respond.data)
+                print(json)
+                break;
+            case let .failure(error):
+                print(error.errorDescription as Any);
+                break;
+            }
+        }
+    }
+    public static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
         let moya = MoyaProvider<ApiMoya>();
         moya.request(target) { (result) in
             switch result{
@@ -85,20 +99,6 @@ extension ApiMoya : TargetType{
                 break;
             case let .failure(error):
                 failure(error.errorDescription!)
-                break;
-            }
-        }
-    }
-    static func testDemo(){
-        let moya = MoyaProvider<ApiMoya>();
-        moya.request(ApiMoya.apiHome(vsize: "15")) { (result) in
-            switch result{
-            case let .success(respond):
-                let json = JSON(respond.data)
-                print(json)
-                break;
-            case let .failure(error):
-                print(error.errorDescription as Any);
                 break;
             }
         }

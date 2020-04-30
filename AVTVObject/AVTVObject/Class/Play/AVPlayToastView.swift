@@ -28,7 +28,7 @@ class AVPlayToastView: UIView {
         super.init(coder: coder)
         loadUI();
     }
-    func loadUI(){
+    private func loadUI(){
         self.layer.masksToBounds = true;
         self.layer.cornerRadius = 5;
         self.backgroundColor = UIColor.init(white: 0, alpha: 0.7)

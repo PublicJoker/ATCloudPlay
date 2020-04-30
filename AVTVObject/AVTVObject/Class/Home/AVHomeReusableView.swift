@@ -30,7 +30,7 @@ class AVHomeReusableView: UICollectionReusableView {
         self.backgroundColor = Appxffffff;
         self.moreBtn.addTarget(self, action: #selector(moreAction), for: .touchUpInside)
     }
-    @objc func moreAction(){
+    @objc private func moreAction(){
         if self.info.index {
             AppJump.jumpToIndexMoreControl(movieId:self.info.homeId);
         }else{

@@ -8,13 +8,15 @@
 
 import UIKit
 import Alamofire
+
 let RefreshPageStart : Int = (1)
 let RefreshPageSize  : Int = (20)
-let defaultDataEmpty : UIImage = UIImage.init(named: "icon_data_empty") ?? UIImage.init();
-let defaultNetError  : UIImage = UIImage.init(named: "icon_net_error") ?? UIImage.init();
-let FDMSG_Home_DataRefresh  :String             = "数据加载中...";
-let FDMSG_Home_DataEmpty    :String             = "数据空空如也...";
-let FDNoNetworkMsg          :String             = "无网络连接,请检查网络设置";
+
+private let defaultDataEmpty : UIImage = UIImage.init(named: "icon_data_empty") ?? UIImage.init();
+private let defaultNetError  : UIImage = UIImage.init(named: "icon_net_error") ?? UIImage.init();
+private let FDMSG_Home_DataRefresh  :String             = "数据加载中...";
+private let FDMSG_Home_DataEmpty    :String             = "数据空空如也...";
+private let FDNoNetworkMsg          :String             = "无网络连接,请检查网络设置";
 struct ATRefreshOption :OptionSet {
     public var rawValue: Int
     static var None          : ATRefreshOption{return ATRefreshOption(rawValue: 0)}
@@ -27,12 +29,22 @@ struct ATRefreshOption :OptionSet {
 }
 class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate {
     weak open var scrollView : UIScrollView!;
-    var _isRefreshing : Bool = false;
-    var currentPage : Int = 0;
-    var emptyImage : UIImage = defaultDataEmpty;
-    var emptyTitle : String  = FDMSG_Home_DataEmpty;
-    var isSetKVO : Bool = false;
-    lazy var images: [UIImage] = {
+    var reachable: Bool{
+        get{
+            return NetworkReachabilityManager.init()!.isReachable;
+        }
+    }
+    private var _isRefreshing : Bool = false;
+    private var currentPage   : Int = 0;
+    private var emptyImage    : UIImage = defaultDataEmpty;
+    private var emptyTitle    : String  = FDMSG_Home_DataEmpty;
+    private var isSetKVO      : Bool = false;
+    private var loadImage     : UIImage{
+        get{
+            return UIImage.animatedImage(with:self.images, duration: 0.35) ?? UIImage.init();
+        }
+    }
+    private lazy var images: [UIImage] = {
         var images :[UIImage] = [];
         for i in 0...35{
             let image = UIImage.init(named:String("下拉loading_00") + String(i < 10 ? ("0"+String(i)) : String(i)));
@@ -40,15 +52,9 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
                 images.append(image!);
             }
         }
-//        for i in 4...0{
-//            let image = UIImage.init(named:String("loading")+String(i));
-//            if image != nil {
-//                images.append(image!);
-//            }
-//        }
         return images;
     }()
-    var isRefreshing :Bool{
+    private var isRefreshing :Bool{
         set{
             _isRefreshing = newValue;
             if self.scrollView != nil {
@@ -68,7 +74,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     @param scrollView 刷新控件所在scrollView
     @param option 刷新空间样式
     */
-    public func setupRefresh(scrollView:UIScrollView,options:ATRefreshOption){
+    func setupRefresh(scrollView:UIScrollView,options:ATRefreshOption){
         self.scrollView = scrollView;
         if options.rawValue == ATRefreshOption.None.rawValue {
             if self.responds(to: #selector(headerRefreshing)) {
@@ -131,10 +137,10 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     @param image 空界面图片
     @param title 空界面标题
     */
-    public func setupEmpty(scrollView:UIScrollView){
+    func setupEmpty(scrollView:UIScrollView){
         self.setupEmpty(scrollView: scrollView, image:nil, title:nil)
     }
-    public func setupEmpty(scrollView:UIScrollView,image:UIImage? = nil,title:String? = nil){
+    func setupEmpty(scrollView:UIScrollView,image:UIImage? = nil,title:String? = nil){
         scrollView.emptyDataSetSource = self;
         scrollView.emptyDataSetDelegate = self;
         self.emptyImage = (image != nil) ?image!: defaultDataEmpty;
@@ -148,13 +154,12 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             NSObject.cancelPreviousPerformRequests(withTarget:weakSelf as Any, selector: #selector(weakSelf!.reloadEmptyData), object:nil)
             weakSelf!.perform(#selector(weakSelf!.reloadEmptyData), with:nil, afterDelay: 0.01)
         };
-        
     }
     /**
     @brief 分页请求一开始page = 1
     @param page 当前页码
     */
-    public func refreshData(page:Int){
+    func refreshData(page:Int){
         self.currentPage = page;
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
             if self.scrollView.mj_header != nil{
@@ -167,7 +172,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     /**
     @brief 分页加载成功 是否有下一页数据
     */
-    public func endRefresh(more:Bool){
+    func endRefresh(more:Bool){
         self.baseEndRefreshing();
         if self.scrollView.mj_footer == nil {
             return;
@@ -191,7 +196,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             }
         }
     }
-    public func endRefreshFailure(){
+    func endRefreshFailure(){
         if self.currentPage > RefreshPageStart {
             self.currentPage = self.currentPage - 1;
         }
@@ -207,7 +212,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     /**
     @brief 重新加载第一页
     */
-    @objc public func headerRefreshing(){
+    @objc func headerRefreshing(){
         self.isRefreshing = true;
         if self.scrollView.mj_footer != nil{
             self.scrollView?.mj_footer.isHidden = true;
@@ -215,11 +220,11 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         self.currentPage = RefreshPageStart;
         self.refreshData(page: self.currentPage);
     }
-    @objc public func footerRefreshing(){
+    @objc func footerRefreshing(){
         self.currentPage = self.currentPage + 1;
         self.refreshData(page: self.currentPage);
     }
-    public func baseEndRefreshing(){
+    func baseEndRefreshing(){
         if self.scrollView.mj_header != nil {
             if (self.scrollView?.mj_header.isRefreshing)! {
                 self.scrollView?.mj_header.endRefreshing();
@@ -227,20 +232,13 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         }
         self.isRefreshing = false;
     }
-    @objc public func reloadEmptyData(){
+    @objc func reloadEmptyData(){
         if self.scrollView != nil {
             self.scrollView?.reloadEmptyDataSet();
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    func reachable()->Bool{
-        return NetworkReachabilityManager.init()!.isReachable;
-    }
-    
-    func loadImage()->UIImage{
-        return UIImage.animatedImage(with: self.images, duration: 0.35)!;
     }
     //MARK:DZNEmptyDataSetSource
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -250,7 +248,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         let color : UIColor = UIColor.init(hex: "999999")
         dic.setObject(color, forKey: NSAttributedString.Key.foregroundColor.rawValue as NSCopying);
         dic.setObject(font, forKey: NSAttributedString.Key.font.rawValue as NSCopying)
-        if self.reachable() == false {
+        if self.reachable == false {
             text = FDNoNetworkMsg;
         }
         let att : NSAttributedString = NSAttributedString.init(string:"\r\n"+text, attributes:(dic as! [NSAttributedString.Key : Any]));
@@ -260,8 +258,8 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         return nil;
     }
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        let image : UIImage = self.isRefreshing ? self.loadImage() : self.emptyImage;
-        return self.reachable() ? image : defaultNetError;
+        let image : UIImage = self.isRefreshing ? self.loadImage : self.emptyImage;
+        return self.reachable ? image : defaultNetError;
     }
     func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {
         return false;

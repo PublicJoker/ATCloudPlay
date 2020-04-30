@@ -20,9 +20,9 @@ class AVHomeMoreController: BaseConnectionController {
         vc.ztid = ztid ?? "";
         return vc as! Self;
     }
-    var movieId : String = "";
-    var ztid : String = "";
-    lazy var listData : [AVMovie] = {
+    private var movieId : String = "";
+    private var ztid : String = "";
+    private lazy var listData : [AVMovie] = {
         return []
     }()
     override func viewDidLoad() {

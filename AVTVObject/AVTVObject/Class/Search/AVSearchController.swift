@@ -9,11 +9,11 @@
 import UIKit
 
 class AVSearchController: BaseTableViewController,searchDelegate {
-    lazy var listData : [Any] = {
+    private lazy var listData : [Any] = {
         return []
     }()
-    var _keyWord : String?
-    var keyWord  : String?{
+    private var _keyWord : String?
+    private var keyWord  : String?{
         set{
             _keyWord = newValue ?? "";
             self.refreshData(page:RefreshPageStart);
@@ -21,7 +21,7 @@ class AVSearchController: BaseTableViewController,searchDelegate {
             return _keyWord ?? "";
         }
     }
-    lazy var searchView : AVSearchView = {
+    private lazy var searchView : AVSearchView = {
         let searchView = AVSearchView.instanceView();
         searchView.delegate = self
         searchView.backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside);

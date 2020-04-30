@@ -7,8 +7,10 @@
 //
 
 import UIKit
-let least      : Float = 15;
-let screenTime : Float = 90;
+
+private let least      : Float = 15;
+private let screenTime : Float = 90;
+
 enum AVPlayGestures {
     case none
     case progress
@@ -23,19 +25,29 @@ enum AVPlayGestures {
 }
 
 class AVPlayView: UIView {
-
-    lazy var tap : UITapGestureRecognizer = {
+    weak open var delegate : playVideoDelegate?;
+    private var timer : Timer!;
+    private var slidering : Bool = false;
+    private var touchBegin : CGPoint = CGPoint.zero;
+    private var touchBegitValue : Float = 0;
+    private var hasMove : Bool = false;
+    private var gestures : AVPlayGestures = .none;
+    private lazy var tap : UITapGestureRecognizer = {
         let tap : UITapGestureRecognizer = UITapGestureRecognizer.init();
         tap.addTarget(self, action: #selector(tapAction))
         return tap
     }()
-    var timer : Timer!;
-    weak open var delegate : playVideoDelegate?;
-    var slidering : Bool = false;
-    var touchBegin : CGPoint = CGPoint.zero;
-    var touchBegitValue : Float = 0;
-    var hasMove : Bool = false;
-    var gestures : AVPlayGestures = .none;
+    private lazy var toastView : AVPlayToastView = {
+        return AVPlayToastView.init();
+    }()
+    private lazy var cacheSlider: UISlider = {
+        let slider = UISlider.init();
+        slider.thumbTintColor = UIColor.clear;
+        slider.minimumTrackTintColor = Appx999999;
+        slider.maximumTrackTintColor = Appxffffff;
+        slider.isUserInteractionEnabled = false;
+        return slider
+    }()
     
     @IBOutlet weak var progressView: UISlider!
     
@@ -49,9 +61,6 @@ class AVPlayView: UIView {
     @IBOutlet weak var favBtn: UIButton!
     @IBOutlet weak var listBtn: UIButton!
     @IBOutlet weak var lockBtn: UIButton!
-    lazy var toastView : AVPlayToastView = {
-        return AVPlayToastView.init();
-    }()
     public var fav : Bool{
         set{
             self.favBtn.isSelected = newValue;
@@ -76,14 +85,6 @@ class AVPlayView: UIView {
             return _living;
         }
     }
-    lazy var cacheSlider: UISlider = {
-        let slider = UISlider.init();
-        slider.thumbTintColor = UIColor.clear;
-        slider.minimumTrackTintColor = Appx999999;
-        slider.maximumTrackTintColor = Appxffffff;
-        slider.isUserInteractionEnabled = false;
-        return slider
-    }()
     deinit {
 
     }
@@ -185,27 +186,27 @@ class AVPlayView: UIView {
             self.statr();
         }
     }
-    @objc func touchUpAction(sender:UISlider){
+    @objc private func touchUpAction(sender:UISlider){
         self.slidering = true;
         self.statr();
     }
-    @objc func outsideAction(sender:UISlider){
+    @objc private func outsideAction(sender:UISlider){
         self.slidering = false;
         let progress : TimeInterval = TimeInterval(sender.value);
         self.progressDelegate(progress: progress)
         self.statr();
     }
-    @objc func changedAction(sender:UISlider){
+    @objc private func changedAction(sender:UISlider){
         let progress : TimeInterval = TimeInterval(sender.value);
         self.currentLab.text = self.totalTimeTurnToTime(timeStamp: progress);
         self.statr();
     }
-    func progressDelegate(progress : TimeInterval){
+    private func progressDelegate(progress : TimeInterval){
         if let delegateOk = self.delegate{
             delegateOk.playView?(playView: self, progress: progress)
         }
     }
-    @objc func tapAction(){
+    @objc private func tapAction(){
         if self.lockBtn.isSelected {
              
         }else{
@@ -216,7 +217,7 @@ class AVPlayView: UIView {
             }
         }
     }
-    @objc func statr(){
+    @objc private func statr(){
         self.stop();
         self.perform(#selector(hidden), with: nil, afterDelay: 5)
     }
@@ -227,7 +228,7 @@ class AVPlayView: UIView {
         self.subViewAlpha(ap: 1)
         self.statr();
     }
-    @objc func hidden(){
+    @objc private func hidden(){
         self.subViewAlpha(ap: 0)
     }
     private func subViewAlpha(ap:CGFloat){
@@ -243,7 +244,7 @@ class AVPlayView: UIView {
     private func isplay(playing :Bool){
         self.playBtn.isSelected = !playing;
     }
-    func totalTimeTurnToTime(timeStamp: TimeInterval) -> String{
+    private func totalTimeTurnToTime(timeStamp: TimeInterval) -> String{
         let time :TimeInterval = timeStamp
         if time/3600 > 1 {
             let date:NSDate = NSDate.init(timeIntervalSince1970: time)
@@ -260,7 +261,7 @@ class AVPlayView: UIView {
         }
     }
     //MARK: touches
-    func touch(_ touches: Set<UITouch>, with event: UIEvent?) -> Bool{
+    private func touch(_ touches: Set<UITouch>, with event: UIEvent?) -> Bool{
         if self.screen == false{
             return false;
         }
@@ -279,7 +280,7 @@ class AVPlayView: UIView {
         }
         return true;
     }
-    func moveProgress(point : CGPoint) -> Float{
+    private func moveProgress(point : CGPoint) -> Float{
         var tempValue = self.touchBegitValue + screenTime * Float(((point.x - self.touchBegin.x)/SCREEN_WIDTH));
         if tempValue > self.slider.maximumValue && self.slider.maximumValue > 10 {
             tempValue = self.slider.maximumValue;
@@ -288,7 +289,7 @@ class AVPlayView: UIView {
         }
         return Float(tempValue)
     }
-    func setToastView(time : Float){
+    private func setToastView(time : Float){
         if time > self.touchBegitValue{
             self.toastView.imageV.image = UIImage.init(named: "progress_icon_r")
         }else if time < self.touchBegitValue{

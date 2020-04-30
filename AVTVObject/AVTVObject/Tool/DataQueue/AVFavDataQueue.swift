@@ -57,10 +57,10 @@ class AVFavDataQueue: NSObject {
         }
         return datas;
     }
-    class func table() -> String{
+    private class func table() -> String{
         return "FavTable"
     }
-    class func primaryId() -> String{
+    private class func primaryId() -> String{
         return "movieId"
     }
 }

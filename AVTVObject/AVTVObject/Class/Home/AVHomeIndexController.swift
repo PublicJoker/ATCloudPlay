@@ -10,7 +10,7 @@ import UIKit
 
 class AVHomeIndexController: BaseConnectionController {
 
-        lazy var listData : [AVHomeInfo] = {
+        private lazy var listData : [AVHomeInfo] = {
             return []
         }()
         override func viewDidLoad() {
