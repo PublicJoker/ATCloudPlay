@@ -9,8 +9,6 @@
 import UIKit
 
 class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITableViewDataSource {
-    
-
     lazy var tableView : UITableView = {
         let tableView : UITableView = UITableView.init(frame: CGRect.zero, style:.grouped);
         tableView.dataSource = self;

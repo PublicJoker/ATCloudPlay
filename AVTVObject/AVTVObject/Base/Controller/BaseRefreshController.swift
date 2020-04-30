@@ -9,8 +9,8 @@
 import UIKit
 import Alamofire
 
-let RefreshPageStart : Int = (1)
-let RefreshPageSize  : Int = (20)
+public let RefreshPageStart : Int = (1)
+public let RefreshPageSize  : Int = (20)
 
 private let defaultDataEmpty : UIImage = UIImage.init(named: "icon_data_empty") ?? UIImage.init();
 private let defaultNetError  : UIImage = UIImage.init(named: "icon_net_error") ?? UIImage.init();
@@ -29,12 +29,11 @@ struct ATRefreshOption :OptionSet {
 }
 class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate {
     weak open var scrollView : UIScrollView!;
-    var reachable: Bool{
+    public var reachable: Bool{
         get{
             return NetworkReachabilityManager.init()!.isReachable;
         }
     }
-    private var _isRefreshing : Bool = false;
     private var currentPage   : Int = 0;
     private var emptyImage    : UIImage = defaultDataEmpty;
     private var emptyTitle    : String  = FDMSG_Home_DataEmpty;
@@ -54,7 +53,8 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         }
         return images;
     }()
-    private var isRefreshing :Bool{
+    private var _isRefreshing : Bool = false;
+    private var isRefreshing : Bool{
         set{
             _isRefreshing = newValue;
             if self.scrollView != nil {
@@ -74,7 +74,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     @param scrollView 刷新控件所在scrollView
     @param option 刷新空间样式
     */
-    func setupRefresh(scrollView:UIScrollView,options:ATRefreshOption){
+    final func setupRefresh(scrollView:UIScrollView,options:ATRefreshOption){
         self.scrollView = scrollView;
         if options.rawValue == ATRefreshOption.None.rawValue {
             if self.responds(to: #selector(headerRefreshing)) {
@@ -137,10 +137,10 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     @param image 空界面图片
     @param title 空界面标题
     */
-    func setupEmpty(scrollView:UIScrollView){
+    final func setupEmpty(scrollView:UIScrollView){
         self.setupEmpty(scrollView: scrollView, image:nil, title:nil)
     }
-    func setupEmpty(scrollView:UIScrollView,image:UIImage? = nil,title:String? = nil){
+    final func setupEmpty(scrollView:UIScrollView,image:UIImage? = nil,title:String? = nil){
         scrollView.emptyDataSetSource = self;
         scrollView.emptyDataSetDelegate = self;
         self.emptyImage = (image != nil) ?image!: defaultDataEmpty;
@@ -159,7 +159,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     @brief 分页请求一开始page = 1
     @param page 当前页码
     */
-    func refreshData(page:Int){
+    public func refreshData(page:Int){
         self.currentPage = page;
         DispatchQueue.main.asyncAfter(deadline: .now()+1) {
             if self.scrollView.mj_header != nil{
@@ -172,7 +172,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     /**
     @brief 分页加载成功 是否有下一页数据
     */
-    func endRefresh(more:Bool){
+    final func endRefresh(more:Bool){
         self.baseEndRefreshing();
         if self.scrollView.mj_footer == nil {
             return;
@@ -196,7 +196,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             }
         }
     }
-    func endRefreshFailure(){
+    final func endRefreshFailure(){
         if self.currentPage > RefreshPageStart {
             self.currentPage = self.currentPage - 1;
         }
@@ -212,7 +212,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     /**
     @brief 重新加载第一页
     */
-    @objc func headerRefreshing(){
+    @objc final func headerRefreshing(){
         self.isRefreshing = true;
         if self.scrollView.mj_footer != nil{
             self.scrollView?.mj_footer.isHidden = true;
@@ -220,11 +220,11 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         self.currentPage = RefreshPageStart;
         self.refreshData(page: self.currentPage);
     }
-    @objc func footerRefreshing(){
+    @objc final func footerRefreshing(){
         self.currentPage = self.currentPage + 1;
         self.refreshData(page: self.currentPage);
     }
-    func baseEndRefreshing(){
+    final func baseEndRefreshing(){
         if self.scrollView.mj_header != nil {
             if (self.scrollView?.mj_header.isRefreshing)! {
                 self.scrollView?.mj_header.endRefreshing();
@@ -232,7 +232,7 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
         }
         self.isRefreshing = false;
     }
-    @objc func reloadEmptyData(){
+    @objc final func reloadEmptyData(){
         if self.scrollView != nil {
             self.scrollView?.reloadEmptyDataSet();
         }
