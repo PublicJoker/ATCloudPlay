@@ -10,15 +10,10 @@ import UIKit
 import SwiftyJSON
 
 class AVHomeMoreController: BaseConnectionController {
-    class func vcWithMovieId(movieId:String?) -> Self{
-        let vc : AVHomeMoreController = AVHomeMoreController.init();
-        vc.movieId = movieId ?? "";
-        return vc as! Self;
-    }
-    class func vcWithMovieId(ztid:String?) -> Self{
-        let vc : AVHomeMoreController = AVHomeMoreController.init();
-        vc.ztid = ztid ?? "";
-        return vc as! Self;
+    convenience init(movieId : String? = nil, ztid : String? = nil) {
+        self.init();
+        self.movieId = movieId ?? "";
+        self.ztid = ztid ?? "";
     }
     private var movieId : String = "";
     private var ztid : String = "";

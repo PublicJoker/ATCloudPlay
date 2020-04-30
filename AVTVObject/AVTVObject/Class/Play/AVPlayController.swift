@@ -12,10 +12,9 @@ import MGJRouter_Swift
 import SwiftyJSON
 
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
-    class func vcWithMovieId(movieId : String) -> Self{
-        let vc = AVPlayController.init();
-        vc.movieId = movieId ;
-        return vc as! Self
+    convenience init(movieId : String) {
+        self.init();
+        self.movieId = movieId;
     }
     private var info : AVMovieInfo? = nil;
     private var _playItem : AVItem?

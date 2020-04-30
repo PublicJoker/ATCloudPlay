@@ -25,8 +25,8 @@ import UIKit
 @objc protocol playerDelegate : NSObjectProtocol {
     @objc optional func player(player : BasePlayer,bufferState : BufferState);
     @objc optional func player(player : BasePlayer,playerstate : PlayerState);
-    @objc optional func player(player : BasePlayer,cache : TimeInterval);
-    @objc optional func player(player : BasePlayer,progress : TimeInterval);
+    @objc optional func player(player : BasePlayer,cache       : TimeInterval);
+    @objc optional func player(player : BasePlayer,progress    : TimeInterval);
 }
 @objc class BasePlayer: NSObject {
     weak var delegate : playerDelegate? = nil;

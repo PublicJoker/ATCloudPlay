@@ -15,17 +15,17 @@ class AppJump: NSObject {
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
     }
     class func jumpToMoreControl(movieId : String){
-        let vc = AVHomeMoreController.vcWithMovieId(movieId: movieId);
+        let vc = AVHomeMoreController(movieId: movieId, ztid: nil)
         vc.hidesBottomBarWhenPushed = true;
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
     }
-    class func jumpToIndexMoreControl(movieId : String){
-        let vc = AVHomeMoreController.vcWithMovieId(ztid: movieId)
+    class func jumpToIndexMoreControl(ztid : String){
+        let vc = AVHomeMoreController(movieId: nil, ztid: ztid)
         vc.hidesBottomBarWhenPushed = true;
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
     }
     class func jumpToPlayControl(movieId : String){
-        let vc = AVPlayController.vcWithMovieId(movieId: movieId)
+        let vc = AVPlayController(movieId: movieId);
         vc.hidesBottomBarWhenPushed = true;
         UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
     }

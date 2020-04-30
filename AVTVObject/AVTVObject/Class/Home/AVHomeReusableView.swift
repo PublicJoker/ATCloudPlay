@@ -32,7 +32,7 @@ class AVHomeReusableView: UICollectionReusableView {
     }
     @objc private func moreAction(){
         if self.info.index {
-            AppJump.jumpToIndexMoreControl(movieId:self.info.homeId);
+            AppJump.jumpToIndexMoreControl(ztid: self.info.homeId);
         }else{
             AppJump.jumpToMoreControl(movieId: self.info.homeId);
         }
