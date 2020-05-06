@@ -287,8 +287,17 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
     }
     func player(player: BasePlayer, playerstate: PlayerState) {
         self.playView.player(player: player, playerstate: playerstate);
-        if playerstate == .ready {
+        switch playerstate {
+        case .ready:
             self.dismiss();
+            break;
+        case .error:
+            self.dismiss();
+            self.tryAgain(title: "播放失败,");
+            break;
+        default:
+            break;
+            
         }
     }
     //MARK: playVideoDelegate

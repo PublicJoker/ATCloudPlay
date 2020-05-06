@@ -85,7 +85,7 @@ class AVItemInfo : AVItem{
     var needSeek    : Bool?{
         get{
             let time : TimeInterval = self.totalTime > 60*60 ? 120 : 30
-            let seek = self.currentTime > 5 && self.currentTime < (self.totalTime - time) ? true : false;
+            let seek = self.currentTime > 5 && self.currentTime < (self.totalTime - time) && !self.living ? true : false;
             return seek;
         }
     }
