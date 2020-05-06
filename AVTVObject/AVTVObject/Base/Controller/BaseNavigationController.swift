@@ -8,8 +8,7 @@
 
 import UIKit
 import Hue
-class BaseNavigationController: UINavigationController,UINavigationControllerDelegate {
-
+class BaseNavigationController: UINavigationController {
     private var pushing : Bool = false;
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,30 +17,16 @@ class BaseNavigationController: UINavigationController,UINavigationControllerDel
             self.interactivePopGestureRecognizer?.isEnabled = true;
         }
         let navBar : UINavigationBar = UINavigationBar.appearance()
-        navBar.titleTextAttributes = (self.defaultNvi() as! [NSAttributedString.Key : Any]);
+        navBar.titleTextAttributes = self.defaultNvi();
         let imageV : UIImage = UIImage.imageWithColor(color: UIColor.init(hex:"ffffff"));
         navBar.setBackgroundImage(imageV, for: .default);
         navBar.shadowImage = UIImage.init();
         navBar.isTranslucent = false;
     }
-    private func defaultNvi()-> NSDictionary{
-        let dic :NSMutableDictionary = NSMutableDictionary.init();
+    private func defaultNvi()-> [NSAttributedString.Key : Any]{
         let font : UIFont = UIFont.systemFont(ofSize: 18, weight: .semibold);
         let color : UIColor = UIColor.black
-        dic.setObject(color, forKey: NSAttributedString.Key.foregroundColor.rawValue as NSCopying);
-        dic.setObject(font, forKey: NSAttributedString.Key.font.rawValue as NSCopying)
-        return dic
-    }
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if self.pushing == true {
-            return;
-        }else{
-            self.pushing = true;
-        }
-        super.pushViewController(viewController, animated: animated);
-    }
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        self.pushing = false;
+        return [NSAttributedString.Key.foregroundColor:color,NSAttributedString.Key.font:font]
     }
     override var prefersStatusBarHidden: Bool{
         return self.visibleViewController!.prefersStatusBarHidden;
@@ -57,5 +42,18 @@ class BaseNavigationController: UINavigationController,UINavigationControllerDel
     }
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
         return self.visibleViewController!.preferredInterfaceOrientationForPresentation;
+    }
+}
+extension BaseNavigationController :UINavigationControllerDelegate{
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if self.pushing == true {
+            return;
+        }else{
+            self.pushing = true;
+        }
+        super.pushViewController(viewController, animated: animated);
+    }
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        self.pushing = false;
     }
 }

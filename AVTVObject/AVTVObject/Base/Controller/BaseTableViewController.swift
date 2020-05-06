@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITableViewDataSource {
+class BaseTableViewController: BaseRefreshController {
     lazy var tableView : UITableView = {
         let tableView : UITableView = UITableView.init(frame: CGRect.zero, style:.grouped);
         tableView.dataSource = self;
@@ -30,6 +30,8 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
             make.edges.equalToSuperview()
         }
     }
+}
+extension BaseTableViewController : UITableViewDataSource,UITableViewDelegate{
     //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;

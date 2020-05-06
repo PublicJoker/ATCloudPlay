@@ -27,7 +27,7 @@ struct ATRefreshOption :OptionSet {
     static var DefaultHidden : ATRefreshOption{return ATRefreshOption(rawValue: 1<<4)};
     static var Default       : ATRefreshOption{return ATRefreshOption(rawValue: Header.rawValue|AutoHeader.rawValue|Footer.rawValue|DefaultHidden.rawValue)};
 }
-class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate {
+class BaseRefreshController: BaseViewController {
     weak open var scrollView : UIScrollView!;
     public var reachable: Bool{
         get{
@@ -68,6 +68,9 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
     }
     deinit {
 //        self.scrollView.delegate = nil;
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     /**
     @brief 设置刷新控件 子类可在refreshData中发起网络请求, 请求结束后回调endRefresh结束刷新动作
@@ -237,21 +240,21 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             self.scrollView?.reloadEmptyDataSet();
         }
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
+}
+extension BaseRefreshController :DZNEmptyDataSetSource,DZNEmptyDataSetDelegate{
     //MARK:DZNEmptyDataSetSource
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         var text :String = self.isRefreshing ? FDMSG_Home_DataRefresh : self.emptyTitle;
-        let dic :NSMutableDictionary = NSMutableDictionary.init();
+        var dic : [NSAttributedString.Key : Any ] = [:];
         let font : UIFont = UIFont.systemFont(ofSize: 15);
         let color : UIColor = UIColor.init(hex: "999999")
-        dic.setObject(color, forKey: NSAttributedString.Key.foregroundColor.rawValue as NSCopying);
-        dic.setObject(font, forKey: NSAttributedString.Key.font.rawValue as NSCopying)
+        dic.updateValue(font, forKey: .font);
+        dic.updateValue(color, forKey: .foregroundColor)
         if self.reachable == false {
             text = FDNoNetworkMsg;
         }
-        let att : NSAttributedString = NSAttributedString.init(string:"\r\n"+text, attributes:(dic as! [NSAttributedString.Key : Any]));
+        let att : NSAttributedString = NSAttributedString.init(string:"\r\n"+text, attributes:(dic));
         return att;
     }
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -284,5 +287,4 @@ class BaseRefreshController: BaseViewController,DZNEmptyDataSetSource,DZNEmptyDa
             self.headerRefreshing();
         }
     }
-
 }

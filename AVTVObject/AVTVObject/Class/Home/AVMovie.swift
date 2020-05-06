@@ -69,7 +69,7 @@ class AVItem : HandyJSON{//每一集
     var ext     : String = "";
     var name    : String = "";
     func mapping(mapper: HelpingMapper) {
-         mapper <<<
+        mapper <<<
              self.itemId  <-- ["itemId","id"]
         mapper <<<
              self.playUrl <-- ["playUrl","purl"]

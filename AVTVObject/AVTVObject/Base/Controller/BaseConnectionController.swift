@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class BaseConnectionController: BaseRefreshController {
 
     lazy var layout: UICollectionViewFlowLayout = {
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout.init();
@@ -36,6 +36,8 @@ class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,U
             make.edges.equalToSuperview();
         }
     }
+}
+extension BaseConnectionController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     //MARK:UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0;
@@ -64,5 +66,4 @@ class BaseConnectionController: BaseRefreshController,UICollectionViewDelegate,U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-
 }

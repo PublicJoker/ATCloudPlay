@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSource {
+class AVHomeController: BaseViewController {
     private lazy var searchBtn : UIButton = {
         let btn : UIButton = UIButton.init();
         btn.frame = CGRect.init(x: 0, y: 0, width: 44, height: 44);
@@ -65,6 +65,9 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
     @objc private func searchAction(){
         AppJump.jumpToSearchControl();
     }
+
+}
+extension AVHomeController :VTMagicViewDelegate,VTMagicViewDataSource{
     func menuTitles(for magicView: VTMagicView) -> [String] {
         return self.titleDatas;
     }
@@ -81,5 +84,4 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
     func magicView(_ magicView: VTMagicView, viewControllerAtPage pageIndex: UInt) -> UIViewController {
         return self.controllerDatas[Int(pageIndex)];
     }
-
 }

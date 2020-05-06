@@ -24,7 +24,6 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     //MARK:UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
         return true;
     }
     override var prefersStatusBarHidden: Bool{
