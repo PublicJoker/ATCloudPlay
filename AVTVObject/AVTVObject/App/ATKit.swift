@@ -10,7 +10,8 @@ import UIKit
 extension UIView{
     class func xibName() -> String{
         let name : String = NSStringFromClass(self.classForCoder());
-        return name.components(separatedBy: ".").last!;
+        let datas :[String] = name.components(separatedBy: ".");
+        return datas.count > 0 ? datas.last! : "";
     }
     class func instanceView() -> Self{
         let nib =  Bundle.main.url(forResource:self.xibName(), withExtension:"nib");

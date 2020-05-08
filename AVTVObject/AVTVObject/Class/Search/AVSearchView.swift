@@ -82,3 +82,27 @@ class AVSearchView: UIView,UITextFieldDelegate {
     }
 
 }
+
+class AVSearchTopView : UIView{
+    lazy var topLabel : UILabel = {
+        return UILabel.init();
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadUI()
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadUI()
+    }
+    func loadUI(){
+        self.addSubview(self.topLabel);
+        self.topLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview();
+        }
+        self.topLabel.backgroundColor = UIColor.red;
+        self.topLabel.textColor = UIColor.white;
+        self.topLabel.text = "hello world";
+        self.backgroundColor = UIColor.red
+    }
+}

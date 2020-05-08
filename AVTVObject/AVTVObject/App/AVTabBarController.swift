@@ -16,9 +16,9 @@ class AVTabBarController: UITabBarController {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false;
         let vc = AVHomeController.init();
-        self.createCtrl(vc: vc, title:"首页", normal:"icon_tabbar_home_n", select:"icon_tabbar_home_h");
+        self.createCtrl(vc: vc, title:"首页",normal:"icon_tabbar_home_n", select:"icon_tabbar_home_h");
         let fav = AVFavController.init();
-        self.createCtrl(vc: fav, title:"收藏", normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
+        self.createCtrl(vc: fav, title:"收藏",normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
         let my = AVBrowseController.init();
         self.createCtrl(vc: my, title:"我的", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
         
@@ -30,8 +30,8 @@ class AVTabBarController: UITabBarController {
         nv.tabBarItem.title = title;
         nv.tabBarItem.image = UIImage.init(named: normal)?.withRenderingMode(.alwaysOriginal);
         nv.tabBarItem.selectedImage = UIImage.init(named: select)?.withRenderingMode(.alwaysOriginal);
-        nv.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : AppColor as Any], for: .selected);
-        nv.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor : Appx999999 as Any], for: .normal);
+        nv.tabBarItem.setTitleTextAttributes([.foregroundColor : AppColor], for: .selected);
+        nv.tabBarItem.setTitleTextAttributes([.foregroundColor : Appx999999], for: .normal);
         self.listData.append(nv);
     }
 }

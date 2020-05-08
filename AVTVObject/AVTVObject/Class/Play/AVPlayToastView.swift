@@ -31,7 +31,7 @@ class AVPlayToastView: UIView {
     private func loadUI(){
         self.layer.masksToBounds = true;
         self.layer.cornerRadius = 5;
-        self.backgroundColor = UIColor.init(white: 0, alpha: 0.7)
+        self.backgroundColor = UIColor.init(white: 0, alpha: 0.8)
         self.addSubview(self.imageV);
         self.addSubview(self.titleLab);
         self.imageV.snp.makeConstraints { (make) in

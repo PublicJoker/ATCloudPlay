@@ -18,12 +18,10 @@ public enum ApiMoya{
     case apiSearch(page: Int, size: Int, keyWord: String)
     case apiShow(movieId: String)
 }
-
 extension ApiMoya : TargetType{
     public var baseURL: URL {
         return URL.init(string: "https://mjappaz.yefu365.com")!
     }
-    
     public var path: String {
         switch self {
           case .apiHome:
@@ -36,11 +34,9 @@ extension ApiMoya : TargetType{
               return "/index.php/app/ios/vod/index"
           }
     }
-    
     public var method: Moya.Method {
         return .get;
     }
-    
     public var sampleData: Data {//单元测试
         return Data(base64Encoded: "just for test")!
     }

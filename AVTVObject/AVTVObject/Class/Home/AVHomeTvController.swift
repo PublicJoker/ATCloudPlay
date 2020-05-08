@@ -17,6 +17,7 @@ class AVHomeTvController: BaseConnectionController {
         self.layout.sectionHeadersPinToVisibleBounds = true;
         self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.AutoHeader.rawValue|ATRefreshOption.Header.rawValue));
+
     }
     override func refreshData(page: Int) {
         ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "1", vsize: "15"), sucesss: { (json) in

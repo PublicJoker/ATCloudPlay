@@ -18,7 +18,6 @@
 		0F1B1FE924552C8A00D65D4B /* BaseRefreshController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FDC24552C8A00D65D4B /* BaseRefreshController.swift */; };
 		0F1B1FEA24552C8A00D65D4B /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FDD24552C8A00D65D4B /* BaseNavigationController.swift */; };
 		0F1B1FEC24552C8A00D65D4B /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FE124552C8A00D65D4B /* BaseModel.swift */; };
-		0F1B1FED24552C8A00D65D4B /* BaseNetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FE224552C8A00D65D4B /* BaseNetManager.swift */; };
 		0F1B1FF524552DCB00D65D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */; };
 		0F1B1FFE2455328C00D65D4B /* AVTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */; };
 		0F1B2000245532E600D65D4B /* ATKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FFF245532E600D65D4B /* ATKit.swift */; };
@@ -74,7 +73,6 @@
 		0F1B1FDC24552C8A00D65D4B /* BaseRefreshController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRefreshController.swift; sourceTree = "<group>"; };
 		0F1B1FDD24552C8A00D65D4B /* BaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		0F1B1FE124552C8A00D65D4B /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
-		0F1B1FE224552C8A00D65D4B /* BaseNetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNetManager.swift; sourceTree = "<group>"; };
 		0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F1B1FFC24552F4B00D65D4B /* Swift-Briding-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Briding-Header.h"; sourceTree = "<group>"; };
 		0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVTabBarController.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 			isa = PBXGroup;
 			children = (
 				0F1B1FE124552C8A00D65D4B /* BaseModel.swift */,
-				0F1B1FE224552C8A00D65D4B /* BaseNetManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -482,7 +479,6 @@
 				0F1B2010245560A500D65D4B /* AVHomeInfo.swift in Sources */,
 				0F1B20042455361C00D65D4B /* ApiMoya.swift in Sources */,
 				0F46FBF024566AEB003D28AF /* AVSearchDataQueue.swift in Sources */,
-				0F1B1FED24552C8A00D65D4B /* BaseNetManager.swift in Sources */,
 				0F503ED32456AEBF006115F7 /* AVPlayView.swift in Sources */,
 				0F503EDB2456BBA7006115F7 /* AVFavDataQueue.swift in Sources */,
 				0F503EDD2456BBBA006115F7 /* AVBrowseDataQueue.swift in Sources */,

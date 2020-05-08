@@ -40,7 +40,7 @@ extension BaseTableViewController : UITableViewDataSource,UITableViewDelegate{
         return 1;
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0.001;
+        return 0.01;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell.init();
