@@ -40,10 +40,10 @@ class AVHomeHotContrller: BaseConnectionController {
         return info.listData.count;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize.init(width: SCREEN_WIDTH, height:40)
@@ -54,10 +54,10 @@ class AVHomeHotContrller: BaseConnectionController {
         return reusableView;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:0, left: top, bottom: 0, right: top);
+        return UIEdgeInsets(top:0, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = CGFloat((SCREEN_WIDTH - 3*top - 1)/2);
+        let width = itemWidth;
         return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

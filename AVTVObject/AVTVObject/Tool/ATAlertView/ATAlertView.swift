@@ -10,20 +10,20 @@ import UIKit
 import ATKit_Swift
 
 class ATAlertView: NSObject {
-    class func showAlertView(title:String?,message:String?,normals:NSArray?,hights:NSArray?,completion: @escaping ((_ title:String,_ index :NSInteger) -> Void)){
+    class func showAlertView(title:String?,message:String?,normals:[String]?,hights:[String]?,completion: @escaping ((_ title:String,_ index :NSInteger) -> Void)){
         let alertView = UIAlertController.init(title: title, message: message, preferredStyle: .alert);
         if normals != nil {
             for (index,object) in normals!.enumerated() {
-                let action = UIAlertAction.init(title:(object as! String), style: .cancel) { (alert) in
-                    completion(object as! String,index);
+                let action = UIAlertAction.init(title:(object), style: .cancel) { (alert) in
+                    completion(object,index);
                 };
                 alertView.addAction(action);
             }
         }
         if hights != nil {
             for (index,sure) in hights!.enumerated() {
-                let action = UIAlertAction.init(title:(sure as! String), style: .destructive) { (alert) in
-                    completion(sure as! String,index+normals!.count);
+                let action = UIAlertAction.init(title:(sure), style: .destructive) { (alert) in
+                    completion(sure,index+normals!.count);
                 };
                 alertView.addAction(action);
             }
@@ -34,18 +34,18 @@ class ATAlertView: NSObject {
 }
 
 class ATActionSheet: NSObject {
-    class func showActionSheet(title:String,message:String,normals:NSArray,hights:NSArray,completion:@escaping ((_ title:String,_ index:NSInteger)->Void)){
+    class func showActionSheet(title:String,message:String,normals:[String],hights:[String],completion:@escaping ((_ title:String,_ index:NSInteger)->Void)){
         let actionSheet = UIAlertController.init(title: title, message: message, preferredStyle: .actionSheet);
         let rootVC = UIViewController.rootTopPresentedController();
         for (index, object) in normals.enumerated() {
-            let action = UIAlertAction.init(title: (object as! String), style:.default) { (alert) in
-                completion(object as! String,index);
+            let action = UIAlertAction.init(title: (object), style:.default) { (alert) in
+                completion(object,index);
             }
             actionSheet.addAction(action);
         }
         for (index, object) in hights.enumerated() {
-            let action = UIAlertAction.init(title: (object as? String), style:.destructive) { (alert) in
-                completion(object as! String,index+normals.count);
+            let action = UIAlertAction.init(title: (object), style:.destructive) { (alert) in
+                completion(object,index+normals.count);
             }
             actionSheet.addAction(action);
         }

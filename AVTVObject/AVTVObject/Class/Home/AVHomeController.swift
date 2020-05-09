@@ -16,7 +16,7 @@ class AVHomeController: BaseViewController {
         return btn;
     }()
     private lazy var titleDatas: [String] = {
-        return ["热门","推荐","剧集"];
+        return ["热门"]//,"推荐","剧集"];
     }()
     private lazy var controllerDatas: [UIViewController] = {
         return [AVHomeHotContrller.init(),AVHomeIndexController.init(),AVHomeTvController.init()]

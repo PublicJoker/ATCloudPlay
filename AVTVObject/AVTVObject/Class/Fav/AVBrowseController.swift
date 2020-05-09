@@ -43,16 +43,16 @@ class AVBrowseController: BaseConnectionController {
            return self.listData.count;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return top;
+           return itemTop;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-           return top;
+           return itemTop;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top:top, left: top, bottom: 0, right: top);
+           return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = CGFloat((SCREEN_WIDTH - 3*top - 1)/2.0)
+            let width = itemWidth
             return CGSize.init(width: width, height:CGFloat(width/5*3.0))
        }
        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

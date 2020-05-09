@@ -34,15 +34,27 @@ class BaseRefreshController: BaseViewController {
             return NetworkReachabilityManager.init()!.isReachable;
         }
     }
-    private var currentPage   : Int = 0;
-    private var emptyImage    : UIImage = defaultDataEmpty;
-    private var emptyTitle    : String  = FDMSG_Home_DataEmpty;
-    private var isSetKVO      : Bool = false;
-    private var loadImage     : UIImage{
+    private var headerImages  : [UIImage]{
+        get{
+            return self.images;
+        }
+    }
+    private var footerImages  : [UIImage]{
+        get{
+            return self.images;
+        }
+    }
+    private var loadImages    : UIImage{
         get{
             return UIImage.animatedImage(with:self.images, duration: 0.35) ?? UIImage.init();
         }
     }
+    
+    private var currentPage   : Int = 0;
+    private var emptyImage    : UIImage = defaultDataEmpty;
+    private var emptyTitle    : String  = FDMSG_Home_DataEmpty;
+    private var isSetKVO      : Bool = false;
+    
     private lazy var images: [UIImage] = {
         var images :[UIImage] = [];
         for i in 0...35{
@@ -92,8 +104,8 @@ class BaseRefreshController: BaseViewController {
             header.isAutomaticallyChangeAlpha = true;
             header.lastUpdatedTimeLabel.isHidden = true;
             if self.images.count > 0 {
-                header.setImages([self.images.first as Any], for: .idle);
-                header.setImages(self.images, duration: 0.35, for: .refreshing);
+                header.setImages([self.headerImages.first as Any], for: .idle);
+                header.setImages(self.headerImages, duration: 0.35, for: .refreshing);
             }
             value = options.rawValue & ATRefreshOption.AutoHeader.rawValue;
             if value == 4 {
@@ -108,8 +120,8 @@ class BaseRefreshController: BaseViewController {
             footer.stateLabel.isHidden = false;
             footer.labelLeftInset = -22;
             if self.images.count > 0 {
-                footer.setImages([self.images.first as Any], for: .idle);
-                footer.setImages(self.images, duration: 0.35, for: .refreshing);
+                footer.setImages([self.footerImages.first as Any], for: .idle);
+                footer.setImages(self.footerImages, duration: 0.35, for: .refreshing);
             }
             footer.setTitle(" —— 我是有底线的 ——  ", for: .noMoreData);
             footer.setTitle("", for: .pulling);
@@ -261,7 +273,7 @@ extension BaseRefreshController :DZNEmptyDataSetSource,DZNEmptyDataSetDelegate{
         return nil;
     }
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        let image : UIImage = self.isRefreshing ? self.loadImage : self.emptyImage;
+        let image : UIImage = self.isRefreshing ? self.loadImages : self.emptyImage;
         return self.reachable ? image : defaultNetError;
     }
     func emptyDataSetShouldAnimateImageView(_ scrollView: UIScrollView!) -> Bool {

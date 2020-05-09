@@ -324,16 +324,16 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         return self.listData.count;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:top, left: top, bottom: 0, right: top);
+        return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (SCREEN_WIDTH - 4*top - 1)/3.0;
+        let width = itemWidth
         return CGSize.init(width: width, height: 50)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
