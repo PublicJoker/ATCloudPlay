@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ATKit_Swift
 
 class AVBrowseController: BaseConnectionController {
 

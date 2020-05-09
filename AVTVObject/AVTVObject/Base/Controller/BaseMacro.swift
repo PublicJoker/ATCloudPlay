@@ -15,7 +15,7 @@ let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
 let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
 let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
 
-let iPhone_X        : Bool = BaseMacro.iPhone_X();
+let iPhone_X        : Bool      = BaseMacro.iPhone_X();
 let STATUS_BAR_HIGHT:CGFloat    = (iPhone_X ? 44: 20)//状态栏
 let NAVI_BAR_HIGHT  :CGFloat    = (iPhone_X ? 88: 64)//导航栏
 let TAB_BAR_ADDING  :CGFloat    = (iPhone_X ? 34 : 0)//iphoneX斜刘海

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ATKit_Swift
 
 class ATAlertView: NSObject {
     class func showAlertView(title:String?,message:String?,normals:NSArray?,hights:NSArray?,completion: @escaping ((_ title:String,_ index :NSInteger) -> Void)){

@@ -20,7 +20,6 @@
 		0F1B1FEC24552C8A00D65D4B /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FE124552C8A00D65D4B /* BaseModel.swift */; };
 		0F1B1FF524552DCB00D65D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */; };
 		0F1B1FFE2455328C00D65D4B /* AVTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */; };
-		0F1B2000245532E600D65D4B /* ATKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B1FFF245532E600D65D4B /* ATKit.swift */; };
 		0F1B20042455361C00D65D4B /* ApiMoya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B20032455361C00D65D4B /* ApiMoya.swift */; };
 		0F1B200E245560A500D65D4B /* AVMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B200B245560A500D65D4B /* AVMovie.swift */; };
 		0F1B200F245560A500D65D4B /* AVHomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B200C245560A500D65D4B /* AVHomeController.swift */; };
@@ -76,7 +75,6 @@
 		0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F1B1FFC24552F4B00D65D4B /* Swift-Briding-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Swift-Briding-Header.h"; sourceTree = "<group>"; };
 		0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVTabBarController.swift; sourceTree = "<group>"; };
-		0F1B1FFF245532E600D65D4B /* ATKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATKit.swift; sourceTree = "<group>"; };
 		0F1B20032455361C00D65D4B /* ApiMoya.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiMoya.swift; sourceTree = "<group>"; };
 		0F1B200B245560A500D65D4B /* AVMovie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVMovie.swift; sourceTree = "<group>"; };
 		0F1B200C245560A500D65D4B /* AVHomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVHomeController.swift; sourceTree = "<group>"; };
@@ -207,7 +205,6 @@
 				0F1B20032455361C00D65D4B /* ApiMoya.swift */,
 				0F1B1FF424552DCB00D65D4B /* AppDelegate.swift */,
 				0F1B201D245576AD00D65D4B /* AppJump.swift */,
-				0F1B1FFF245532E600D65D4B /* ATKit.swift */,
 				0F1B1FFD2455328C00D65D4B /* AVTabBarController.swift */,
 				0F1B1FFC24552F4B00D65D4B /* Swift-Briding-Header.h */,
 			);
@@ -484,7 +481,6 @@
 				0F503EDD2456BBBA006115F7 /* AVBrowseDataQueue.swift in Sources */,
 				0F46FBFB24568E41003D28AF /* BasePlayer.swift in Sources */,
 				0F1B1FE924552C8A00D65D4B /* BaseRefreshController.swift in Sources */,
-				0F1B2000245532E600D65D4B /* ATKit.swift in Sources */,
 				0F46FBF324566D35003D28AF /* AVSearchResultCell.swift in Sources */,
 				0F1B1FEA24552C8A00D65D4B /* BaseNavigationController.swift in Sources */,
 				0F503EDF2456BD3F006115F7 /* ATTime.swift in Sources */,
@@ -647,6 +643,7 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = " $(PODS_ROOT)/**";
 			};
 			name = Debug;
 		};
@@ -671,6 +668,7 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = " $(PODS_ROOT)/**";
 			};
 			name = Release;
 		};

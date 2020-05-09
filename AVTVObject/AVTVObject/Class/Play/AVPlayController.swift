@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import MGJRouter_Swift
 import SwiftyJSON
 
@@ -59,7 +58,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
     private func loadUI(){
 
         self.fd_prefersNavigationBarHidden = true;
-        self.view.backgroundColor = UIColor.white;
+        self.view.backgroundColor = UIColor.black;
         self.view.addSubview(self.playerView);
         self.halfScreen();
         self.playerView.addSubview(self.player.contentView);
@@ -247,10 +246,12 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             make.top.equalTo(self.playerView.snp.bottom);
         }
         self.playView.screen = false;
-        self.collectionView.isHidden = self.playView.screen;
-        self.collectionView.backgroundColor = Appxffffff;
-        self.collectionView.backgroundView?.backgroundColor = Appxffffff;
-    }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+            self.collectionView.isHidden = self.playView.screen;
+            self.collectionView.backgroundColor = Appxffffff;
+            self.collectionView.backgroundView?.backgroundColor = Appxffffff;
+        }
+    } 
     private func show(){
         if SVProgressHUD.isVisible() {
             SVProgressHUD.popActivity();

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ATKit_Swift
 class AVFavController: BaseConnectionController {
 
     private lazy var listData : [AVMovie] = {

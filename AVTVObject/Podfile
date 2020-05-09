@@ -11,6 +11,7 @@ target 'AVTVObject' do
   pod 'Hue'
   pod 'Kingfisher'
   pod 'MGJRouter_Swift'
+  pod 'ATKit_Swift'
   
   pod 'FDFullscreenPopGesture'
   pod 'DZNEmptyDataSet'
