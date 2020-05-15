@@ -40,7 +40,7 @@ class AVSearchController: BaseTableViewController,searchDelegate {
             make.top.equalTo(self.searchView.snp_bottom);
         }
         self.setupEmpty(scrollView: self.tableView);
-        self.setupRefresh(scrollView: self.tableView, options: .Default);
+        self.setupRefresh(scrollView: self.tableView, options: .defaults);
     }
     override func refreshData(page: Int) {
         if self.keyWord!.count > 0{

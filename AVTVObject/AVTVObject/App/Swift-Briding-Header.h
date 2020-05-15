@@ -10,10 +10,6 @@
 #define Swift_Briding_Header_h
 
 #import "VTMagic.h"
-#import <MJRefresh/MJRefresh.h>
-#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
-#import <KVOController.h>
-#import "UIScrollView+EmptyDataSet.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
 #import "MBProgressHUD+ATAdd.h"
 #import "BaseDataQueue.h"

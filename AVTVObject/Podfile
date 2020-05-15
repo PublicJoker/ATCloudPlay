@@ -1,8 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 source      'https://github.com/CocoaPods/Specs.git'
- platform :ios, '9.0'
+platform :ios, '10.0'
+use_frameworks!
 
 target 'AVTVObject' do
+  pod 'ATRefresh_Swift',:git => 'https://github.com/tianya2416/ATRefresh_Swift.git'
+  pod 'ATKit_Swift'
   pod 'Moya'
   pod 'Alamofire'
   pod 'SwiftyJSON'
@@ -11,17 +14,16 @@ target 'AVTVObject' do
   pod 'Hue'
   pod 'Kingfisher'
   pod 'MGJRouter_Swift'
-  pod 'ATKit_Swift'
   
   pod 'FDFullscreenPopGesture'
-  pod 'DZNEmptyDataSet'
-  pod 'KVOController'
+#  pod 'DZNEmptyDataSet'
+#  pod 'KVOController'
   pod 'FMDB'
   pod 'SVProgressHUD'
   
   pod 'MBProgressHUD',:git => 'https://github.com/tianya2416/MBProgress.git'
   pod 'VTMagic',:git => 'https://github.com/tianya2416/VTMagicMacro.git'
-  pod 'MJRefresh', :git => 'https://github.com/CoderLT/MJRefresh.git'
+#  pod 'MJRefresh', :git => 'https://github.com/CoderLT/MJRefresh.git'
 
 
 end

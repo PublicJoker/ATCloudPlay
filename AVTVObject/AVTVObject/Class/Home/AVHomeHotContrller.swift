@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ATRefresh_Swift
 class AVHomeHotContrller: BaseConnectionController {
     //热门
      private lazy var listData : [AVHomeInfo] = {
@@ -17,7 +17,7 @@ class AVHomeHotContrller: BaseConnectionController {
         super.viewDidLoad()
         self.layout.sectionHeadersPinToVisibleBounds = true;
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.AutoHeader.rawValue|ATRefreshOption.Header.rawValue));
+        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
     }
     override func refreshData(page: Int) {
         ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "2", vsize: "15"), sucesss: { (json) in

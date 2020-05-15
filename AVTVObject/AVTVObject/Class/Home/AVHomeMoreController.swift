@@ -24,7 +24,7 @@ class AVHomeMoreController: BaseConnectionController {
         super.viewDidLoad()
         self.showNavTitle(title: "更多");
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options: .Default);
+        self.setupRefresh(scrollView: self.collectionView, options: .defaults);
     }
     override func refreshData(page: Int) {
         if self.movieId.count > 0 {

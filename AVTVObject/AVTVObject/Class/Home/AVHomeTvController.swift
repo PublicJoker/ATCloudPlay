@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ATRefresh_Swift
 class AVHomeTvController: BaseConnectionController {
     private lazy var listData : [AVHomeInfo] = {
         return []
@@ -16,7 +16,7 @@ class AVHomeTvController: BaseConnectionController {
         super.viewDidLoad()
         self.layout.sectionHeadersPinToVisibleBounds = true;
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.AutoHeader.rawValue|ATRefreshOption.Header.rawValue));
+        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
 
     }
     override func refreshData(page: Int) {

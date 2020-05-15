@@ -10,6 +10,7 @@ import UIKit
 import Hue
 import SnapKit
 import SwiftyJSON
+import ATKit_Swift
 
 let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
 let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width

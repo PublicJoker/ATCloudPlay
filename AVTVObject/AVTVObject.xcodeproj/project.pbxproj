@@ -54,11 +54,10 @@
 		0FB5EC0B24595250003C827F /* AVBrowseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB5EC0A24595250003C827F /* AVBrowseController.swift */; };
 		0FB9F0102457FB7400EB48A7 /* AVPlayToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9F00F2457FB7400EB48A7 /* AVPlayToastView.swift */; };
 		0FB9F0122458122A00EB48A7 /* TVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB9F0112458122A00EB48A7 /* TVPlayer.swift */; };
-		F324E015AE3BA0E4ABDB51FF /* libPods-AVTVObject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B5DE54C8F3E9F9A711CA03D /* libPods-AVTVObject.a */; };
+		552F6576BC96A875261BEDB3 /* Pods_AVTVObject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFEA66B4774029C62B2199C5 /* Pods_AVTVObject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B5DE54C8F3E9F9A711CA03D /* libPods-AVTVObject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AVTVObject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F0A4A1D2457C6E6009E947C /* AVPlayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayController.swift; sourceTree = "<group>"; };
 		0F0A4A1F2457C6F9009E947C /* AVPlayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayCell.swift; sourceTree = "<group>"; };
 		0F1B1FB6245529BD00D65D4B /* 云播放.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "云播放.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +112,7 @@
 		0FB9F0112458122A00EB48A7 /* TVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVPlayer.swift; sourceTree = "<group>"; };
 		1A0EA02E076494C441F0FDB8 /* Pods-AVTVObject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVTVObject.debug.xcconfig"; path = "Target Support Files/Pods-AVTVObject/Pods-AVTVObject.debug.xcconfig"; sourceTree = "<group>"; };
 		505EA86B76D4CAAD20DF073D /* Pods-AVTVObject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AVTVObject.release.xcconfig"; path = "Target Support Files/Pods-AVTVObject/Pods-AVTVObject.release.xcconfig"; sourceTree = "<group>"; };
+		FFEA66B4774029C62B2199C5 /* Pods_AVTVObject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AVTVObject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F324E015AE3BA0E4ABDB51FF /* libPods-AVTVObject.a in Frameworks */,
+				552F6576BC96A875261BEDB3 /* Pods_AVTVObject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +318,7 @@
 		1BEADE3E7DFC72C8D163C44E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B5DE54C8F3E9F9A711CA03D /* libPods-AVTVObject.a */,
+				FFEA66B4774029C62B2199C5 /* Pods_AVTVObject.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,7 +343,7 @@
 				0F1B1FB2245529BD00D65D4B /* Sources */,
 				0F1B1FB3245529BD00D65D4B /* Frameworks */,
 				0F1B1FB4245529BD00D65D4B /* Resources */,
-				DDB1A29B9B2434E6F45B7579 /* [CP] Copy Pods Resources */,
+				FF81461C2E357C10F23C0EF2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -428,21 +428,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DDB1A29B9B2434E6F45B7579 /* [CP] Copy Pods Resources */ = {
+		FF81461C2E357C10F23C0EF2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AVTVObject/Pods-AVTVObject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

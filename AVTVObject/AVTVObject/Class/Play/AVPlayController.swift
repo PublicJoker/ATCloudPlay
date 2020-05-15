@@ -80,7 +80,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             make.top.equalToSuperview();
         }
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options: .None);
+        self.setupRefresh(scrollView: self.collectionView, options: .none);
         self.collectionView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
             make.top.equalTo(self.playerView.snp_bottom);

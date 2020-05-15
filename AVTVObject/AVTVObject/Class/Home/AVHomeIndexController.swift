@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ATRefresh_Swift
 
 class AVHomeIndexController: BaseConnectionController {
 
@@ -17,7 +18,7 @@ class AVHomeIndexController: BaseConnectionController {
             super.viewDidLoad()
             self.layout.sectionHeadersPinToVisibleBounds = true;
             self.setupEmpty(scrollView: self.collectionView);
-            self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.AutoHeader.rawValue|ATRefreshOption.Header.rawValue));
+            self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
         }
         override func refreshData(page: Int) {
             ApiMoya.apiMoyaRequest(target: .apiHome(vsize: "15"), sucesss: { (json) in
