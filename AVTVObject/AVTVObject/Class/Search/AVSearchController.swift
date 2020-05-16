@@ -37,7 +37,7 @@ class AVSearchController: BaseTableViewController,searchDelegate {
         }
         self.tableView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
-            make.top.equalTo(self.searchView.snp_bottom);
+            make.top.equalTo(self.searchView.snp.bottom);
         }
         self.setupEmpty(scrollView: self.tableView);
         self.setupRefresh(scrollView: self.tableView, options: .defaults);

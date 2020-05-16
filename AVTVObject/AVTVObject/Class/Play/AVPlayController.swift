@@ -9,7 +9,6 @@
 import UIKit
 import MGJRouter_Swift
 import SwiftyJSON
-
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
     convenience init(movieId : String) {
         self.init();
@@ -83,7 +82,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.setupRefresh(scrollView: self.collectionView, options: .none);
         self.collectionView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
-            make.top.equalTo(self.playerView.snp_bottom);
+            make.top.equalTo(self.playerView.snp.bottom);
         }
         self.view.sendSubviewToBack(self.playerView);
     }
@@ -238,7 +237,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
     private func halfScreen(){
         self.playerView.snp.remakeConstraints { (make) in
             make.left.right.equalToSuperview();
-            make.top.equalToSuperview().offset(!iPhone_X ? 0 :STATUS_BAR_HIGHT);
+            make.top.equalToSuperview().offset(!iPhoneX ? 0 :STATUS_BAR_HIGHT);
             make.height.equalTo(SCREEN_WIDTH/16*9.0);
         }
         self.collectionView.snp.remakeConstraints { (make) in
@@ -333,7 +332,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = itemWidth
+        let width = CGFloat((SCREEN_WIDTH - 4*itemTop)/3 - 0.1)
         return CGSize.init(width: width, height: 50)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -1,0 +1,114 @@
+PODS:
+  - Alamofire (4.9.1)
+  - ATKit_Swift (0.1.6)
+  - ATRefresh_Swift (0.0.6):
+    - Alamofire (~> 4.9.1)
+    - DZNEmptyDataSet (~> 1.8.1)
+    - KVOController (~> 1.2.0)
+    - MJRefresh (~> 3.4.3)
+  - DZNEmptyDataSet (1.8.1)
+  - FDFullscreenPopGesture (1.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - HandyJSON (5.0.1)
+  - Hue (5.0.0)
+  - Kingfisher (5.14.0):
+    - Kingfisher/Core (= 5.14.0)
+  - Kingfisher/Core (5.14.0)
+  - KVOController (1.2.0)
+  - MBProgressHUD (1.1.0)
+  - MGJRouter_Swift (0.1.2)
+  - MJRefresh (3.4.3)
+  - Moya (13.0.1):
+    - Moya/Core (= 13.0.1)
+  - Moya/Core (13.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.1)
+  - Result (4.1.0)
+  - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
+  - SwiftyJSON (5.0.0)
+  - VTMagic (1.2.4):
+    - VTMagic/Core (= 1.2.4)
+  - VTMagic/Core (1.2.4)
+
+DEPENDENCIES:
+  - Alamofire
+  - ATKit_Swift
+  - ATRefresh_Swift (from `https://github.com/tianya2416/ATRefresh_Swift.git`)
+  - FDFullscreenPopGesture
+  - FMDB
+  - HandyJSON
+  - Hue
+  - Kingfisher
+  - MBProgressHUD (from `https://github.com/tianya2416/MBProgress.git`)
+  - MGJRouter_Swift
+  - Moya
+  - SnapKit
+  - SVProgressHUD
+  - SwiftyJSON
+  - VTMagic (from `https://github.com/tianya2416/VTMagicMacro.git`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - ATKit_Swift
+    - DZNEmptyDataSet
+    - FDFullscreenPopGesture
+    - FMDB
+    - HandyJSON
+    - Hue
+    - Kingfisher
+    - KVOController
+    - MGJRouter_Swift
+    - MJRefresh
+    - Moya
+    - Result
+    - SnapKit
+    - SVProgressHUD
+    - SwiftyJSON
+
+EXTERNAL SOURCES:
+  ATRefresh_Swift:
+    :git: https://github.com/tianya2416/ATRefresh_Swift.git
+  MBProgressHUD:
+    :git: https://github.com/tianya2416/MBProgress.git
+  VTMagic:
+    :git: https://github.com/tianya2416/VTMagicMacro.git
+
+CHECKOUT OPTIONS:
+  ATRefresh_Swift:
+    :commit: c22dd56a9c09ed8b80e582cee319492b59619ac4
+    :git: https://github.com/tianya2416/ATRefresh_Swift.git
+  MBProgressHUD:
+    :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
+    :git: https://github.com/tianya2416/MBProgress.git
+  VTMagic:
+    :commit: da473236ccddffdf53e4b95ea67d6d43bfd4ac35
+    :git: https://github.com/tianya2416/VTMagicMacro.git
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  ATKit_Swift: 231b7953e741db8e26f2710ea95aad7a2988e8b3
+  ATRefresh_Swift: d0b3b220170d1d9921d857dc05486daed79511e9
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
+  Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
+  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  MBProgressHUD: 0f5bb58f04db85da16d8b9e9781df7f88cadd4ec
+  MGJRouter_Swift: ae89cc7c4c82618b636cc9c7b15636e516080d3c
+  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  VTMagic: b49e5f456dbcbfd9a3588ba92417233a105bc193
+
+PODFILE CHECKSUM: 644f1954bd3839f2777eb71ac3bedd0534b6eda3
+
+COCOAPODS: 1.9.1

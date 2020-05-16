@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import SwiftyJSON
+import SnapKit
 
 public enum ApiMoya{
     case apiHome(vsize: String)

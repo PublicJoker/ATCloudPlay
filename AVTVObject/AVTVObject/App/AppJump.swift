@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ATKit_Swift
 
 class AppJump: NSObject {
     class func jumpToSearchControl(){
