@@ -37,36 +37,56 @@ class AVMovieInfo : AVMovie{
     var yuyan        : String  = "";
     var text         : String  = "";
     var area         : String  = "";
-    var zu           : [AVItemInfo] = [];
+    
+    var routes       : [AVRoute] = [];
+    var playItem     : AVItemInfo = AVItemInfo.init();
+    
     override func mapping(mapper: HelpingMapper) {
-        mapper <<<
+         mapper <<<
              self.movieId <-- ["movieId","id"]
          mapper <<<
-             self.area <-- ["area","diqu"]
+             self.area    <-- ["area","diqu"]
+        mapper <<<
+             self.routes  <-- ["routes","zu"]
      }
 }
-
-class AVItem : HandyJSON{
-    var itemId  : String = "";
-    var playUrl : String = "";//播放地址
-    var ext     : String = "";
+class AVRoute : HandyJSON{
+    var count   : Int =  0;
     var name    : String = "";
+    var ly      : String = "";
+    var items   : [AVItem] = [];
     func mapping(mapper: HelpingMapper) {
          mapper <<<
-             self.itemId <-- ["itemId","id"]
-        mapper <<<
-             self.playUrl <-- ["playUrl","purl"]
+             self.items <-- ["items","ji"]
      }
     required init() {
         
     }
 }
-class AVItemInfo : HandyJSON{
-    var count   : Int =  0;
+class AVItem : HandyJSON{//每一集
+    var itemId  : String = "";//每一部的id 都是 0 1 2 3 无法作为主键
+    var playUrl : String = "";//播放地址做主键 就怕地址会变化
+    var ext     : String = "";
     var name    : String = "";
-    var ly      : String = "";
-    var ji      : [AVItem] = [];
+    func mapping(mapper: HelpingMapper) {
+        mapper <<<
+             self.itemId  <-- ["itemId","id"]
+        mapper <<<
+             self.playUrl <-- ["playUrl","purl"]
+    }
     required init() {
         
+    }
+}
+class AVItemInfo : AVItem{
+    var currentTime : TimeInterval = 0;
+    var totalTime   : TimeInterval = 1;
+    var living      : Bool = false;
+    var needSeek    : Bool?{
+        get{
+            let time : TimeInterval = self.totalTime > 60*60 ? 120 : 30
+            let seek = self.currentTime > 5 && self.currentTime < (self.totalTime - time) && !self.living ? true : false;
+            return seek;
+        }
     }
 }

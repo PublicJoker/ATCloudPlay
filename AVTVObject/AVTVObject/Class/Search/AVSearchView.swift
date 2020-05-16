@@ -16,15 +16,15 @@ class AVSearchView: UIView,UITextFieldDelegate {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var textField: UITextField!
     weak var delegate : searchDelegate? = nil;
-    public var keyWord : String?{
+    var keyWord : String?{
         didSet{
             let text = keyWord ?? ""
             self.textField.text = text ;
             self.textFieldAction(sender:self.textField)
         }
     }
-    public var _searchEnable: Bool?
-    public var searchEnable : Bool?{
+    var _searchEnable: Bool?
+    var searchEnable : Bool?{
         set{
             _searchEnable = newValue ?? false;
             self.searchBtn.isUserInteractionEnabled = _searchEnable!;
@@ -44,7 +44,7 @@ class AVSearchView: UIView,UITextFieldDelegate {
         self.searchBtn.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
         self.textFieldAction(sender: self.textField)
     }
-    @objc func textFieldAction(sender:UITextField){
+    @objc private func textFieldAction(sender:UITextField){
         var text : String = sender.text ?? "";
         text = text.trimmingCharacters(in: .whitespacesAndNewlines)
         self.searchEnable = text.count > 0
@@ -54,7 +54,7 @@ class AVSearchView: UIView,UITextFieldDelegate {
             }
         }
     }
-    @objc func searchAction(){
+    @objc private func searchAction(){
         if textField.text?.count == 0 {
             return;
         }
@@ -81,4 +81,28 @@ class AVSearchView: UIView,UITextFieldDelegate {
         }
     }
 
+}
+
+class AVSearchTopView : UIView{
+    lazy var topLabel : UILabel = {
+        return UILabel.init();
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadUI()
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        loadUI()
+    }
+    func loadUI(){
+        self.addSubview(self.topLabel);
+        self.topLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview();
+        }
+        self.topLabel.backgroundColor = UIColor.red;
+        self.topLabel.textColor = UIColor.white;
+        self.topLabel.text = "hello world";
+        self.backgroundColor = UIColor.red
+    }
 }

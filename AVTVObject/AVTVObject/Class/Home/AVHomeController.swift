@@ -7,21 +7,21 @@
 //
 
 import UIKit
-class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSource {
-    lazy var searchBtn : UIButton = {
+class AVHomeController: BaseViewController {
+    private lazy var searchBtn : UIButton = {
         let btn : UIButton = UIButton.init();
         btn.frame = CGRect.init(x: 0, y: 0, width: 44, height: 44);
         btn.setImage(UIImage.init(named: "icon_search"), for: .normal);
         btn.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
         return btn;
     }()
-    lazy var titleDatas: [String] = {
+    private lazy var titleDatas: [String] = {
         return ["热门","推荐","剧集"];
     }()
-    lazy var controllerDatas: [UIViewController] = {
+    private lazy var controllerDatas: [UIViewController] = {
         return [AVHomeHotContrller.init(),AVHomeIndexController.init(),AVHomeTvController.init()]
     }()
-    lazy var magicCtrl: VTMagicController = {
+    private lazy var magicCtrl: VTMagicController = {
         let ctrl = VTMagicController.init();
         ctrl.magicView.navigationInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5);
         ctrl.magicView.separatorHeight = 0.5;
@@ -62,9 +62,12 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
         }
         self.magicCtrl.magicView.reloadData();
     }
-    @objc func searchAction(){
+    @objc private func searchAction(){
         AppJump.jumpToSearchControl();
     }
+
+}
+extension AVHomeController :VTMagicViewDelegate,VTMagicViewDataSource{
     func menuTitles(for magicView: VTMagicView) -> [String] {
         return self.titleDatas;
     }
@@ -78,9 +81,7 @@ class AVHomeController: BaseViewController,VTMagicViewDelegate,VTMagicViewDataSo
         }
         return button;
     }
-    
     func magicView(_ magicView: VTMagicView, viewControllerAtPage pageIndex: UInt) -> UIViewController {
         return self.controllerDatas[Int(pageIndex)];
     }
-
 }

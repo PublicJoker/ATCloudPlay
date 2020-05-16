@@ -21,6 +21,4 @@ class AVSearchDataQueue: NSObject {
     class func getKeyWords(page:NSInteger,size:NSInteger,completion :@escaping ((_ listDatas : [String]) ->Void)){
         AVSearchDataQueueOC.getDatasFromDataBase(page, pageSize: size, completion: completion);
     }
-    
-    
 }

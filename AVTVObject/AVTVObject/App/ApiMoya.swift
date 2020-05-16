@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import SwiftyJSON
+import SnapKit
 
 public enum ApiMoya{
     case apiHome(vsize: String)
@@ -18,12 +19,10 @@ public enum ApiMoya{
     case apiSearch(page: Int, size: Int, keyWord: String)
     case apiShow(movieId: String)
 }
-
 extension ApiMoya : TargetType{
     public var baseURL: URL {
         return URL.init(string: "https://mjappaz.yefu365.com")!
     }
-    
     public var path: String {
         switch self {
           case .apiHome:
@@ -36,16 +35,12 @@ extension ApiMoya : TargetType{
               return "/index.php/app/ios/vod/index"
           }
     }
-    
     public var method: Moya.Method {
-        
         return .get;
     }
-    
     public var sampleData: Data {//单元测试
         return Data(base64Encoded: "just for test")!
     }
-    
     public var task: Task {
         switch self {
         case let .apiHome(vsize: vsize):
@@ -73,25 +68,7 @@ extension ApiMoya : TargetType{
             "Host": "mjappaz.yefu365.com",
         ]
     }
-    static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
-        let moya = MoyaProvider<ApiMoya>();
-        moya.request(target) { (result) in
-            switch result{
-            case let .success(respond):
-                let json = JSON(respond.data)
-                if json["code"] == 0 {
-                    sucesss(json["data"]);
-                }else{
-                    failure("code != 0")
-                }
-                break;
-            case let .failure(error):
-                failure(error.errorDescription!)
-                break;
-            }
-        }
-    }
-    static func testDemo(){
+    private static func testDemo(){
         let moya = MoyaProvider<ApiMoya>();
         moya.request(ApiMoya.apiHome(vsize: "15")) { (result) in
             switch result{
@@ -101,6 +78,25 @@ extension ApiMoya : TargetType{
                 break;
             case let .failure(error):
                 print(error.errorDescription as Any);
+                break;
+            }
+        }
+    }
+    public static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
+        let moya = MoyaProvider<ApiMoya>();
+        moya.request(target) { (result) in
+            switch result{
+            case let .success(respond):
+                let json = JSON(respond.data)
+                print(json);
+                if json["code"] == 0 {
+                    sucesss(json["data"]);
+                }else{
+                    failure("code != 0")
+                }
+                break;
+            case let .failure(error):
+                failure(error.errorDescription!)
                 break;
             }
         }

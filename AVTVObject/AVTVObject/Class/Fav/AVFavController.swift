@@ -7,24 +7,29 @@
 //
 
 import UIKit
-
+import ATKit_Swift
 class AVFavController: BaseConnectionController {
 
-    lazy var listData : [AVMovie] = {
+    private lazy var listData : [AVMovie] = {
         return []
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options: .Default)
+        self.setupRefresh(scrollView: self.collectionView, options: .defaults)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        self.refreshData(page:RefreshPageStart)
     }
     override func refreshData(page: Int) {
-        let size : Int = RefreshPageSize + 1;
+        let size : Int = RefreshPageSize;
         AVFavDataQueue.getFavDatas(page: page, size: size) { (listData) in
             if page == RefreshPageStart{
                 self.listData.removeAll()
             }
             self.listData.append(contentsOf: listData);
+//            self.listData = AVFavDataQueue.sortDatas(listDatas: self.listData, ascending: false);
             self.collectionView.reloadData();
             self.endRefresh(more: listData.count >= size)
         }
@@ -36,17 +41,17 @@ class AVFavController: BaseConnectionController {
         return self.listData.count;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:top, left: top, bottom: 0, right: top);
+        return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (SCREEN_WIDTH - 3*top - 1)/2.0;
-        return CGSize.init(width: width, height: width*1.35 + 35)
+        let width = itemWidth;
+        return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
@@ -55,6 +60,6 @@ class AVFavController: BaseConnectionController {
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = self.listData[indexPath.row]
-        AppJump.jumpToDetailControl(movieId: model.movieId)
+        AppJump.jumpToPlayControl(movieId: model.movieId)
     }
 }

@@ -10,26 +10,21 @@ import UIKit
 import SwiftyJSON
 
 class AVHomeMoreController: BaseConnectionController {
-    class func vcWithMovieId(movieId:String?) -> Self{
-        let vc : AVHomeMoreController = AVHomeMoreController.init();
-        vc.movieId = movieId ?? "";
-        return vc as! Self;
+    convenience init(movieId : String? = nil, ztid : String? = nil) {
+        self.init();
+        self.movieId = movieId ?? "";
+        self.ztid = ztid ?? "";
     }
-    class func vcWithMovieId(ztid:String?) -> Self{
-        let vc : AVHomeMoreController = AVHomeMoreController.init();
-        vc.ztid = ztid ?? "";
-        return vc as! Self;
-    }
-    var movieId : String = "";
-    var ztid : String = "";
-    lazy var listData : [AVMovie] = {
+    private var movieId : String = "";
+    private var ztid : String = "";
+    private lazy var listData : [AVMovie] = {
         return []
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showNavTitle(title: "更多");
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options: .Default);
+        self.setupRefresh(scrollView: self.collectionView, options: .defaults);
     }
     override func refreshData(page: Int) {
         if self.movieId.count > 0 {
@@ -70,22 +65,26 @@ class AVHomeMoreController: BaseConnectionController {
         return self.listData.count;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:top, left: top, bottom: 0, right: top);
+        return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (SCREEN_WIDTH - 4*top - 1)/3.0;
-        return CGSize.init(width: width, height: width*1.35 + 35)
+        let width = itemWidth;
+        return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
         cell.model = self.listData[indexPath.row]
         return cell;
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let info = self.listData[indexPath.row]
+        AppJump.jumpToPlayControl(movieId: info.movieId);
     }
 
 }

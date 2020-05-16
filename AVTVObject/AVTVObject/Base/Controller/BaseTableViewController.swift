@@ -8,9 +8,7 @@
 
 import UIKit
 
-class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITableViewDataSource {
-    
-
+class BaseTableViewController: BaseRefreshController {
     lazy var tableView : UITableView = {
         let tableView : UITableView = UITableView.init(frame: CGRect.zero, style:.grouped);
         tableView.dataSource = self;
@@ -32,7 +30,9 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
             make.edges.equalToSuperview()
         }
     }
-    //park mark UITableViewDelegate
+}
+extension BaseTableViewController : UITableViewDataSource,UITableViewDelegate{
+    //MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
@@ -40,7 +40,7 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
         return 1;
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 0.001;
+        return 0.01;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell.init();
@@ -57,7 +57,7 @@ class BaseTableViewController: BaseRefreshController,UITableViewDelegate,UITable
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView.init();
     }
-    //park mark UITableViewDelegate
+    //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
     }

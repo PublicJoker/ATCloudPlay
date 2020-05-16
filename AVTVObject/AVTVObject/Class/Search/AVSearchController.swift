@@ -7,13 +7,13 @@
 //
 
 import UIKit
-
+import ATKit_Swift
 class AVSearchController: BaseTableViewController,searchDelegate {
-    lazy var listData : [Any] = {
+    private lazy var listData : [Any] = {
         return []
     }()
-    var _keyWord : String?
-    var keyWord  : String?{
+    private var _keyWord : String?
+    private var keyWord  : String?{
         set{
             _keyWord = newValue ?? "";
             self.refreshData(page:RefreshPageStart);
@@ -21,7 +21,7 @@ class AVSearchController: BaseTableViewController,searchDelegate {
             return _keyWord ?? "";
         }
     }
-    lazy var searchView : AVSearchView = {
+    private lazy var searchView : AVSearchView = {
         let searchView = AVSearchView.instanceView();
         searchView.delegate = self
         searchView.backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside);
@@ -37,10 +37,10 @@ class AVSearchController: BaseTableViewController,searchDelegate {
         }
         self.tableView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
-            make.top.equalTo(self.searchView.snp_bottom);
+            make.top.equalTo(self.searchView.snp.bottom);
         }
         self.setupEmpty(scrollView: self.tableView);
-        self.setupRefresh(scrollView: self.tableView, options: .Default);
+        self.setupRefresh(scrollView: self.tableView, options: .defaults);
     }
     override func refreshData(page: Int) {
         if self.keyWord!.count > 0{
@@ -123,7 +123,28 @@ class AVSearchController: BaseTableViewController,searchDelegate {
 
         }else if object is AVMovie{
             let model : AVMovie = object as! AVMovie;
-            AppJump.jumpToDetailControl(movieId: model.movieId);
+            AppJump.jumpToPlayControl(movieId: model.movieId);
+        }
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let object = self.listData[indexPath.row];
+        return (object is String) ? true : false
+    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return UITableViewCell.EditingStyle.delete;
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let row = UITableViewRowAction.init(style: .default, title: "删除") { (row, inde) in
+            let object = self.listData[indexPath.row];
+            if object is String{
+                self.deleteAction(title: object as! String);
+            }
+        };
+        return [row];
+    }
+    func deleteAction(title : String){
+        AVSearchDataQueue.deleteKeyWord(keyWord: title) { (success) in
+            self.refreshData(page: RefreshPageStart);
         }
     }
 }

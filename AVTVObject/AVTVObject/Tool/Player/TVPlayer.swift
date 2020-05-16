@@ -16,9 +16,9 @@ enum PathVideo : String {
     case playbackBufferEmpty = "playbackBufferEmpty";
     case playbackLikelyToKeepUp = "playbackLikelyToKeepUp";
 }
-class GKVideoPlayer: BasePlayer {
+class TVPlayer: BasePlayer {
     
-    var state : PlayerState?{
+    private var state : PlayerState?{
         didSet{
             let playerState  = state;
             if let delegate = self.delegate {
@@ -26,20 +26,17 @@ class GKVideoPlayer: BasePlayer {
             }
         }
     };
-    var player : AVPlayer? = nil;
-    var playerItem : AVPlayerItem? = nil;
-    var playerLayer : AVPlayerLayer? = nil;
-    var observer :Any? = nil;
+    private var player : AVPlayer? = nil;
+    private var playerItem : AVPlayerItem? = nil;
+    private var playerLayer : AVPlayerLayer? = nil;
+    private var observer :Any? = nil;
     
-    var seek : Bool = false;
-    var userPause : Bool = false;
+    private var seek : Bool = false;
+    private var userPause : Bool = false;
     deinit {
         self.releasePlayer()
     }
-    func initData(){
-        self.state = .prepare
-    }
-    func releasePlayer(){
+    private func releasePlayer(){
         NotificationCenter.default.removeObserver(self);
         if self.playerItem != nil {
             self.playerItem?.removeObserver(self, forKeyPath: PathVideo.status.rawValue);
@@ -59,7 +56,7 @@ class GKVideoPlayer: BasePlayer {
         self.playerItem = nil;
         self.observer = nil;
     }
-    func addNotification(){
+    private func addNotification(){
         self.playerItem?.addObserver(self, forKeyPath: PathVideo.status.rawValue, options: .new, context: nil);
         self.playerItem?.addObserver(self, forKeyPath: PathVideo.loadedTimeRanges.rawValue, options: .new, context: nil);
         self.playerItem?.addObserver(self, forKeyPath: PathVideo.playbackBufferEmpty.rawValue, options: .new, context: nil);
@@ -128,7 +125,7 @@ class GKVideoPlayer: BasePlayer {
             }
         }
     }
-    func progressCache(item : AVPlayerItem){
+    private func progressCache(item : AVPlayerItem){
         let loadedTimeRanges : [NSValue] = playerItem!.loadedTimeRanges;
         if loadedTimeRanges.count > 0 {
             let timeRange = loadedTimeRanges.first?.timeRangeValue;
@@ -145,20 +142,20 @@ class GKVideoPlayer: BasePlayer {
         }
         
     }
-    @objc func playerItemDidPlayToEnd(){
+    @objc private func playerItemDidPlayToEnd(){
         self.state = .finish;
     }
-    @objc func appDidEnterBackground(){
+    @objc private func appDidEnterBackground(){
         if (self.player != nil) {
             self.player?.pause();
         }
     }
-    @objc func appDidEnterPlayGround(){
+    @objc private func appDidEnterPlayGround(){
         if self.userPause == false {
             self.resume();
         }
     }
-    func readyPlay(){
+    private func readyPlay(){
         if self.player != nil {
             weak var weakSelf = self;
             observer = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.1, preferredTimescale: Int32(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
@@ -175,34 +172,45 @@ class GKVideoPlayer: BasePlayer {
         }
     }
     override func playUrl(url: String) {
-        assert(url.count != 0);
-        self.releasePlayer();
-        let string : NSString = url as NSString;
-        let loc = string.range(of: "/").location;
-        
-        let urlPath : URL = (loc == 0) ? URL.init(fileURLWithPath: url) : URL.init(string: url)!;
-       // let urlAsset  = AVURLAsset.init(url: urlPath);
-        self.playerItem = AVPlayerItem.init(url: urlPath)
-        if self.player == nil {
-            self.player = AVPlayer.init(playerItem: self.playerItem);
-        }else{
-            self.player?.replaceCurrentItem(with: self.playerItem);
+        self.playUrl(url: url, time:0)
+    }
+    public func playUrl(url: String,time : TimeInterval) {
+         assert(url.count != 0);
+         self.releasePlayer();
+         let string : NSString = url as NSString;
+         let loc = string.range(of: "/").location;
+         
+         let urlPath : URL = (loc == 0) ? URL.init(fileURLWithPath: url) : URL.init(string: url)!;
+        // let urlAsset  = AVURLAsset.init(url: urlPath);
+         self.playerItem = AVPlayerItem.init(url: urlPath)
+        if time > 0 {
+            weak var weakSelf = self;
+            self.playerItem?.seek(to:CMTimeMake(value: Int64(time), timescale: 1), completionHandler: { (success) in
+                if success{
+                    weakSelf?.play();
+                }
+            })
         }
-        self.player?.automaticallyWaitsToMinimizeStalling = false;
-        self.playerLayer = AVPlayerLayer.init(player: self.player);
-        self.playerLayer?.videoGravity = .resizeAspect;
-        self.contentView.layer.insertSublayer(self.playerLayer!, at: 0);
-        self.playerLayer?.frame = self.contentView.frame;
-        self.readyPlay();
-        self.addNotification();
-        self.play();
+         if self.player == nil {
+             self.player = AVPlayer.init(playerItem: self.playerItem);
+         }else{
+             self.player?.replaceCurrentItem(with: self.playerItem);
+         }
+         self.player?.automaticallyWaitsToMinimizeStalling = false;
+         self.playerLayer = AVPlayerLayer.init(player: self.player);
+         self.playerLayer?.videoGravity = .resizeAspect;
+         self.contentView.layer.insertSublayer(self.playerLayer!, at: 0);
+         self.playerLayer?.frame = self.contentView.frame;
+         self.readyPlay();
+         self.addNotification();
+         self.play();
     }
     override func play() {
         if self.userPause == false {
             self.playVideo();
         }
     }
-    func playVideo(){
+    private func playVideo(){
         if self.player != nil {
             self.player?.play();
             self.player?.rate = 1.0;
@@ -221,7 +229,7 @@ class GKVideoPlayer: BasePlayer {
         self.userPause = true;
         self.pauseVideo();
     }
-    func pauseVideo(){
+    private func pauseVideo(){
         if self.player != nil {
             self.player?.pause();
             self.player?.rate = 0.0;

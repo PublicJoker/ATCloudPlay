@@ -7,17 +7,17 @@
 //
 
 import UIKit
-
+import ATRefresh_Swift
 class AVHomeHotContrller: BaseConnectionController {
     //热门
-     lazy var listData : [AVHomeInfo] = {
+     private lazy var listData : [AVHomeInfo] = {
         return []
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.layout.sectionHeadersPinToVisibleBounds = true;
         self.setupEmpty(scrollView: self.collectionView);
-        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.AutoHeader.rawValue|ATRefreshOption.Header.rawValue));
+        self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
     }
     override func refreshData(page: Int) {
         ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "2", vsize: "15"), sucesss: { (json) in
@@ -37,16 +37,16 @@ class AVHomeHotContrller: BaseConnectionController {
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let info : AVHomeInfo = self.listData[section];
-        return info.vod.count;
+        return info.listData.count;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return top;
+        return itemTop;
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize.init(width: SCREEN_WIDTH, height: 50)
+        return CGSize.init(width: SCREEN_WIDTH, height:40)
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let reusableView : AVHomeReusableView = AVHomeReusableView.viewForCollectionView(collectionView: collectionView, elementKind: kind, indexPath: indexPath);
@@ -54,22 +54,22 @@ class AVHomeHotContrller: BaseConnectionController {
         return reusableView;
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:0, left: top, bottom: 0, right: top);
+        return UIEdgeInsets(top:0, left: itemTop, bottom: 0, right: itemTop);
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (SCREEN_WIDTH - 3*top - 1)/2.0;
-        return CGSize.init(width: width, height: width*1.35 + 35)
+        let width = itemWidth;
+        return CGSize.init(width: width, height: width*1.25)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
         let info : AVHomeInfo = self.listData[indexPath.section];
-        cell.model = info.vod[indexPath.row]
+        cell.model = info.listData[indexPath.row]
         return cell;
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let info : AVHomeInfo = self.listData[indexPath.section];
-        let model = info.vod[indexPath.row]
-        AppJump.jumpToDetailControl(movieId: model.movieId)
+        let model = info.listData[indexPath.row]
+        AppJump.jumpToPlayControl(movieId: model.movieId)
     }
 
 }
