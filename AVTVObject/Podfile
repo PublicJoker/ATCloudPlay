@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'AVTVObject' do
   pod 'ATRefresh_Swift',:git => 'https://github.com/tianya2416/ATRefresh_Swift.git'
-  pod 'ATKit_Swift'
+  pod 'ATKit_Swift',:git => 'https://github.com/tianya2416/ATKit_Swift.git'
   pod 'Moya'
   pod 'Alamofire'
   pod 'SwiftyJSON'

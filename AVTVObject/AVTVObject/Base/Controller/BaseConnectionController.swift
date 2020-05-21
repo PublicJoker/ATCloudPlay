@@ -9,7 +9,7 @@
 import UIKit
 
 class BaseConnectionController: BaseRefreshController {
-
+    
     lazy var layout: UICollectionViewFlowLayout = {
         let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout.init();
         layout.minimumLineSpacing = 0;
