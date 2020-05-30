@@ -19,7 +19,7 @@ let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
 let iPhoneX        : Bool       = (ATMacro.iPhoneX());
 let STATUS_BAR_HIGHT:CGFloat    = (ATMacro.Status_Bar())//状态栏
 let NAVI_BAR_HIGHT  :CGFloat    = (ATMacro.Navi_Bar())//导航栏
-let TAB_BAR_ADDING  :CGFloat    = (ATMacro.Tab_Baar())//iphoneX斜刘海
+let TAB_BAR_ADDING  :CGFloat    = (ATMacro.Tab_Bar())//iphoneX斜刘海
 
 let AppColor     :UIColor = UIColor.init(hex:"007EFE")
 let Appxdddddd   :UIColor = UIColor.init(hex:"dddddd")
@@ -34,6 +34,7 @@ let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "ded
 
 let itemTop          :CGFloat = 1;
 let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 3*itemTop)/2);
+let itemHeight       :CGFloat = itemWidth*1.35;
 
 class BaseMacro: NSObject {
     class func iPhone_X() -> Bool{

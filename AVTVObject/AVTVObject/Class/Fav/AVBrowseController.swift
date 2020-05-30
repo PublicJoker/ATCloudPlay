@@ -25,14 +25,14 @@ class AVBrowseController: BaseConnectionController {
         self.refreshData(page: RefreshPageStart);
     }
     override func refreshData(page: Int) {
-        AVBrowseDataQueue.getBrowseDatas(page:page, size: RefreshPageSize) { (listData) in
+        let size = Int(RefreshPageSize);
+        AVBrowseDataQueue.getBrowseDatas(page:page, size: size) { (listData) in
             if page == RefreshPageStart{
                 self.listData.removeAll();
             }
             self.listData.append(contentsOf: listData);
-    //        self.listData = AVBrowseDataQueue.sortDatas(listDatas: self.listData, ascending: false)
             self.collectionView.reloadData();
-            self.endRefresh(more:listData.count >= RefreshPageSize);
+            self.endRefresh(more:listData.count >= size);
         }
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,17 +42,18 @@ class AVBrowseController: BaseConnectionController {
            return self.listData.count;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-           return itemTop;
+           return 1;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-           return itemTop;
+           return 0;
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-           return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
+           return UIEdgeInsets(top:0, left: 0, bottom: 0, right: 0);
        }
        override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let width = itemWidth
-            return CGSize.init(width: width, height:CGFloat(width/5*3.0))
+            let width = SCREEN_WIDTH
+            let height = SCREEN_WIDTH/16*9.0;
+            return CGSize.init(width: width, height:height)
        }
        override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell : AVBrowseCell = AVBrowseCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);

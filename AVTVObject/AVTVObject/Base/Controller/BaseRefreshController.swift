@@ -71,4 +71,7 @@ extension BaseRefreshController : ATRefreshDataSource{
     var refreshEmptyToast  : String {
         return "无网络连接,请检查网络设置"
     }
+    override func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -NAVI_BAR_HIGHT/2;
+    }
 }

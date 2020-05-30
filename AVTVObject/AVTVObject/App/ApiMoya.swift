@@ -84,11 +84,12 @@ extension ApiMoya : TargetType{
     }
     public static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
         let moya = MoyaProvider<ApiMoya>();
-        moya.request(target) { (result) in
+        moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
+            
+        }) { (result) in
             switch result{
             case let .success(respond):
                 let json = JSON(respond.data)
-                print(json);
                 if json["code"] == 0 {
                     sucesss(json["data"]);
                 }else{
