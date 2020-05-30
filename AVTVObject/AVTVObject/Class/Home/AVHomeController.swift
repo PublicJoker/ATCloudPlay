@@ -72,13 +72,10 @@ extension AVHomeController :VTMagicViewDelegate,VTMagicViewDataSource{
         return self.titleDatas;
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton {
-        var button : UIButton! = magicView.dequeueReusableItem(withIdentifier: "www.new.btn.identy");
-        if button == nil {
-            button = UIButton.init(type: .custom);
-            button.setTitleColor(Appx333333, for: .normal);
-            button.setTitleColor(AppColor, for: .selected);
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 16);
-        }
+        let button : UIButton = magicView.dequeueReusableItem(withIdentifier: "www.new.btn.identy") ?? UIButton.init();
+        button.setTitleColor(Appx333333, for: .normal);
+        button.setTitleColor(AppColor, for: .selected);
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16);
         return button;
     }
     func magicView(_ magicView: VTMagicView, viewControllerAtPage pageIndex: UInt) -> UIViewController {
