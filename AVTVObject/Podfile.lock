@@ -89,7 +89,7 @@ CHECKOUT OPTIONS:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
     :git: https://github.com/tianya2416/MBProgress.git
   VTMagic:
-    :commit: da473236ccddffdf53e4b95ea67d6d43bfd4ac35
+    :commit: a2acc4d4f1a104111d909e419c1c2edf1cca5076
     :git: https://github.com/tianya2416/VTMagicMacro.git
 
 SPEC CHECKSUMS:

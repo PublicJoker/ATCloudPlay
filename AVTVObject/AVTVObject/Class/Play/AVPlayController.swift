@@ -93,7 +93,6 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.show();
         if self.movieId != nil {
             ApiMoya.apiMoyaRequest(target: .apiShow(movieId: self.movieId!), sucesss: { (json) in
-                print(json);
                 if let info = AVMovieInfo.deserialize(from: json.rawString()){
                     self.info = info;
                     self.reloadData();
@@ -134,6 +133,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
                         self.playVideo(item: item);
                     }
                 }
+                self.listData.removeAll()
                 self.listData.append(contentsOf:info.items);
                 self.collectionView.reloadData();
                 self.endRefresh(more: false)
