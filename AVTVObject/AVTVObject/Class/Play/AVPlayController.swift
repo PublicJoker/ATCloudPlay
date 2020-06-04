@@ -15,14 +15,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.movieId = movieId;
     }
     private var info : AVMovieInfo? = nil;
-    private var _playItem : AVItem?
-    private var playItem : AVItem?{
-        set{
-            _playItem = newValue;
-        }get{
-            return _playItem;
-        }
-    }
+    private var playItem : AVItem?
     private lazy var listData : [AVItem] = {
         return []
     }()
@@ -190,7 +183,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     private func insertBrowData(){
-        if self.info != nil {
+        if self.info != nil  && self.playItem != nil{
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
                 info.currentTime = self.player.current;
                 info.totalTime = self.player.duration;

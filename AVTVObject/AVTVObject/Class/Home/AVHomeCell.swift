@@ -17,9 +17,9 @@ class AVHomeCell: UICollectionViewCell {
     @IBOutlet weak var categorybtn: UIButton!
     @IBOutlet weak var titleLab: UILabel!
     
-    var model : AVMovie = AVMovie(){
+    var model : AVMovie?{
         didSet{
-            let item = model;
+            guard let item = model else { return }
             self.titleLab.text = item.name;
             self.categorybtn.setTitle("评分" + item.pf, for: .normal);
             self.imageV.kf.setImage(with: URL.init(string: item.pic),placeholder: placeholder);
