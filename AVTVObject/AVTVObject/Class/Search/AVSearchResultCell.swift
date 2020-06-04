@@ -14,9 +14,9 @@ class AVSearchResultCell: UITableViewCell {
     @IBOutlet weak var hitLab: UILabel!
     @IBOutlet weak var subTitleLab: UILabel!
     @IBOutlet weak var vip: UIImageView!
-    var model : AVMovie = AVMovie(){
+    var model : AVMovie?{
         didSet{
-            let item = model ;
+            guard let item = model else { return }
             self.titleLab.text = item.name;
             self.imageV.kf.setImage(with: URL.init(string: item.pic),placeholder: placeholder);
             self.subTitleLab.text = item.type + "/" + item.state + "/" + item.info;

@@ -9,20 +9,17 @@
 import UIKit
 
 class AVPlayCell: UICollectionViewCell {
-    var item : AVItem = AVItem(){
+    var item : AVItem?{
         didSet{
-            let model = item
+            guard let model = item else { return }
             self.titleLab.text = model.name;
         }
     }
-    var _selectCell: Bool?
     var selectCell : Bool?{
-        set{
-            _selectCell = newValue ?? false;
-            self.titleLab.textColor = _selectCell! ? Appxffffff : Appx333333;
-            self.titleLab.backgroundColor = _selectCell! ? AppColor : Appxf8f8f8
-        }get{
-            return _selectCell;
+        didSet{
+            guard let select = selectCell else { return}
+            self.titleLab.textColor = select ? Appxffffff : Appx333333;
+            self.titleLab.backgroundColor = select ? AppColor : Appxf8f8f8
         }
     }
     private lazy var titleLab : UILabel = {

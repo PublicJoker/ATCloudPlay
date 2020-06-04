@@ -14,9 +14,9 @@ class AVBrowseCell: UICollectionViewCell {
     @IBOutlet weak var currentLab: UILabel!
     @IBOutlet weak var totalLab: UILabel!
     
-    var info : AVMovieInfo = AVMovieInfo(){
+    var info : AVMovieInfo?{
         didSet{
-            let item =  info;
+            guard let item = info else { return }
             self.imageV.kf.setImage(with: URL.init(string: item.pic));
             self.titleLab.text = item.name;
             if item.playItem.living {

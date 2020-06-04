@@ -15,14 +15,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.movieId = movieId;
     }
     private var info : AVMovieInfo? = nil;
-    private var _playItem : AVItem?
-    private var playItem : AVItem?{
-        set{
-            _playItem = newValue;
-        }get{
-            return _playItem;
-        }
-    }
+    private var playItem : AVItem?
     private lazy var listData : [AVItem] = {
         return []
     }()
@@ -93,7 +86,6 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.show();
         if self.movieId != nil {
             ApiMoya.apiMoyaRequest(target: .apiShow(movieId: self.movieId!), sucesss: { (json) in
-                print(json);
                 if let info = AVMovieInfo.deserialize(from: json.rawString()){
                     self.info = info;
                     self.reloadData();
@@ -134,6 +126,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
                         self.playVideo(item: item);
                     }
                 }
+                self.listData.removeAll()
                 self.listData.append(contentsOf:info.items);
                 self.collectionView.reloadData();
                 self.endRefresh(more: false)
@@ -190,7 +183,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     private func insertBrowData(){
-        if self.info != nil {
+        if self.info != nil  && self.playItem != nil{
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
                 info.currentTime = self.player.current;
                 info.totalTime = self.player.duration;
