@@ -11,11 +11,11 @@ import MGJRouter_Swift
 import SwiftyJSON
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
     convenience init(movieId : String) {
-        self.init();
-        self.movieId = movieId;
+        self.init()
+        self.movieId = movieId
     }
-    private var info : AVMovieInfo? = nil;
-    private var playItem : AVItem?
+    private var info : AVMovieInfo? = nil
+    private var playItem : AVItem?  = nil
     private lazy var listData : [AVItem] = {
         return []
     }()
@@ -351,10 +351,10 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         return true;
     }
     override var prefersStatusBarHidden: Bool{
-        return true;
+        return true
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        return .all;
+        return .all
     }
     
 }

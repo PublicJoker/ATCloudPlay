@@ -26,16 +26,19 @@ class BaseViewController: UIViewController,UIGestureRecognizerDelegate {
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true;
     }
+    override var shouldAutorotate: Bool{
+        return false
+    }
     override var prefersStatusBarHidden: Bool{
-        return false;
+        return false
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .default;
+        return .default
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        return .portrait;
+        return .portrait
     }
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
-        return .portrait;
+        return .portrait
     }
 }

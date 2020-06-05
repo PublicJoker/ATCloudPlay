@@ -38,7 +38,22 @@ class BaseRefreshController: ATRefreshController,UIGestureRecognizerDelegate {
     }
     //MARK:UIGestureRecognizerDelegate
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true;
+        return true
+    }
+    override var shouldAutorotate: Bool{
+        return false
+    }
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .default
+    }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        return .portrait
+    }
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        return .portrait
     }
 }
 extension BaseRefreshController : ATRefreshDataSource{

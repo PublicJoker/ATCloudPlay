@@ -34,4 +34,16 @@ class AVTabBarController: UITabBarController {
         nv.tabBarItem.setTitleTextAttributes([.foregroundColor : Appx999999], for: .normal);
         self.listData.append(nv);
     }
+    override var shouldAutorotate: Bool{
+        return self.selectedViewController!.shouldAutorotate
+    }
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        return self.selectedViewController!.preferredInterfaceOrientationForPresentation
+    }
+    override var prefersStatusBarHidden: Bool{
+        return self.selectedViewController!.prefersStatusBarHidden
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return self.selectedViewController!.preferredStatusBarStyle
+    }
 }
