@@ -20,11 +20,11 @@ class AVHomeReusableView: UICollectionReusableView {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.moreBtn.setTitleColor(AppColor, for: .normal);
-        self.moreBtn.layer.masksToBounds = true;
-        self.moreBtn.layer.cornerRadius = 2.5;
-        self.moreBtn.layer.borderWidth = 1.0;
-        self.moreBtn.layer.borderColor = AppColor.cgColor;
+//        self.moreBtn.setTitleColor(AppColor, for: .normal);
+//        self.moreBtn.layer.masksToBounds = true;
+//        self.moreBtn.layer.cornerRadius = 2.5;
+//        self.moreBtn.layer.borderWidth = 1.0;
+//        self.moreBtn.layer.borderColor = AppColor.cgColor;
         self.titleLab.textColor = Appx333333;
         self.titleLab.font = UIFont.systemFont(ofSize: 17)
         self.backgroundColor = Appxffffff;
