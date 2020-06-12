@@ -21,8 +21,11 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLD-T5-svg">
                     <rect key="frame" x="275" y="34" width="45" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="AGu-oi-wTb"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                     <state key="normal" image="icon_more"/>
                 </button>
             </subviews>

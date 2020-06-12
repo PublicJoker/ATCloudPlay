@@ -91,14 +91,15 @@ extension ApiMoya : TargetType{
             case let .success(respond):
                 let json = JSON(respond.data)
                 if json["code"] == 0 {
-                    sucesss(json["data"]);
+                    print(json)
+                    sucesss(json["data"])
                 }else{
                     failure("code != 0")
                 }
-                break;
+                break
             case let .failure(error):
                 failure(error.errorDescription!)
-                break;
+                break
             }
         }
     }

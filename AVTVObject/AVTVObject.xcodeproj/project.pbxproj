@@ -37,6 +37,8 @@
 		0F1B202A2455947600D65D4B /* AVSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B20292455947600D65D4B /* AVSearchController.swift */; };
 		0F1B202E2455979F00D65D4B /* AVSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1B202D2455979F00D65D4B /* AVSearchView.swift */; };
 		0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1B202F245597A700D65D4B /* AVSearchView.xib */; };
+		0F30B156249365F9009396C0 /* ATHomeHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F30B154249365F9009396C0 /* ATHomeHotCell.swift */; };
+		0F30B157249365F9009396C0 /* ATHomeHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F30B155249365F9009396C0 /* ATHomeHotCell.xib */; };
 		0F46FBED24566AB3003D28AF /* AVSearchDataQueueOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEB24566AB2003D28AF /* AVSearchDataQueueOC.m */; };
 		0F46FBF024566AEB003D28AF /* AVSearchDataQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBEF24566AEB003D28AF /* AVSearchDataQueue.swift */; };
 		0F46FBF324566D35003D28AF /* AVSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F46FBF124566D35003D28AF /* AVSearchResultCell.swift */; };
@@ -91,6 +93,8 @@
 		0F1B20292455947600D65D4B /* AVSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchController.swift; sourceTree = "<group>"; };
 		0F1B202D2455979F00D65D4B /* AVSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVSearchView.swift; sourceTree = "<group>"; };
 		0F1B202F245597A700D65D4B /* AVSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVSearchView.xib; sourceTree = "<group>"; };
+		0F30B154249365F9009396C0 /* ATHomeHotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATHomeHotCell.swift; sourceTree = "<group>"; };
+		0F30B155249365F9009396C0 /* ATHomeHotCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ATHomeHotCell.xib; sourceTree = "<group>"; };
 		0F46FBEB24566AB2003D28AF /* AVSearchDataQueueOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVSearchDataQueueOC.m; sourceTree = "<group>"; };
 		0F46FBEC24566AB2003D28AF /* AVSearchDataQueueOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVSearchDataQueueOC.h; sourceTree = "<group>"; };
 		0F46FBEF24566AEB003D28AF /* AVSearchDataQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVSearchDataQueue.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				0F1B2018245566B900D65D4B /* AVHomeReusableView.xib */,
 				0F1B202324557E1700D65D4B /* AVHomeTvController.swift */,
 				0F1B200B245560A500D65D4B /* AVMovie.swift */,
+				0F30B154249365F9009396C0 /* ATHomeHotCell.swift */,
+				0F30B155249365F9009396C0 /* ATHomeHotCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -394,6 +400,7 @@
 			files = (
 				0F1B2016245560DA00D65D4B /* AVHomeCell.xib in Resources */,
 				0F1B201A245566B900D65D4B /* AVHomeReusableView.xib in Resources */,
+				0F30B157249365F9009396C0 /* ATHomeHotCell.xib in Resources */,
 				0FB5EC0924594FAA003C827F /* AVBrowseCell.xib in Resources */,
 				0F503ED22456AEBF006115F7 /* AVPlayView.xib in Resources */,
 				0F1B2030245597A700D65D4B /* AVSearchView.xib in Resources */,
@@ -459,6 +466,7 @@
 				0F0A4A202457C6F9009E947C /* AVPlayCell.swift in Sources */,
 				0F0A4A1E2457C6E6009E947C /* AVPlayController.swift in Sources */,
 				0FB5EC0824594FAA003C827F /* AVBrowseCell.swift in Sources */,
+				0F30B156249365F9009396C0 /* ATHomeHotCell.swift in Sources */,
 				0F1B201E245576AD00D65D4B /* AppJump.swift in Sources */,
 				0FB9F0102457FB7400EB48A7 /* AVPlayToastView.swift in Sources */,
 				0FB5EC0B24595250003C827F /* AVBrowseController.swift in Sources */,

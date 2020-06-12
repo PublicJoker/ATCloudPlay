@@ -23,7 +23,7 @@ class AVFavController: BaseConnectionController {
         self.refreshData(page:RefreshPageStart)
     }
     override func refreshData(page: Int) {
-        let size : Int = RefreshPageSize;
+        let size : Int = RefreshPageSize + 1;
         AVFavDataQueue.getFavDatas(page: page, size: size) { (listData) in
             if page == RefreshPageStart{
                 self.listData.removeAll()
@@ -51,7 +51,7 @@ class AVFavController: BaseConnectionController {
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = itemWidth;
-        return CGSize.init(width: width, height: width*1.25)
+        return CGSize.init(width: width, height: itemHeight)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : AVHomeCell = AVHomeCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);

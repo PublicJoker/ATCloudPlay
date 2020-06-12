@@ -16,10 +16,10 @@ class AVHomeController: BaseViewController {
         return btn;
     }()
     private lazy var titleDatas: [String] = {
-        return ["热门","推荐","剧集"];
+        return ["热门","推荐","剧集","综合"]
     }()
     private lazy var controllerDatas: [UIViewController] = {
-        return [AVHomeHotContrller.init(),AVHomeIndexController.init(),AVHomeTvController.init()]
+        return [AVHomeHotContrller(movieId: "2"),AVHomeIndexController.init(),AVHomeHotContrller(movieId: "1"),AVHomeHotContrller(movieId: "0")]
     }()
     private lazy var magicCtrl: VTMagicController = {
         let ctrl = VTMagicController.init();

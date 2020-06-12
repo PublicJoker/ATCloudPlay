@@ -12,7 +12,7 @@ class AppJump: NSObject {
     class func jumpToSearchControl(){
         let vc = AVSearchController.init();
         vc.hidesBottomBarWhenPushed = true;
-        UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: true)
+        UIViewController.rootTopPresentedController().navigationController?.pushViewController(vc, animated: false)
     }
     class func jumpToMoreControl(movieId : String){
         let vc = AVHomeMoreController(movieId: movieId, ztid: nil)

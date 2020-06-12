@@ -33,8 +33,8 @@ let AppRadius    :CGFloat = 3
 let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "dedede"));
 
 let itemTop          :CGFloat = 1;
-let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 3*itemTop)/2);
-let itemHeight       :CGFloat = itemWidth*1.35;
+let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 4*itemTop)/3 - 0.1);
+let itemHeight       :CGFloat = itemWidth*1.45;
 
 class BaseMacro: NSObject {
     class func iPhone_X() -> Bool{

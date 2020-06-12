@@ -20,7 +20,7 @@ class AVTabBarController: UITabBarController {
         let fav = AVFavController.init();
         self.createCtrl(vc: fav, title:"收藏",normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
         let my = AVBrowseController.init();
-        self.createCtrl(vc: my, title:"我的", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
+        self.createCtrl(vc: my, title:"观看", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
         
         self.viewControllers = self.listData;
     }
