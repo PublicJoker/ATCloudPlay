@@ -15,7 +15,7 @@ class AVHomeHotContrller: BaseConnectionController {
         self.movieId = movieId
     }
     private var  movieId :String? = ""
-     private lazy var listData : [AVHomeInfo] = {
+    private lazy var listData : [AVHomeInfo] = {
         return []
     }()
     override func viewDidLoad() {
@@ -27,17 +27,27 @@ class AVHomeHotContrller: BaseConnectionController {
     }
     override func refreshData(page: Int) {
         if self.movieId!.count > 0 {
-            ApiMoya.apiMoyaRequest(target: .apiMovie(movieId:self.movieId!, vsize: "15"), sucesss: { (json) in
-                if let data = [AVHomeInfo].deserialize(from: json.rawString()){
-                    self.listData = data as! [AVHomeInfo];
-                    self.collectionView.reloadData();
-                    self.endRefresh(more: false);
-                }else{
-                    self.endRefreshFailure();
+            ApiMoya.apiRequest(target: ApiMoya.apiMovie(movieId: self.movieId!, vsize: "15"), model: AVHome.self, sucesss: { (model) in
+                if page == RefreshPageStart{
+                    self.listData.removeAll()
                 }
+                self.listData = model.data
+                self.collectionView.reloadData()
+                self.endRefresh(more: false)
             }) { (error) in
                 self.endRefreshFailure();
             }
+//            ApiMoya.apiMoyaRequest(target: .apiMovie(movieId:self.movieId!, vsize: "15"), sucesss: { (json) in
+//                if let data = [AVHomeInfo].deserialize(from: json.rawString()){
+//                    self.listData = data as! [AVHomeInfo];
+//                    self.collectionView.reloadData();
+//                    self.endRefresh(more: false);
+//                }else{
+//                    self.endRefreshFailure();
+//                }
+//            }) { (error) in
+//                self.endRefreshFailure();
+//            }
         }
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

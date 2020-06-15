@@ -21,17 +21,24 @@ class AVHomeIndexController: BaseConnectionController {
             self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
         }
         override func refreshData(page: Int) {
-            ApiMoya.apiMoyaRequest(target: .apiHome(vsize: "15"), sucesss: { (json) in
-                if let data = [AVHomeInfo].deserialize(from: json.rawString()){
-                    self.listData = data as! [AVHomeInfo];
-                    self.collectionView.reloadData();
-                    self.endRefresh(more: false);
-                }else{
-                    self.endRefreshFailure();
-                }
+            ApiMoya.apiRequest(target: .apiHome(vsize: "15"), model: AVHome.self, sucesss: { (model) in
+                self.listData = model.data
+                self.collectionView.reloadData();
+                self.endRefresh(more: false);
             }) { (error) in
                 self.endRefreshFailure();
             }
+//            ApiMoya.apiMoyaRequest(target: .apiHome(vsize: "15"), sucesss: { (json) in
+//                if let data = [AVHomeInfo].deserialize(from: json.rawString()){
+//                    self.listData = data as! [AVHomeInfo];
+//                    self.collectionView.reloadData();
+//                    self.endRefresh(more: false);
+//                }else{
+//                    self.endRefreshFailure();
+//                }
+//            }) { (error) in
+//                self.endRefreshFailure();
+//            }
         }
         override func numberOfSections(in collectionView: UICollectionView) -> Int {
             return self.listData.count;

@@ -29,3 +29,8 @@ class AVHomeInfo: HandyJSON {
         
     }
 }
+
+class AVHome : HandyJSON{
+    var data :[AVHomeInfo] = []
+    required init() {}
+}

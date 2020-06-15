@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import SwiftyJSON
 import SnapKit
+import HandyJSON
 
 public enum ApiMoya{
     case apiHome(vsize: String)
@@ -89,6 +90,7 @@ extension ApiMoya : TargetType{
         }) { (result) in
             switch result{
             case let .success(respond):
+                
                 let json = JSON(respond.data)
                 if json["code"] == 0 {
                     print(json)
@@ -103,4 +105,29 @@ extension ApiMoya : TargetType{
             }
         }
     }
+    public static func apiRequest<T:HandyJSON>(target: ApiMoya,model:T.Type,sucesss:@escaping ((_ object : T) ->()),failure:@escaping ((_ error : String) ->())){
+        let moya = MoyaProvider<ApiMoya>();
+        moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
+            
+        }) { (result) in
+            switch result{
+            case let .success(respond):
+                let json = JSON(respond.data)
+                if json["code"] == 0 {
+                    guard let model = JSONDeserializer<T>.deserializeFrom(json:json.rawString()) else { return
+                        failure("t is error");
+                    }
+                    sucesss(model)
+                }else{
+                    failure("code != 0");
+                }
+                break
+            case let .failure(error):
+                failure(error.errorDescription!)
+                break
+            }
+        }
+    }
+
 }
+

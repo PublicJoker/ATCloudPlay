@@ -14,6 +14,7 @@ class AVTabBarController: UITabBarController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tabBar.isTranslucent = false;
         let vc = AVHomeController.init();
         self.createCtrl(vc: vc, title:"首页",normal:"icon_tabbar_home_n", select:"icon_tabbar_home_h");

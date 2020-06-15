@@ -20,16 +20,23 @@ class AVHomeTvController: BaseConnectionController {
 
     }
     override func refreshData(page: Int) {
-        ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "1", vsize: "15"), sucesss: { (json) in
-            if let data = [AVHomeInfo].deserialize(from: json.rawString()){
-                self.listData = data as! [AVHomeInfo];
-                self.collectionView.reloadData();
-                self.endRefresh(more: false);
-            }else{
-                self.endRefreshFailure();
-            }
+//        ApiMoya.apiMoyaRequest(target: .apiMovie(movieId: "1", vsize: "15"), sucesss: { (json) in
+//            if let data = [AVHomeInfo].deserialize(from: json.rawString()){
+//                self.listData = data as! [AVHomeInfo];
+//                self.collectionView.reloadData();
+//                self.endRefresh(more: false);
+//            }else{
+//                self.endRefreshFailure();
+//            }
+//        }) { (error) in
+//            self.endRefreshFailure();
+//        }
+        ApiMoya.apiRequest(target: .apiMovie(movieId: "1", vsize: "15"), model: AVHome.self, sucesss: { (object) in
+            self.listData = object.data
+            self.collectionView.reloadData()
+            self.endRefresh(more: false)
         }) { (error) in
-            self.endRefreshFailure();
+            self.endRefreshFailure()
         }
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
