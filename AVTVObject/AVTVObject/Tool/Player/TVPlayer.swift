@@ -8,7 +8,7 @@
 
 import UIKit
 import AVFoundation
-enum PathVideo : String {
+public enum PathVideo : String {
     case rate = "rate";
     case status = "status";
     case bounds = "bounds";

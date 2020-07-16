@@ -11,7 +11,7 @@ import UIKit
 private let least      : Float = 15;
 private let screenTime : Float = 90;
 
-enum AVPlayGestures {
+public enum AVPlayGestures {
     case none
     case progress
     case voice

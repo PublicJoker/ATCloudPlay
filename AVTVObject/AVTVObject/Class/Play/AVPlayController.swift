@@ -185,9 +185,9 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
     private func insertBrowData(){
         if self.info != nil  && self.playItem != nil{
             if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
-                info.currentTime = self.player.current;
-                info.totalTime = self.player.duration;
-                info.living = self.playView.living;
+                info.currentTime = self.player.current
+                info.totalTime = self.player.duration
+                info.living = self.playView.living
                 self.info?.playItem = info;
                 AVBrowseDataQueue.browseData(model: self.info!) { (success) in
                     

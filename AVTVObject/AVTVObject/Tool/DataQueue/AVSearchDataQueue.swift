@@ -9,16 +9,16 @@
 import UIKit
 
 class AVSearchDataQueue: NSObject {
-    class func insertKeyWord(keyWord : String,completion :@escaping ((_ success : Bool) ->Void)){
+    public class func insertKeyWord(keyWord : String,completion :@escaping ((_ success : Bool) ->Void)){
         AVSearchDataQueueOC.insertData(toDataBase: keyWord, completion: completion);
     }
-    class func deleteKeyWord(keyWord : String,completion :@escaping ((_ success : Bool) ->Void)){
+    public class func deleteKeyWord(keyWord : String,completion :@escaping ((_ success : Bool) ->Void)){
         AVSearchDataQueueOC.deleteData(toDataBase: keyWord, completion: completion);
     }
-    class func deleteKeyWord(datas : [String],completion :@escaping ((_ success : Bool) ->Void)){
+    public class func deleteKeyWord(datas : [String],completion :@escaping ((_ success : Bool) ->Void)){
         AVSearchDataQueueOC.deleteDatas(toDataBase: datas, completion: completion);
     }
-    class func getKeyWords(page:NSInteger,size:NSInteger,completion :@escaping ((_ listDatas : [String]) ->Void)){
+    public class func getKeyWords(page:NSInteger,size:NSInteger,completion :@escaping ((_ listDatas : [String]) ->Void)){
         AVSearchDataQueueOC.getDatasFromDataBase(page, pageSize: size, completion: completion);
     }
 }
