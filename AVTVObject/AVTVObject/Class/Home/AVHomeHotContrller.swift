@@ -35,19 +35,8 @@ class AVHomeHotContrller: BaseConnectionController {
                 self.collectionView.reloadData()
                 self.endRefresh(more: false)
             }) { (error) in
-                self.endRefreshFailure();
+                self.endRefreshFailure()
             }
-//            ApiMoya.apiMoyaRequest(target: .apiMovie(movieId:self.movieId!, vsize: "15"), sucesss: { (json) in
-//                if let data = [AVHomeInfo].deserialize(from: json.rawString()){
-//                    self.listData = data as! [AVHomeInfo];
-//                    self.collectionView.reloadData();
-//                    self.endRefresh(more: false);
-//                }else{
-//                    self.endRefreshFailure();
-//                }
-//            }) { (error) in
-//                self.endRefreshFailure();
-//            }
         }
     }
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

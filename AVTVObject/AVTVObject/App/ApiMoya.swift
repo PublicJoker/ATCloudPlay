@@ -11,7 +11,7 @@ import Moya
 import SwiftyJSON
 import SnapKit
 import HandyJSON
-
+private let moya = MoyaProvider<ApiMoya>();
 public enum ApiMoya{
     case apiHome(vsize: String)
     case apiMovie(movieId: String, vsize:String)
@@ -83,8 +83,9 @@ extension ApiMoya : TargetType{
             }
         }
     }
+    //普通模式
     public static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
-        let moya = MoyaProvider<ApiMoya>();
+        
         moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
             
         }) { (result) in
@@ -105,14 +106,15 @@ extension ApiMoya : TargetType{
             }
         }
     }
+    //使用h泛型
     public static func apiRequest<T:HandyJSON>(target: ApiMoya,model:T.Type,sucesss:@escaping ((_ object : T) ->()),failure:@escaping ((_ error : String) ->())){
-        let moya = MoyaProvider<ApiMoya>();
         moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
             
         }) { (result) in
             switch result{
             case let .success(respond):
                 let json = JSON(respond.data)
+                print(json)
                 if json["code"] == 0 {
                     guard let model = JSONDeserializer<T>.deserializeFrom(json:json.rawString()) else { return
                         failure("t is error");

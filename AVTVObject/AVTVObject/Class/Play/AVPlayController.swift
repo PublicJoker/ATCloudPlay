@@ -238,7 +238,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             make.top.equalTo(self.playerView.snp.bottom);
         }
         self.playView.screen = false;
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.35) {
             self.collectionView.isHidden = self.playView.screen;
             self.collectionView.backgroundColor = Appxffffff;
             self.collectionView.backgroundView?.backgroundColor = Appxffffff;
