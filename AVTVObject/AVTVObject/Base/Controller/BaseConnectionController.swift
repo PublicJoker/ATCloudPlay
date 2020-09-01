@@ -30,7 +30,9 @@ class BaseConnectionController: BaseRefreshController {
         return collectionView
     }()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         self.view.addSubview(self.collectionView);
         self.collectionView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview();

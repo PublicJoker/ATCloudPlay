@@ -120,7 +120,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
                             item = info.items[index ?? 0];
                             
                         }
-                        self.playVideo(item: item!);
+                        self.playVideo(item: item!);//https://meiju5.qhqsnedu.com/20190614/AcaARL2C/index.m3u8
                     }else{
                         let item : AVItem = info.items.first!;
                         self.playVideo(item: item);

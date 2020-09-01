@@ -11,7 +11,7 @@ import Moya
 import SwiftyJSON
 import SnapKit
 import HandyJSON
-private let moya = MoyaProvider<ApiMoya>();
+private let moya = MoyaProvider<ApiMoya>()
 public enum ApiMoya{
     case apiHome(vsize: String)
     case apiMovie(movieId: String, vsize:String)
@@ -85,36 +85,34 @@ extension ApiMoya : TargetType{
     }
     //普通模式
     public static func apiMoyaRequest(target: ApiMoya,sucesss:@escaping ((_ object : JSON) ->()),failure:@escaping ((_ error : String) ->())){
-        
-        moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
+        apiTime().request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
             
         }) { (result) in
-            switch result{
-            case let .success(respond):
-                
-                let json = JSON(respond.data)
-                if json["code"] == 0 {
-                    print(json)
-                    sucesss(json["data"])
-                }else{
-                    failure("code != 0")
-                }
-                break
-            case let .failure(error):
-                failure(error.errorDescription!)
-                break
-            }
+                        switch result{
+                                    case let .success(respond):
+                                        
+                                        let json = JSON(respond.data)
+                                        if json["code"] == 0 {
+                        //                    print(json)
+                                            sucesss(json["data"])
+                                        }else{
+                                            failure("code != 0")
+                                        }
+                                        break
+                                    case let .failure(error):
+                                        failure(error.errorDescription!)
+                                        break
+                                    }
         }
     }
-    //使用h泛型
+    //使用泛型
     public static func apiRequest<T:HandyJSON>(target: ApiMoya,model:T.Type,sucesss:@escaping ((_ object : T) ->()),failure:@escaping ((_ error : String) ->())){
-        moya.request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
+        apiTime().request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
             
         }) { (result) in
             switch result{
             case let .success(respond):
                 let json = JSON(respond.data)
-                print(json)
                 if json["code"] == 0 {
                     guard let model = JSONDeserializer<T>.deserializeFrom(json:json.rawString()) else { return
                         failure("t is error");
@@ -130,6 +128,21 @@ extension ApiMoya : TargetType{
             }
         }
     }
-
+     public static func apiTime(timeInterval:TimeInterval = 15) -> MoyaProvider<ApiMoya> {
+            return MoyaProvider<ApiMoya>(
+                requestClosure: { (endPoint, closure) in
+                    do {
+                        var urlRequest = try endPoint.urlRequest()
+                        urlRequest.timeoutInterval = timeInterval;
+                        closure(.success(urlRequest))
+                    } catch MoyaError.requestMapping(let url) {
+                        closure(.failure(MoyaError.requestMapping(url)))
+                    } catch MoyaError.parameterEncoding(let error) {
+                        closure(.failure(MoyaError.parameterEncoding(error)))
+                    } catch {
+                        closure(.failure(MoyaError.underlying(error, nil)))
+                    }
+            })
+        }
 }
 

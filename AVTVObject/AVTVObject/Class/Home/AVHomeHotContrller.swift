@@ -69,10 +69,10 @@ class AVHomeHotContrller: BaseConnectionController {
         return CGSize.init(width: width, height: height)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : ATHomeHotCell = ATHomeHotCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath);
-        let info : AVHomeInfo = self.listData[indexPath.section];
+        let cell : ATHomeHotCell = ATHomeHotCell.cellForCollectionView(collectionView: collectionView, indexPath: indexPath)
+        let info : AVHomeInfo = self.listData[indexPath.section]
         cell.model = info.listData[indexPath.row]
-        return cell;
+        return cell
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let info : AVHomeInfo = self.listData[indexPath.section];

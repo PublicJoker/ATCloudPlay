@@ -23,7 +23,7 @@ class ATAlertView: NSObject {
         if hights != nil {
             for (index,sure) in hights!.enumerated() {
                 let action = UIAlertAction.init(title:(sure), style: .destructive) { (alert) in
-                    completion(sure,index+normals!.count);
+                    completion(sure,index + (normals != nil ? normals!.count : 0));
                 };
                 alertView.addAction(action);
             }

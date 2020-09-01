@@ -13,34 +13,34 @@ import SwiftyJSON
 import ATKit_Swift
 
 let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
-let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
+public let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
+public let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
 
-let iPhoneX        : Bool       = (ATMacro.iPhoneX());
-let STATUS_BAR_HIGHT:CGFloat    = (ATMacro.Status_Bar())//状态栏
-let NAVI_BAR_HIGHT  :CGFloat    = (ATMacro.Navi_Bar())//导航栏
-let TAB_BAR_ADDING  :CGFloat    = (ATMacro.Tab_Bar())//iphoneX斜刘海
+public let iPhoneX        : Bool       = (ATMacro.iPhoneX());
+public let STATUS_BAR_HIGHT:CGFloat    = (ATMacro.Status_Bar())//状态栏
+public let NAVI_BAR_HIGHT  :CGFloat    = (ATMacro.Navi_Bar())//导航栏
+public let TAB_BAR_ADDING  :CGFloat    = (ATMacro.Tab_Bar())//iphoneX斜刘海
 
-let AppColor     :UIColor = UIColor.init(hex:"007EFE")
-let Appxdddddd   :UIColor = UIColor.init(hex:"dddddd")
-let Appx000000   :UIColor = UIColor.init(hex:"000000")
-let Appx333333   :UIColor = UIColor.init(hex:"333333")
-let Appx666666   :UIColor = UIColor.init(hex:"666666")
-let Appx999999   :UIColor = UIColor.init(hex:"999999")
-let Appxf8f8f8   :UIColor = UIColor.init(hex:"f8f8f8")
-let Appxffffff   :UIColor = UIColor.init(hex:"ffffff")
-let AppRadius    :CGFloat = 3
-let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "dedede"));
+public let AppColor     :UIColor = UIColor(hex:"007EFE")
+public let Appxdddddd   :UIColor = UIColor(hex:"dddddd")
+public let Appx000000   :UIColor = UIColor(hex:"000000")
+public let Appx333333   :UIColor = UIColor(hex:"333333")
+public let Appx666666   :UIColor = UIColor(hex:"666666")
+public let Appx999999   :UIColor = UIColor(hex:"999999")
+public let Appxf8f8f8   :UIColor = UIColor(hex:"f8f8f8")
+public let Appxffffff   :UIColor = UIColor(hex:"ffffff")
+public let AppRadius    :CGFloat = 3
+public let placeholder  :UIImage = UIImage.imageWithColor(color: UIColor.init(hex: "dedede"));
 
-let itemTop          :CGFloat = 1;
-let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 4*itemTop)/3 - 0.1);
-let itemHeight       :CGFloat = itemWidth*1.45;
+public let itemTop          :CGFloat = 1;
+public let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 4*itemTop)/3 - 0.1);
+public let itemHeight       :CGFloat = itemWidth*1.45;
 
 class BaseMacro: NSObject {
-    class func iPhone_X() -> Bool{
+    public class func iPhone_X() -> Bool{
         return ATMacro.iPhoneX();
     }
-    class func screen()->Bool{
+    public class func screen()->Bool{
         let res : Bool = (kAppdelegate?.blockRotation == .landscapeRight || kAppdelegate?.blockRotation == .landscapeLeft);
         return res;
     }
