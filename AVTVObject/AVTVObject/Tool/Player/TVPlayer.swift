@@ -34,6 +34,7 @@ class TVPlayer: BasePlayer {
     private var seek : Bool = false;
     private var userPause : Bool = false;
     deinit {
+        print(self.classForCoder,"deinit")
         self.releasePlayer()
     }
     private func releasePlayer(){
@@ -111,13 +112,14 @@ class TVPlayer: BasePlayer {
             case PathVideo.status.rawValue:
                 let item : AVPlayerItem = object as! AVPlayerItem;
                 self.playerItem = item;
-                if item.status == .readyToPlay {
+                print(item.status)
+                if item.status == .failed {
+                    self.state = .error;
+                }else{
                     self.state = .ready;
                     if self.userPause == false {
                         self.play();
                     }
-                }else{
-                    self.state = .error;
                 }
                 break;
             default:
@@ -146,9 +148,8 @@ class TVPlayer: BasePlayer {
         self.state = .finish;
     }
     @objc private func appDidEnterBackground(){
-        if (self.player != nil) {
-            self.player?.pause();
-        }
+        guard let player = self.player else { return  }
+        player.pause()
     }
     @objc private func appDidEnterPlayGround(){
         if self.userPause == false {
@@ -156,20 +157,19 @@ class TVPlayer: BasePlayer {
         }
     }
     private func readyPlay(){
-        if self.player != nil {
-            weak var weakSelf = self;
-            observer = self.player?.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.1, preferredTimescale: Int32(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
-                if weakSelf != nil{
-                    if weakSelf!.seek == false{
-                        var progress = CMTimeGetSeconds(time);
-                        progress = progress.isNaN ? 0 : progress;
-                        if let delegate  = weakSelf!.delegate{
-                            delegate.player?(player: weakSelf!, progress:progress);
-                        }
+        guard let player = self.player else { return  }
+        weak var weakSelf = self;
+        observer = player.addPeriodicTimeObserver(forInterval: CMTimeMakeWithSeconds(0.1, preferredTimescale: Int32(NSEC_PER_SEC)), queue: DispatchQueue.main, using: { (time) in
+            if weakSelf != nil{
+                if weakSelf!.seek == false{
+                    var progress = CMTimeGetSeconds(time);
+                    progress = progress.isNaN ? 0 : progress;
+                    if let delegate  = weakSelf!.delegate{
+                        delegate.player?(player: weakSelf!, progress:progress);
                     }
                 }
-            });
-        }
+            }
+        });
     }
     override func playUrl(url: String) {
         self.playUrl(url: url, time:0)
@@ -180,9 +180,8 @@ class TVPlayer: BasePlayer {
          let string : NSString = url as NSString;
          let loc = string.range(of: "/").location;
          
-         let urlPath : URL = (loc == 0) ? URL.init(fileURLWithPath: url) : URL.init(string: url)!;
-        // let urlAsset  = AVURLAsset.init(url: urlPath);
-         self.playerItem = AVPlayerItem.init(url: urlPath)
+         let urlPath : URL = (loc == 0) ? URL(fileURLWithPath: url) : URL.init(string: url)!;
+         self.playerItem = AVPlayerItem(url: urlPath)
         if time > 0 {
             weak var weakSelf = self;
             self.playerItem?.seek(to:CMTimeMake(value: Int64(time), timescale: 1), completionHandler: { (success) in
@@ -192,7 +191,7 @@ class TVPlayer: BasePlayer {
             })
         }
          if self.player == nil {
-             self.player = AVPlayer.init(playerItem: self.playerItem);
+             self.player = AVPlayer(playerItem: self.playerItem);
          }else{
              self.player?.replaceCurrentItem(with: self.playerItem);
          }
@@ -211,10 +210,9 @@ class TVPlayer: BasePlayer {
         }
     }
     private func playVideo(){
-        if self.player != nil {
-            self.player?.play();
-            self.player?.rate = 1.0;
-        }
+        guard let player = self.player else { return  }
+        player.play()
+        player.rate = 1.0
     }
     override func stop() {
         self.pause();
@@ -230,51 +228,44 @@ class TVPlayer: BasePlayer {
         self.pauseVideo();
     }
     private func pauseVideo(){
-        if self.player != nil {
-            self.player?.pause();
-            self.player?.rate = 0.0;
-        }
+        guard let player = self.player else { return  }
+        player.pause()
+        player.rate = 0;
     }
     override func seek(time: TimeInterval) {
-        if self.player != nil {
-          let  time1 = time >= self.duration ? 0 : time;
-          let  time2 = time1 < 0 ? 0 : time1;
-            self.seek = true;
-            self.player?.pause();
-            weak var weakSelf = self;
-            self.player?.seek(to: CMTimeMake(value: Int64(time2), timescale: 1), toleranceBefore:CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finish) in
-                weakSelf?.seek = !finish;
-                if (weakSelf?.userPause == false){
-                    weakSelf?.playVideo();
-                }
-            })
-        }
+        guard let player = self.player else { return }
+        let  time1 = time >= self.duration ? 0 : time;
+        let  time2 = time1 < 0 ? 0 : time1;
+           self.seek = true;
+           player.pause();
+          weak var weakSelf = self;
+          player.seek(to: CMTimeMake(value: Int64(time2), timescale: 1), toleranceBefore:CMTime.zero, toleranceAfter: CMTime.zero, completionHandler: { (finish) in
+              weakSelf?.seek = !finish;
+              if (weakSelf?.userPause == false){
+                  weakSelf?.playVideo();
+              }
+          })
     }
     public var playing: Bool{
         get{
-            if self.player != nil {
-                let res = self.player?.timeControlStatus == .playing
-                return res;
-            }
-            return false;
+            guard let player = self.player else { return false }
+            let res = player.timeControlStatus == .playing
+            return res;
         }
     }
     public var duration: TimeInterval{
         get{
-            if self.playerItem != nil {
-                let time = CMTimeGetSeconds(self.playerItem!.duration);
-                return time.isNaN ? 0 : time;
-            }
-            return 0
+            guard let item = self.playerItem else { return 0 }
+            let time = CMTimeGetSeconds(item.duration);
+            return time.isNaN ? 0 : time;
         }
     }
     public var current: TimeInterval{
         get{
-            if self.playerItem != nil {
-                let time = CMTimeGetSeconds((self.playerItem?.currentTime())!);
-                return time.isNaN ? 0 : time;
-            }
-            return 0
+            guard let item = self.playerItem else { return 0 }
+            
+            let time = CMTimeGetSeconds(item.currentTime())
+            return time.isNaN ? 0 : time;
         }
     }
 }

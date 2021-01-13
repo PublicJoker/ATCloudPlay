@@ -22,7 +22,6 @@ class AVHomeHotContrller: BaseConnectionController {
         super.viewDidLoad()
         self.layout.sectionHeadersPinToVisibleBounds = true;
         self.collectionView.backgroundColor = Appxffffff;
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
     }
     override func refreshData(page: Int) {

@@ -15,7 +15,6 @@ class AVHomeTvController: BaseConnectionController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.layout.sectionHeadersPinToVisibleBounds = true;
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
 
     }

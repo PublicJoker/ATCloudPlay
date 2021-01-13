@@ -9,15 +9,22 @@
 import UIKit
 import ATRefresh_Swift
 import ATKit_Swift
+import Alamofire
 public let RefreshPageStart : Int = (1)
 public let RefreshPageSize  : Int = (20)
 
 
-class BaseRefreshController: ATRefreshController,UIGestureRecognizerDelegate {
+class BaseRefreshController: BaseViewController {
+    lazy var refreshData : ATRefreshData = {
+        let refresh = ATRefreshData()
+        refresh.dataSource = self
+        refresh.delegate = self
+        return refresh
+    }()
     private lazy var images: [UIImage] = {
         var images :[UIImage] = [];
         for i in 0...35{
-            let image = UIImage.init(named:String("下拉loading_00") + String(i < 10 ? ("0"+String(i)) : String(i)));
+            let image = UIImage(named:String("下拉loading_00") + String(i < 10 ? ("0"+String(i)) : String(i)));
             if image != nil {
                 images.append(image!);
             }
@@ -27,66 +34,49 @@ class BaseRefreshController: ATRefreshController,UIGestureRecognizerDelegate {
     deinit {
         
     }
+    public var refreshNetAvailable : Bool{
+        return NetworkReachabilityManager()!.isReachable
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = [];
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self;
-        self.view.backgroundColor = UIColor.white;
-        self.fd_prefersNavigationBarHidden = false;
-        self.fd_interactivePopDisabled = false;
-        self.dataSource = self;
     }
-    //MARK:UIGestureRecognizerDelegate
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+    public func setupRefresh(scrollView:UIScrollView,
+                             options:ATRefreshOption){
+        
+        self.refreshData.setupRefresh(scrollView: scrollView, options: options)
     }
-    override var shouldAutorotate: Bool{
-        return false
+    public func endRefresh(more:Bool){
+        self.refreshData.endRefresh(more: more)
     }
-    override var prefersStatusBarHidden: Bool{
-        return false
-    }
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .default
-    }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        return .portrait
-    }
-    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
-        return .portrait
+    public func endRefreshFailure(error :String = "Net Error..."){
+        self.refreshData.endRefreshFailure()
     }
 }
 extension BaseRefreshController : ATRefreshDataSource{
     var refreshFooterData: [UIImage] {
-        return self.images ;
+        return self.images
     }
     
     var refreshHeaderData: [UIImage] {
-        return self.images ;
+        return self.images
     }
-    
-    var refreshLoaderData: [UIImage] {
-        return self.images ;
+    var refreshLogo: UIImage{
+        let image : UIImage = ((self.refreshData.refreshing ? UIImage.animatedImage(with: self.images, duration: 0.35)! : (self.refreshNetAvailable ? UIImage(named: "icon_data_empty") : UIImage(named: "icon_net_error")))!)
+        return image
     }
-    
-    var refreshEmptyData: UIImage {
-        UIImage.init(named: "icon_data_empty") ?? UIImage.init();
+    var refreshTitle: NSAttributedString{
+        let text :String = self.refreshData.refreshing ? "Data Loading..." : (self.refreshNetAvailable ? "Data Empty..." : "Data Error...")
+        var dic : [NSAttributedString.Key : Any ] = [:]
+        let font : UIFont = UIFont.systemFont(ofSize: 16)
+        let color : UIColor = Appx999999
+        dic.updateValue(font, forKey: .font)
+        dic.updateValue(color, forKey: .foregroundColor)
+        let att : NSAttributedString = NSAttributedString(string:text, attributes:(dic))
+        return att
     }
-    
-    var refreshErrorData: UIImage {
-        UIImage.init(named: "icon_net_error") ?? UIImage.init()
-    }
-    
-    var refreshLoaderToast : String {
-        return "数据加载中..."
-    }
-    var refreshErrorToast  : String {
-        return "无网络连接,请检查网络设置"
-    }
-    var refreshEmptyToast  : String {
-        return "数据空空如也..."
-    }
-    override func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return -NAVI_BAR_HIGHT/2;
+}
+extension BaseRefreshController : ATRefreshDelegate{
+    @objc func refreshData(page: Int) {
+        
     }
 }

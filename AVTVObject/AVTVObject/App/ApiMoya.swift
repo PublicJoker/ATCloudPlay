@@ -75,7 +75,7 @@ extension ApiMoya : TargetType{
             switch result{
             case let .success(respond):
                 let json = JSON(respond.data)
-                print(json)
+                debugPrint(json)
                 break;
             case let .failure(error):
                 print(error.errorDescription as Any);
@@ -88,21 +88,20 @@ extension ApiMoya : TargetType{
         apiTime().request(target, callbackQueue: DispatchQueue.main, progress: { (progress) in
             
         }) { (result) in
-                        switch result{
-                                    case let .success(respond):
-                                        
-                                        let json = JSON(respond.data)
-                                        if json["code"] == 0 {
-                        //                    print(json)
-                                            sucesss(json["data"])
-                                        }else{
-                                            failure("code != 0")
-                                        }
-                                        break
-                                    case let .failure(error):
-                                        failure(error.errorDescription!)
-                                        break
-                                    }
+            switch result{
+            case let .success(respond):
+                
+                let json = JSON(respond.data)
+                if json["code"] == 0 {
+                    sucesss(json["data"])
+                }else{
+                    failure("code != 0")
+                }
+                break
+            case let .failure(error):
+                failure(error.errorDescription!)
+                break
+            }
         }
     }
     //使用泛型
@@ -114,8 +113,12 @@ extension ApiMoya : TargetType{
             case let .success(respond):
                 let json = JSON(respond.data)
                 if json["code"] == 0 {
-                    guard let model = JSONDeserializer<T>.deserializeFrom(json:json.rawString()) else { return
-                        failure("t is error");
+//                    guard let model = JSONDeserializer<T>.deserializeFrom(json:json.rawString()) else { return
+//                        failure("data is error");
+//                    }
+                    guard let model = T.deserialize(from: json.rawString())else{
+                        failure("data is error");
+                        return
                     }
                     sucesss(model)
                 }else{

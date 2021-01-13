@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import Hue
 import SnapKit
 import SwiftyJSON
+import ATRefresh_Swift
 import ATKit_Swift
 
 let kAppdelegate  : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
 public let SCREEN_WIDTH  :CGFloat  = UIScreen.main.bounds.size.width
 public let SCREEN_HEIGHT :CGFloat  = UIScreen.main.bounds.size.height
 
-public let iPhoneX        : Bool       = (ATMacro.iPhoneX());
-public let STATUS_BAR_HIGHT:CGFloat    = (ATMacro.Status_Bar())//状态栏
-public let NAVI_BAR_HIGHT  :CGFloat    = (ATMacro.Navi_Bar())//导航栏
-public let TAB_BAR_ADDING  :CGFloat    = (ATMacro.Tab_Bar())//iphoneX斜刘海
+public let iPhoneX        : Bool       = at_iphoneX;
+public let STATUS_BAR_HIGHT:CGFloat    = at_statusBar//状态栏
+public let NAVI_BAR_HIGHT  :CGFloat    = at_naviBar//导航栏
+public let TAB_BAR_ADDING  :CGFloat    = at_tabBar//iphoneX斜刘海
 
 public let AppColor     :UIColor = UIColor(hex:"007EFE")
 public let Appxdddddd   :UIColor = UIColor(hex:"dddddd")
@@ -37,9 +37,6 @@ public let itemWidth        :CGFloat = CGFloat((SCREEN_WIDTH - 4*itemTop)/3 - 0.
 public let itemHeight       :CGFloat = itemWidth*1.45;
 
 class BaseMacro: NSObject {
-    public class func iPhone_X() -> Bool{
-        return ATMacro.iPhoneX();
-    }
     public class func screen()->Bool{
         let res : Bool = (kAppdelegate?.blockRotation == .landscapeRight || kAppdelegate?.blockRotation == .landscapeLeft);
         return res;

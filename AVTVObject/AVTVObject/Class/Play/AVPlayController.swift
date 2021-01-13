@@ -71,7 +71,6 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             }
             make.top.equalToSuperview();
         }
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .none);
         self.collectionView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
@@ -86,10 +85,11 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.show();
         if self.movieId != nil {
             ApiMoya.apiMoyaRequest(target: .apiShow(movieId: self.movieId!), sucesss: { (json) in
-                if let info = AVMovieInfo.deserialize(from: json.rawString()){
-                    self.info = info;
-                    self.reloadData();
+                guard let info = AVMovieInfo.deserialize(from: json.rawString())else{
+                    return
                 }
+                self.info = info;
+                self.reloadData();
             }) { (error) in
                 self.dismiss()
                 ATAlertView.showAlertView(title: "网络问题,是否重试" + error, message: nil, normals: ["取消"], hights: ["确定"]) { (title , index) in
@@ -183,15 +183,14 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     private func insertBrowData(){
-        if self.info != nil  && self.playItem != nil{
-            if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
-                info.currentTime = self.player.current
-                info.totalTime = self.player.duration
-                info.living = self.playView.living
-                self.info?.playItem = info;
-                AVBrowseDataQueue.browseData(model: self.info!) { (success) in
-                    
-                }
+        guard let item = self.playItem,let model = self.info else { return  }
+        if let info : AVItemInfo = AVItemInfo.deserialize(from:item.toJSONString()){
+            info.currentTime = self.player.current
+            info.totalTime = self.player.duration
+            info.living = self.playView.living
+            model.playItem = info;
+            AVBrowseDataQueue.browseData(model: model) { (success) in
+                
             }
         }
     }

@@ -42,7 +42,6 @@ class AVSearchController: BaseTableViewController,searchDelegate {
             make.left.right.bottom.equalToSuperview();
             make.top.equalTo(self.searchView.snp.bottom);
         }
-        self.setupEmpty(scrollView: self.tableView);
         self.setupRefresh(scrollView: self.tableView, options: .defaults);
     }
     override func refreshData(page: Int) {

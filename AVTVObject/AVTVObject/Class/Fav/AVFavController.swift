@@ -15,7 +15,6 @@ class AVFavController: BaseConnectionController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .defaults)
     }
     override func viewDidAppear(_ animated: Bool) {
