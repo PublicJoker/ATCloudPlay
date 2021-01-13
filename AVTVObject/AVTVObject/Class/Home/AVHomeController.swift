@@ -9,20 +9,20 @@
 import UIKit
 class AVHomeController: BaseViewController {
     private lazy var searchBtn : UIButton = {
-        let btn : UIButton = UIButton.init();
-        btn.frame = CGRect.init(x: 0, y: 0, width: 44, height: 44);
-        btn.setImage(UIImage.init(named: "icon_search"), for: .normal);
+        let btn : UIButton = UIButton();
+        btn.frame = CGRect(x: 0, y: 0, width: 44, height: 44);
+        btn.setImage(UIImage(named: "icon_search"), for: .normal);
         btn.addTarget(self, action: #selector(searchAction), for: .touchUpInside)
         return btn;
     }()
     private lazy var titleDatas: [String] = {
-        return ["热门","推荐","剧集"];
+        return ["热门","推荐","剧集","综合"]
     }()
     private lazy var controllerDatas: [UIViewController] = {
-        return [AVHomeHotContrller.init(),AVHomeIndexController.init(),AVHomeTvController.init()]
+        return [AVHomeHotContrller(movieId: "2"),AVHomeIndexController(),AVHomeHotContrller(movieId: "1"),AVHomeHotContrller(movieId: "0")]
     }()
     private lazy var magicCtrl: VTMagicController = {
-        let ctrl = VTMagicController.init();
+        let ctrl = VTMagicController();
         ctrl.magicView.navigationInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5);
         ctrl.magicView.separatorHeight = 0.5;
         ctrl.magicView.backgroundColor = Appxffffff
@@ -72,10 +72,17 @@ extension AVHomeController :VTMagicViewDelegate,VTMagicViewDataSource{
         return self.titleDatas;
     }
     func magicView(_ magicView: VTMagicView, menuItemAt itemIndex: UInt) -> UIButton {
+<<<<<<< HEAD
         let button : UIButton = magicView.dequeueReusableItem(withIdentifier: "www.new.btn.identy") ?? UIButton.init();
         button.setTitleColor(Appx333333, for: .normal);
         button.setTitleColor(AppColor, for: .selected);
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16);
+=======
+        let button : UIButton = magicView.dequeueReusableItem(withIdentifier: "www.new.btn.identy") ?? UIButton(type: .custom)
+        button.setTitleColor(Appx333333, for: .normal)
+        button.setTitleColor(AppColor, for: .selected)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+>>>>>>> 20200427devlop
         return button;
     }
     func magicView(_ magicView: VTMagicView, viewControllerAtPage pageIndex: UInt) -> UIViewController {

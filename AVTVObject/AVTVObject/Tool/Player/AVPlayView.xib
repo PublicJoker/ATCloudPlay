@@ -103,7 +103,7 @@
                         <action selector="listAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="jN3-H6-cy8"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpk-PZ-uoX">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tpk-PZ-uoX">
                     <rect key="frame" x="50" y="0.0" width="314" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="bSu-wD-cpQ"/>

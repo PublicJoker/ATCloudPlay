@@ -17,10 +17,16 @@ class AVHomeIndexController: BaseConnectionController {
         override func viewDidLoad() {
             super.viewDidLoad()
             self.layout.sectionHeadersPinToVisibleBounds = true;
-            self.setupEmpty(scrollView: self.collectionView);
             self.setupRefresh(scrollView: self.collectionView, options:ATRefreshOption(rawValue: ATRefreshOption.autoHeader.rawValue|ATRefreshOption.header.rawValue));
         }
         override func refreshData(page: Int) {
+//            ApiMoya.apiRequest(target: .apiHome(vsize: "15"), model: AVHome.self, sucesss: { (model) in
+//                self.listData = model.data
+//                self.collectionView.reloadData();
+//                self.endRefresh(more: false);
+//            }) { (error) in
+//                self.endRefreshFailure();
+//            }
             ApiMoya.apiMoyaRequest(target: .apiHome(vsize: "15"), sucesss: { (json) in
                 if let data = [AVHomeInfo].deserialize(from: json.rawString()){
                     self.listData = data as! [AVHomeInfo];

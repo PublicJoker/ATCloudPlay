@@ -11,11 +11,11 @@ import MGJRouter_Swift
 import SwiftyJSON
 class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegate {
     convenience init(movieId : String) {
-        self.init();
-        self.movieId = movieId;
+        self.init()
+        self.movieId = movieId
     }
-    private var info : AVMovieInfo? = nil;
-    private var playItem : AVItem?
+    private var info : AVMovieInfo? = nil
+    private var playItem : AVItem?  = nil
     private lazy var listData : [AVItem] = {
         return []
     }()
@@ -71,7 +71,6 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             }
             make.top.equalToSuperview();
         }
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .none);
         self.collectionView.snp.remakeConstraints { (make) in
             make.left.right.bottom.equalToSuperview();
@@ -86,10 +85,11 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         self.show();
         if self.movieId != nil {
             ApiMoya.apiMoyaRequest(target: .apiShow(movieId: self.movieId!), sucesss: { (json) in
-                if let info = AVMovieInfo.deserialize(from: json.rawString()){
-                    self.info = info;
-                    self.reloadData();
+                guard let info = AVMovieInfo.deserialize(from: json.rawString())else{
+                    return
                 }
+                self.info = info;
+                self.reloadData();
             }) { (error) in
                 self.dismiss()
                 ATAlertView.showAlertView(title: "网络问题,是否重试" + error, message: nil, normals: ["取消"], hights: ["确定"]) { (title , index) in
@@ -120,7 +120,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
                             item = info.items[index ?? 0];
                             
                         }
-                        self.playVideo(item: item!);
+                        self.playVideo(item: item!);//https://meiju5.qhqsnedu.com/20190614/AcaARL2C/index.m3u8
                     }else{
                         let item : AVItem = info.items.first!;
                         self.playVideo(item: item);
@@ -183,15 +183,14 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         BaseMacro.screen() ? orientations(screen: false) : self.goBack()
     }
     private func insertBrowData(){
-        if self.info != nil  && self.playItem != nil{
-            if let info : AVItemInfo = AVItemInfo.deserialize(from:self.playItem?.toJSONString()){
-                info.currentTime = self.player.current;
-                info.totalTime = self.player.duration;
-                info.living = self.playView.living;
-                self.info?.playItem = info;
-                AVBrowseDataQueue.browseData(model: self.info!) { (success) in
-                    
-                }
+        guard let item = self.playItem,let model = self.info else { return  }
+        if let info : AVItemInfo = AVItemInfo.deserialize(from:item.toJSONString()){
+            info.currentTime = self.player.current
+            info.totalTime = self.player.duration
+            info.living = self.playView.living
+            model.playItem = info;
+            AVBrowseDataQueue.browseData(model: model) { (success) in
+                
             }
         }
     }
@@ -238,7 +237,7 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
             make.top.equalTo(self.playerView.snp.bottom);
         }
         self.playView.screen = false;
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.35) {
             self.collectionView.isHidden = self.playView.screen;
             self.collectionView.backgroundColor = Appxffffff;
             self.collectionView.backgroundView?.backgroundColor = Appxffffff;
@@ -351,10 +350,10 @@ class AVPlayController: BaseConnectionController,playerDelegate,playVideoDelegat
         return true;
     }
     override var prefersStatusBarHidden: Bool{
-        return true;
+        return true
     }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
-        return .all;
+        return .all
     }
     
 }

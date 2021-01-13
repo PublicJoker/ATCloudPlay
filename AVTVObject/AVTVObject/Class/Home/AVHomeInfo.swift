@@ -17,7 +17,7 @@ class AVHomeInfo: HandyJSON {
     var vod     : [AVMovie] = [] //所有数据
     var listData: [AVMovie]{
         get{
-            let count : Int = self.vod.count > 4 ? 4 : self.vod.count;
+            let count : Int = self.vod.count > 3 ? 3 : self.vod.count;
             return [] + self.vod.prefix(count)
         }
     }
@@ -28,4 +28,9 @@ class AVHomeInfo: HandyJSON {
     required init() {
         
     }
+}
+
+class AVHome : HandyJSON{
+    var data :[AVHomeInfo] = []
+    required init() {}
 }

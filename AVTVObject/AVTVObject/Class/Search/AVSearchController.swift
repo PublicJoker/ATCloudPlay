@@ -24,9 +24,12 @@ class AVSearchController: BaseTableViewController,searchDelegate {
     private lazy var searchView : AVSearchView = {
         let searchView = AVSearchView.instanceView();
         searchView.delegate = self
-        searchView.backBtn.addTarget(self, action: #selector(goBack), for: .touchUpInside);
+        searchView.backBtn.addTarget(self, action: #selector(back), for: .touchUpInside);
         return searchView;
     }()
+    override func back(animated: Bool) {
+        super.back(animated: false)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fd_prefersNavigationBarHidden = true;
@@ -39,7 +42,6 @@ class AVSearchController: BaseTableViewController,searchDelegate {
             make.left.right.bottom.equalToSuperview();
             make.top.equalTo(self.searchView.snp.bottom);
         }
-        self.setupEmpty(scrollView: self.tableView);
         self.setupRefresh(scrollView: self.tableView, options: .defaults);
     }
     override func refreshData(page: Int) {

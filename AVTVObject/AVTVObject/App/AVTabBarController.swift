@@ -14,14 +14,14 @@ class AVTabBarController: UITabBarController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tabBar.isTranslucent = false;
         let vc = AVHomeController.init();
         self.createCtrl(vc: vc, title:"首页",normal:"icon_tabbar_home_n", select:"icon_tabbar_home_h");
         let fav = AVFavController.init();
         self.createCtrl(vc: fav, title:"收藏",normal:"icon_tabbar_video_n", select:"icon_tabbar_video_h");
         let my = AVBrowseController.init();
-        self.createCtrl(vc: my, title:"我的", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
-        
+        self.createCtrl(vc: my, title:"观看", normal:"icon_tabbar_wall_n", select:"icon_tabbar_wall_h");
         self.viewControllers = self.listData;
     }
     private func createCtrl(vc :UIViewController,title :String,normal: String,select :String) {
@@ -33,5 +33,17 @@ class AVTabBarController: UITabBarController {
         nv.tabBarItem.setTitleTextAttributes([.foregroundColor : AppColor], for: .selected);
         nv.tabBarItem.setTitleTextAttributes([.foregroundColor : Appx999999], for: .normal);
         self.listData.append(nv);
+    }
+    override var shouldAutorotate: Bool{
+        return self.selectedViewController!.shouldAutorotate
+    }
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        return self.selectedViewController!.preferredInterfaceOrientationForPresentation
+    }
+    override var prefersStatusBarHidden: Bool{
+        return self.selectedViewController!.prefersStatusBarHidden
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return self.selectedViewController!.preferredStatusBarStyle
     }
 }

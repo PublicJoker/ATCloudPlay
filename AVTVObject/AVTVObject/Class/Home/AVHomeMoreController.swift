@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyJSON
-
+private let pageSize = RefreshPageSize + 1
 class AVHomeMoreController: BaseConnectionController {
     convenience init(movieId : String? = nil, ztid : String? = nil) {
         self.init();
@@ -23,17 +23,19 @@ class AVHomeMoreController: BaseConnectionController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showNavTitle(title: "更多");
-        self.setupEmpty(scrollView: self.collectionView);
         self.setupRefresh(scrollView: self.collectionView, options: .defaults);
     }
     override func refreshData(page: Int) {
         if self.movieId.count > 0 {
-            ApiMoya.apiMoyaRequest(target:.apiMovieMore(page: page, size: RefreshPageSize, movieId:self.movieId), sucesss: { (json) in
+            ApiMoya.apiMoyaRequest(target:.apiMovieMore(page: page, size: pageSize, movieId:self.movieId), sucesss: { (json) in
+                if(page == RefreshPageStart){
+                    self.listData.removeAll()
+                }
                 if let data = [AVMovie].deserialize(from: json.rawString()){
                     let list = data as! [AVMovie];
                     self.listData.append(contentsOf: list);
                     self.collectionView.reloadData();
-                    self.endRefresh(more: list.count >= RefreshPageSize);
+                    self.endRefresh(more: list.count >= pageSize);
                 }else{
                     self.endRefreshFailure();
                 }
@@ -41,7 +43,10 @@ class AVHomeMoreController: BaseConnectionController {
                 self.endRefreshFailure();
             }
         }else if(self.ztid.count > 0){
-            ApiMoya.apiMoyaRequest(target: .apiHomeMore(page: page, size: RefreshPageSize, ztid: self.ztid), sucesss: { (json) in
+            ApiMoya.apiMoyaRequest(target: .apiHomeMore(page: page, size: pageSize, ztid: self.ztid), sucesss: { (json) in
+                if(page == RefreshPageStart){
+                    self.listData.removeAll()
+                }
                 self.reloadData(json: json);
             }) { (error) in
                 self.endRefreshFailure();
@@ -53,7 +58,7 @@ class AVHomeMoreController: BaseConnectionController {
             let list = data as! [AVMovie];
             self.listData.append(contentsOf: list);
             self.collectionView.reloadData();
-            self.endRefresh(more: list.count >= RefreshPageSize);
+            self.endRefresh(more: list.count >= pageSize)
         }else{
             self.endRefreshFailure();
         }
@@ -62,16 +67,16 @@ class AVHomeMoreController: BaseConnectionController {
         return 1;
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.listData.count;
+        return self.listData.count
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return itemTop;
+        return itemTop
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return itemTop;
+        return itemTop
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop);
+        return UIEdgeInsets(top:itemTop, left: itemTop, bottom: 0, right: itemTop)
     }
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize.init(width: itemWidth, height: itemHeight)
@@ -83,7 +88,7 @@ class AVHomeMoreController: BaseConnectionController {
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let info = self.listData[indexPath.row]
-        AppJump.jumpToPlayControl(movieId: info.movieId);
+        AppJump.jumpToPlayControl(movieId: info.movieId)
     }
 
 }

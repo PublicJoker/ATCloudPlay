@@ -16,7 +16,6 @@ class AVHomeCell: UICollectionViewCell {
     @IBOutlet weak var hitLab: UILabel!
     @IBOutlet weak var categorybtn: UIButton!
     @IBOutlet weak var titleLab: UILabel!
-    
     var model : AVMovie?{
         didSet{
             guard let item = model else { return }

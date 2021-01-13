@@ -8,7 +8,6 @@
 
 import UIKit
 import HandyJSON
-
 class AVMovie: HandyJSON {
     var movieId  : String  = "";
     var name     : String  = "";
@@ -25,9 +24,7 @@ class AVMovie: HandyJSON {
          mapper <<<
              self.movieId <-- ["movieId","id"]
      }
-    required init() {
-        
-    }
+    required init() {}
 }
 
 class AVMovieInfo : AVMovie{
@@ -46,12 +43,12 @@ class AVMovieInfo : AVMovie{
              self.movieId <-- ["movieId","id"]
          mapper <<<
              self.area    <-- ["area","diqu"]
-        mapper <<<
+         mapper <<<
              self.routes  <-- ["routes","zu"]
      }
 }
 class AVRoute : HandyJSON{
-    var count   : Int =  0;
+    var count   : Int    =  0;
     var name    : String = "";
     var ly      : String = "";
     var items   : [AVItem] = [];

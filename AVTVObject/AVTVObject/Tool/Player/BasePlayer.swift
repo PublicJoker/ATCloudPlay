@@ -29,26 +29,26 @@ import UIKit
     @objc optional func player(player : BasePlayer,progress    : TimeInterval);
 }
 @objc class BasePlayer: NSObject {
-    weak var delegate : playerDelegate? = nil;
-    lazy var contentView: UIView = {
+    public weak var delegate : playerDelegate? = nil;
+    public lazy var contentView: UIView = {
         return UIView.init();
     }()
-    func playUrl(url : String) {
+    public func playUrl(url : String) {
         
     }
-    func seek(time : TimeInterval){
+    public func seek(time : TimeInterval){
         
     }
-    func play(){
+    public func play(){
         
     }
-    func stop(){
+    public func stop(){
         
     }
-    func pause(){
+    public func pause(){
         
     }
-    func resume(){
+    public func resume(){
         
     }
 }

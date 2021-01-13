@@ -1,12 +1,10 @@
 PODS:
   - Alamofire (4.9.1)
-  - ATKit_Swift (0.1.7)
-  - ATRefresh_Swift (0.0.7):
-    - Alamofire (~> 4.9.1)
-    - DZNEmptyDataSet (~> 1.8.1)
-    - KVOController (~> 1.2.0)
+  - ATKit_Swift (0.2.5)
+  - ATRefresh_Swift (0.2.2):
+    - EmptyDataSet-Swift (~> 5.0.0)
     - MJRefresh (~> 3.4.3)
-  - DZNEmptyDataSet (1.8.1)
+  - EmptyDataSet-Swift (5.0.0)
   - FDFullscreenPopGesture (1.1)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -16,7 +14,6 @@ PODS:
   - Kingfisher (5.13.4):
     - Kingfisher/Core (= 5.13.4)
   - Kingfisher/Core (5.13.4)
-  - KVOController (1.2.0)
   - MBProgressHUD (1.1.0)
   - MGJRouter_Swift (0.1.2)
   - MJRefresh (3.4.3)
@@ -53,13 +50,12 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - DZNEmptyDataSet
+    - EmptyDataSet-Swift
     - FDFullscreenPopGesture
     - FMDB
     - HandyJSON
     - Hue
     - Kingfisher
-    - KVOController
     - MGJRouter_Swift
     - MJRefresh
     - Moya
@@ -80,10 +76,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ATKit_Swift:
-    :commit: 22ce65af7830a275943f6a11cd0d0894d033f085
+    :commit: 84faafafc35aea012208647f7771151c89ed7ad2
     :git: https://github.com/tianya2416/ATKit_Swift.git
   ATRefresh_Swift:
-    :commit: 5f187f6d2abb1e540720746c8f6e6629dba993f5
+    :commit: 609363eeb397175ce8be6a35b23dac111f145fbd
     :git: https://github.com/tianya2416/ATRefresh_Swift.git
   MBProgressHUD:
     :commit: 9454198b351732bd4eb8cbd7658b6dd73e1e43c8
@@ -94,15 +90,14 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  ATKit_Swift: d11c8aef7fa377d7a259769bfd16370662850ff0
-  ATRefresh_Swift: 70a893ce3ba2d6c018d4081ba890e825697668b9
-  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  ATKit_Swift: 712a9cc29c9b87df63160104006d5d06a292a3b2
+  ATRefresh_Swift: ea95c33edbddf7ef3144f81dada27ff7f47f5218
+  EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   HandyJSON: d45b8415c501e3affc59ca9762c1197ff0feb646
   Hue: c129cb67be7d093a82bbbc30ce8a96757bf6f37a
   Kingfisher: d2279a7abece3c7f25a80cd2b7f363ca5cf3f44c
-  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
   MBProgressHUD: 0f5bb58f04db85da16d8b9e9781df7f88cadd4ec
   MGJRouter_Swift: ae89cc7c4c82618b636cc9c7b15636e516080d3c
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
@@ -115,4 +110,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 62d2f453ef9f21fc6e1b2665e5663f6f8ce7c40f
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0

@@ -11,7 +11,7 @@ import UIKit
 private let least      : Float = 15;
 private let screenTime : Float = 90;
 
-enum AVPlayGestures {
+public enum AVPlayGestures {
     case none
     case progress
     case voice
@@ -158,22 +158,19 @@ class AVPlayView: UIView {
     }
     @IBAction func playAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected;
-        if let delegateSure = self.delegate{
-            delegateSure.playView?(playView: self, pause: sender.isSelected);
-        }
+        guard let delegate = self.delegate else { return }
+        delegate.playView?(playView: self, pause: sender.isSelected)
         self.statr();
     }
     @IBAction func screenAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected;
-        if let delegateSure = self.delegate{
-            delegateSure.playView?(playView: self, screen: sender.isSelected);
-        }
+        guard let delegate = self.delegate else { return }
+        delegate.playView?(playView: self, screen: sender.isSelected)
         self.statr();
     }
     @IBAction func listAction(_ sender: UIButton) {
-        if let delegateSure = self.delegate{
-            delegateSure.playView?(playView: self, list: true);
-        }
+        guard let delegate = self.delegate else { return }
+        delegate.playView?(playView: self, list: true)
         self.statr();
     }
     @IBAction func lockAction(_ sender: UIButton) {

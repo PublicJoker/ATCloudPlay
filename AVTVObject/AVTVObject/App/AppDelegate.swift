@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     open func supportedInterfaceOrientations(for window: UIWindow?) -> UIInterfaceOrientationMask{
         return .allButUpsideDown
-        //self.makeOrientation == UIInterfaceOrientation.landscapeRight ? UIInterfaceOrientationMask.all : UIInterfaceOrientationMask.portrait;
+       // return self.makeOrientation == UIInterfaceOrientation.landscapeRight ? UIInterfaceOrientationMask.all : UIInterfaceOrientationMask.portrait;
     }
     var blockRotation: UIInterfaceOrientationMask = .portrait{
         didSet{
