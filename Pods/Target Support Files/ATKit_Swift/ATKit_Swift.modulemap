@@ -1,0 +1,6 @@
+framework module ATKit_Swift {
+  umbrella header "ATKit_Swift-umbrella.h"
+
+  export *
+  module * { export * }
+}
