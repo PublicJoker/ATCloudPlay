@@ -2,8 +2,8 @@
 //  BaseDataQueue.m
 //  GKiOSApp
 //
-//  Created by wangws1990 on 2019/5/15.
-//  Copyright © 2019 wangws1990. All rights reserved.
+//  Created by Tony-sg on 2019/5/15.
+//  Copyright © 2019 Tony-sg. All rights reserved.
 //
 
 #import "BaseDataQueue.h"

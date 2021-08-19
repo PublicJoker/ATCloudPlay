@@ -2,8 +2,8 @@
 //  AVSearchDataQueueOC.m
 //  GKiOSNovel
 //
-//  Created by wangws1990 on 2019/6/14.
-//  Copyright © 2019 wangws1990. All rights reserved.
+//  Created by Tony-sg on 2019/6/14.
+//  Copyright © 2019 Tony-sg. All rights reserved.
 //
 
 #import "AVSearchDataQueueOC.h"

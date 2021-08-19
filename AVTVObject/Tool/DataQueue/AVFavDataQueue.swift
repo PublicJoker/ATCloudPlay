@@ -2,8 +2,8 @@
 //  AVFavDataQueue.swift
 //  AVTVObject
 //
-//  Created by wangws1990 on 2020/4/27.
-//  Copyright © 2020 wangws1990. All rights reserved.
+//  Created by Tony-sg on 2020/4/27.
+//  Copyright © 2020 Tony-sg. All rights reserved.
 //
 
 import UIKit

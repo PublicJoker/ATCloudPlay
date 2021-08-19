@@ -2,7 +2,7 @@
 //  Swift-Briding-Header.h
 //  AVTVObject
 //
-//  Created by wangws1990 on 2019/11/26.
+//  Created by Tony-sg on 2019/11/26.
 //  Copyright © 2018年 王炜圣. All rights reserved.
 //
 
